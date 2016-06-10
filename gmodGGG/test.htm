@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="4g.css">
+		<script src="4g.js"></script>
+
+		<title>	GGG Gmod Server	</title>
+	</head>
+	<body onresize="setFont()">
+		<img src="http://i.imgur.com/hMfgEFz.png"><!-- small GGG logo -->
+		<div id='boilerplate'>
+			<div id='title'>
+				Gentlemen's Gaming Server
+			</div>
+
+			<div id='dynamicstats'>
+				Currently Playing<br>
+				Gamemode:<span id='mode'></span><br>
+				Map:<span id='map'></span>
+			</div>
+		</div>
+		<div id="test">
+			<select id="selectBackground" style="position:absolute; top:1em; right:1em;" onchange="selectBackground()">
+			</select>
+		</div>		
+		<script>
+			var select = document.getElementById("selectBackground");
+			backgrounds.forEach( function(bg){
+				var newOption = document.createElement("option");
+				newOption.innerHTML = bg.description;
+				newOption.value = bg.url;
+				select.appendChild(newOption);
+			});
+			function selectBackground(){
+			  setBackground(select.options[select.selectedIndex].value);
+			}
+			setTimeout(function(){
+				GameDetails( '', '', "dunno, probably that kitchen one", '', '', "ttt unless shit broke again" );
+			},1000);
+		</script>
+	</body>
+</html>
