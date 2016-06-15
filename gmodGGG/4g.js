@@ -1,7 +1,5 @@
 /* 4g.js */
-var butt = 6;
-var butt =8;
-console.log(butt);
+console.log('butt');
 var backgrounds = [ 
 	 {url:"http://i.imgur.com/J0zYUX2.png", description:"Brett: The Original"}
 	,{url:"http://i.imgur.com/sDYG7yd.png", description:"Rav-T: Dank Memes"}
@@ -9,12 +7,11 @@ var backgrounds = [
 	,{url:"http://i.imgur.com/7q6bIB0.png", description:"Rav-T: /u/"}
 	,{url:"http://i.imgur.com/Zex9uqR.png", description:"Rav-T: Terrorist Town Gazette 01-01"}
 	,{url:"http://i.imgur.com/AmDjSaW.jpg", description:"Brett: Safety Record"}
-	,{url:"http://i.imgur.com/qkV5qT9.jpg", description:"Matt/Cryptic: Atlas Park"}
+	,{url:"http://i.imgur.com/qkV5qT9.jpg", description:"Matt: Atlas Park"}
 	,{url:"http://i.imgur.com/AJw3mMf.png", description:"Mike, Rav-T: Winners"}
 	,{url:"http://i.imgur.com/rP04dbU.jpg", description:"Mike, Rav-T: Winners2"}
-	
 	,{url:"http://i.imgur.com/FgbK3qI.jpg", description:"Rav-T: Damage Control"}
-	,{url:"alphys.png", description:"alphys"}
+	,{url:"http://i.imgur.com/vvmlkuv.png", description:"Rav-T: Postcards"}
 	
 ];
 backgrounds = backgrounds.map(function(bg){
