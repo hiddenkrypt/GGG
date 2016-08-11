@@ -9,22 +9,27 @@ body {
 	background-attachment: fixed;
 	background-position: center;
 }
+#logo{
+	float:left;
+}
 #title{
 	font-size: 8em;
 	font-weight:bold;
 	text-align:center;
 }
 #boilerplate{
+	position:relative;
+	top: 10em;
 	font-family:Courier, monospace;
-	color:#000;
+	color:#fff;
 	text-shadow:  
-   -1px -1px 0 #fff,  
-    1px -1px 0 #fff,
-   -1px  1px 0 #fff,
-    1px  1px 0 #fff;
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+   -1px  1px 0 #000,
+    1px  1px 0 #000;
 }
 #dynamicstats{
-	font-size:5em;
+	font-size:3em;
 	margin-left:auto;
 	margin-right:auto;
 	display:block;
