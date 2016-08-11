@@ -12,7 +12,17 @@ var backgrounds = [
 	,{url:"http://i.imgur.com/FgbK3qI.jpg", description:"Rav-T: Damage Control"}
 	,{url:"http://i.imgur.com/vvmlkuv.png", description:"Rav-T: Postcards"}
 	,{url:"http://i.imgur.com/qPkc4CV.png", description:"Rav-T: Robotnik"}
+	,{url:"http://i.imgur.com/qPkc4CV.png", description:"Rav-T: Robotnik"}
+	,{url:"http://i.imgur.com/qPkc4CV.png", description:"Rav-T: Robotnik"}
+	,{url:"http://i.imgur.com/qPkc4CV.png", description:"Rav-T: Robotnik"}
 	,{url:"http://i.imgur.com/yFbdPTn.png", description:"Rav-T: Don't Forget:"}
+	,{url:"http://i.imgur.com/yFbdPTn.png", description:"Rav-T: Don't Forget:"}
+	,{url:"http://i.imgur.com/yFbdPTn.png", description:"Rav-T: Don't Forget:"}
+	,{url:"http://i.imgur.com/yFbdPTn.png", description:"Rav-T: Don't Forget:"}
+	,{url:"http://i.imgur.com/lrmn5ek.png", description:"Jason: Badmins"}
+	,{url:"http://i.imgur.com/lrmn5ek.png", description:"Jason: Badmins"}
+	,{url:"http://i.imgur.com/lrmn5ek.png", description:"Jason: Badmins"}
+	,{url:"http://i.imgur.com/lrmn5ek.png", description:"Jason: Badmins"}
 	,{url:"http://i.imgur.com/lrmn5ek.png", description:"Jason: Badmins"}
 	
 	
