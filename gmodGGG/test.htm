@@ -20,20 +20,18 @@
 				Map:<span id='map'></span>
 			</div>
 		</div>
-		<div id="test">
-			<select id="selectBackground" style="position:absolute; top:1em; right:1em;" onchange="selectBackground()">
-			</select>
+		<div id="test" style="position:absolute; top:1em; right:1em;" >
+			<select id="selectBackground" onchange="selectBackground()"></select><br>
 		</div>		
 		<script>
 			var select = document.getElementById("selectBackground");
-			backgrounds.forEach( function(bg){
+			backgrounds.forEach( function(bg, i){
 				var newOption = document.createElement("option");
 				newOption.innerHTML = bg.description;
-				newOption.value = bg.url;
 				select.appendChild(newOption);
 			});
 			function selectBackground(){
-			  setBackground(select.options[select.selectedIndex].value);
+				load(select.selectedIndex);
 			}
 			setTimeout(function(){
 				GameDetails( '', '', "dunno, probably deathcookin", '', '', "ttt unless we're bored" );

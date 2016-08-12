@@ -1,5 +1,6 @@
 /* 4g.js */
 console.log('butt');
+var sunny = function(){ console.log("theme plays here"); };
 var backgrounds = [ 
 	 {url:"http://i.imgur.com/J0zYUX2.png", description:"Brett: The Original"}
 	,{url:"http://i.imgur.com/sDYG7yd.png", description:"Rav-T: Dank Memes"}
@@ -15,14 +16,21 @@ var backgrounds = [
 	,{url:"http://i.imgur.com/yFbdPTn.png", description:"Rav-T: Don't Forget:"}
 	,{url:"http://i.imgur.com/lrmn5ek.png", description:"Jason: Badmins"}
 	,{url:"http://i.imgur.com/pMCeOiw.png", description:"Mike: Minimal"}
+	,{url:"http://i.imgur.com/3bBK6Fc.jpg", description:"Brett: No Fun"}
+	,{url:"http://i.imgur.com/0RDXGqs.jpg", description:"Brett: Always sunny in Terrortown", trigger:sunny}
 	
 	
 ];
 backgrounds = backgrounds.map(function(bg){
-	return {url:'url("'+bg.url+'")', description:bg.description};
+	return {url:'url("'+bg.url+'")', description:bg.description, callback:bg.trigger};
 });
-function load(){
-	setBackground(backgrounds[Math.floor(Math.random()*backgrounds.length)].url);
+function load(index){
+	if(typeof index !== 'number'){
+		index = Math.floor(Math.random()*backgrounds.length);
+	}
+	var bg = backgrounds[index];
+	setBackground(bg.url);
+	setTimeout(bg.callback, 1000);
 	setFont();
 };
 function setBackground(url){
