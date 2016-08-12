@@ -22,7 +22,16 @@
 		</div>
 		<div id="test" style="position:absolute; top:1em; right:1em;" >
 			<select id="selectBackground" onchange="selectBackground()"></select><br>
+			<span style="font-size:2em; font-family:Courier, monospace;color:#fff;text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px  1px 0 #000, 1px  1px 0 #000;">
+				URL:
+			</span>
 			<input id="urlGen">
+			<br>
+			<span style="font-size:2em; font-family:Courier, monospace;color:#fff;text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px  1px 0 #000, 1px  1px 0 #000;">
+				Quick Image test:
+			</span>
+			<input id="imgSrc" value="stick image URL here!"></input>
+			<input type="button" value="load" onclick="quickTest()" >
 		</div>		
 		<script>
 			var select = document.getElementById("selectBackground");
@@ -34,6 +43,9 @@
 			function selectBackground(){
 				load(select.selectedIndex);
 				document.getElementById("urlGen").value = window.location.href.split("?")[0] + "?screen=" + select.selectedIndex;
+			}
+			function quickTest(){
+				setBackground("url('" + document.getElementById('imgSrc').value + "')");
 			}
 			setTimeout(function(){
 				GameDetails( '', '', "dunno, probably deathcookin", '', '', "ttt unless we're bored" );
