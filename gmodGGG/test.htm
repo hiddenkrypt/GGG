@@ -33,7 +33,7 @@
 			});
 			function selectBackground(){
 				load(select.selectedIndex);
-				document.getElementById("urlGen").value = window.location.href + "?screen=" + select.selectedIndex;
+				document.getElementById("urlGen").value = window.location.href.split("?")[0] + "?screen=" + select.selectedIndex;
 			}
 			setTimeout(function(){
 				GameDetails( '', '', "dunno, probably deathcookin", '', '', "ttt unless we're bored" );
