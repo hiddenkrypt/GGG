@@ -1,6 +1,13 @@
 /* 4g.js */
 console.log('butt');
-var sunny = function(){ console.log("theme plays here"); };
+
+
+
+sunny = function(){ 
+	var audio = new Audio('res/sunny.mp3');
+	audio.play(); 
+};
+
 var backgrounds = [ 
 	 {url:"http://i.imgur.com/J0zYUX2.png", description:"Brett: The Original"}
 	,{url:"http://i.imgur.com/sDYG7yd.png", description:"Rav-T: Dank Memes"}
@@ -47,5 +54,3 @@ function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamem
 
 window.onresize = setFont;
 window.onload = load;
-
-
