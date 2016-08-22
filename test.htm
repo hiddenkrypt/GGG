@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="4g.css">
+		<script src="SpecialEvents.js"></script>
 		<script src="4g.js"></script>
-
 		<title>	GGG Gmod Server (SCREEN TEST MODE)	</title>
 	</head>
 	<body onresize="setFont()">
@@ -32,7 +32,7 @@
 			</span>
 			<input id="imgSrc" value="stick image URL here!"></input>
 			<input type="button" value="load" onclick="quickTest()" >
-		</div>		
+		</div>
 		<script>
 			var select = document.getElementById("selectBackground");
 			backgrounds.forEach( function(bg, i){
@@ -49,7 +49,7 @@
 			}
 			setTimeout(function(){
 				GameDetails( '', '', "dunno, probably deathcookin", '', '', "ttt unless we're bored" );
-			},1000);	
+			},1000);
 			window.onload = function(){
 				load(window.location.search.split('=')[1] >> 0);
 				select.selectedIndex = window.location.search.split('=')[1] >> 0;
