@@ -20,48 +20,68 @@
 		</style>
 	</head>
 	<body onresize="setFont()">
-		<img src="http://i.imgur.com/hMfgEFz.png" id="logo"><!-- small GGG logo -->
+		<!-- small GGG logo -->
+		<img src="http://i.imgur.com/hMfgEFz.png" id="logo">
 		<div id='boilerplate'>
 			<div id='title'>
 				Gentlemen's Gaming Server
 			</div>
-
 			<div id='dynamicstats'>
 				--Currently Playing--<br>
 				Gamemode:<span id='mode'></span><br>
 				Map:<span id='map'></span>
 			</div>
 		</div>
+
+		<!-- test inputs -->
+
 		<div id="test" style="position:absolute; top:1em; right:1em;" >
+			<!-- This option menu is populated with all registered loading screens. When a selection is made, the screen is loaded.-->
 			<select id="selectBackground" onchange="selectBackground()"></select><br>
-			<test>
-				URL:
-			</test>
-			<input id="urlGen">
-			<br>
-			<test>
-				Quick Image test:
-			</test>
-			<input id="imgSrc" value="stick image URL here!"></input>
-			<input type="button" value="load" onclick="quickTest()" >
+			<!-- This textfield is populated with a URL that will load this page with the current screen. Population is done on page load and on selection of a screen-->
+			<test>URL:</test><input id="urlGen"><br>
+			<!-- This input allows a user to dynamically load an image to see how well it works as a loading screen -->
+			<test>Quick Image test:</test><input id="imgSrc" value="stick image URL here!"></input><input type="button" value="load" onclick="quickTest()" >
 		</div>
 		<script>
+			/* This code runs after the elements are set up.*/
+
+			/**
+			 * The select menu is cached and populated
+			**/
 			var select = document.getElementById("selectBackground");
 			backgrounds.forEach( function(bg, i){
 				var newOption = document.createElement("option");
 				newOption.innerHTML = bg.description;
 				select.appendChild(newOption);
 			});
+
+			/**
+			 * This function is called on change of the select menu.
+			 * The selected screen is loaded, and a url for that screen is generated.
+			**/
 			function selectBackground(){
 				load(select.selectedIndex);
 				document.getElementById("urlGen").value = window.location.href.split("?")[0] + "?screen=" + select.selectedIndex;
 			}
+
+			/**
+			 * This function is run on click of the quick test button.
+			 * We attempt to load the supplied URL as a screen image.
+			**/
 			function quickTest(){
 				setBackground("url('" + document.getElementById('imgSrc').value + "')");
 			}
+
+			//one second after the code is parsed, the GmaeDetails functionality of Garry's Mod is simulated.
 			setTimeout(function(){
 				GameDetails( '', '', "dunno, probably deathcookin", '', '', "ttt unless we're bored" );
 			},1000);
+
+			/**
+			 * window.onload is overwritten from the normal ScreenEngine Code with a custion test version.
+			 * This checks the url for an argument to select a specific screen. If the argument is unavailable, a random screen is selected by default.
+			**/
 			window.onload = function(){
 				load(window.location.search.split('=')[1] >> 0);
 				select.selectedIndex = window.location.search.split('=')[1] >> 0;
