@@ -1,3 +1,14 @@
+/** Directory.js **
+ * An array of all loading screens.
+ * Loading Screen objects meet the following schema:
+ * {
+ *	url: <string> a full url to an image file
+ *	title: <string> a The title of this screen
+ *	credit: <string> The author(s)/creator(s) of the screen
+ *	trigger: <function, optional> an optional callback function for
+ *			 Special Events. This function should be in SpecialEvents.js
+ * }
+**/
 
 var loadingScreenDirectory = [
 	{

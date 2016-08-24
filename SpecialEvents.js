@@ -1,11 +1,9 @@
-/* SpecialEvents.js */
-
-/**
+/** SpecialEvents.js **
  * This file contains callback functions for special triggered events on some
- * loading screens.
+ * loading screens. Should be referenced and loaded before Directoy.js
 **/
 
-/**
+/** sunny()
  * Plays the theme from "Always Sunny In Philadelphia"
  * Trigger Screen: 'Always Sunny in Terrortown' by Brett
 **/
