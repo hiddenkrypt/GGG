@@ -1,6 +1,20 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+		<!--
+			This test page replicates the normal loading screen page, but adds
+			functionality. It uses the same ScreenEngine and SpecialEvents code
+			as well as the same stylesheet. It adds the following:
+
+			- A select menu that allows a user to choose to view a specific
+			  loading screen
+			- URL parameter parsing to allow a user to hotlink to a specific
+			  loading screen, as well as a field that shows such urls when a
+			  screen is selected. When this parameter is absent, a random screen
+			  will be picked on page load.
+			- A test loader, that will dynamically load a user defined url as a
+			  loading screen without having to make any code changes
+		-->
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="LoadingScreens.css">
 		<script src="SpecialEvents.js"></script>
@@ -20,7 +34,9 @@
 		</style>
 	</head>
 	<body onresize="setFont()">
-		<!-- small GGG logo -->
+
+		<!-- Loading Screen Elements -->
+
 		<img src="http://i.imgur.com/hMfgEFz.png" id="logo">
 		<div id='boilerplate'>
 			<div id='title'>
@@ -33,18 +49,24 @@
 			</div>
 		</div>
 
-		<!-- test inputs -->
+		<!-- User inputs for testing-->
 
 		<div id="test" style="position:absolute; top:1em; right:1em;" >
-			<!-- This option menu is populated with all registered loading screens. When a selection is made, the screen is loaded.-->
+			<!-- This option menu is populated with all registered loading
+			screens. When a selection is made, the screen is loaded.-->
 			<select id="selectBackground" onchange="selectBackground()"></select><br>
-			<!-- This textfield is populated with a URL that will load this page with the current screen. Population is done on page load and on selection of a screen-->
+			<!-- This textfield is populated with a URL that will load this page
+			with the current screen. Population is done on page load and on
+			selection of a screen-->
 			<test>URL:</test><input id="urlGen"><br>
-			<!-- This input allows a user to dynamically load an image to see how well it works as a loading screen -->
+			<!-- This input allows a user to dynamically load an image to see
+			how well it works as a loading screen -->
 			<test>Quick Image test:</test><input id="imgSrc" value="stick image URL here!"></input><input type="button" value="load" onclick="quickTest()" >
 		</div>
+
+		<!-- Testing code -->
 		<script>
-			/* This code runs after the elements are set up.*/
+			/* This code runs after the elements are set up. */
 
 			/**
 			 * The select menu is cached and populated
@@ -57,8 +79,9 @@
 			});
 
 			/**
-			 * This function is called on change of the select menu.
-			 * The selected screen is loaded, and a url for that screen is generated.
+			 * This function is called on change of the select menu. The
+			 * selected screen is loaded, and a url for that screen is
+			 * generated.
 			**/
 			function selectBackground(){
 				load(select.selectedIndex);
@@ -73,7 +96,10 @@
 				setBackground("url('" + document.getElementById('imgSrc').value + "')");
 			}
 
-			//one second after the code is parsed, the GmaeDetails functionality of Garry's Mod is simulated.
+			/**
+			 * one second after the code is parsed, the GameDetails
+			 * hook of Garry's Mod is simulated.
+			**/
 			setTimeout(function(){
 				GameDetails( '', '', "dunno, probably deathcookin", '', '', "ttt unless we're bored" );
 			},1000);
