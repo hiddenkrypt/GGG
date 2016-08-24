@@ -1,10 +1,20 @@
 /* SpecialEvents.js */
+
 /**
- * This file contains callback functions for special triggered events on cetrain loading screens
+ * This file contains callback functions for special triggered events on some
+ * loading screens.
 **/
 
-/* sunny() plays*/
+/**
+ * Plays the theme from "Always Sunny In Philadelphia"
+ * Trigger Screen: 'Always Sunny in Terrortown' by Brett
+**/
 function sunny(){
-	var audio = new Audio('res/sunny.mp3');
-	audio.play();
+	var theme = document.createElement("audio");
+	var warning = document.createTextNode("Audio tags are not supported! Tell a Programmer!");
+	theme.src = 'res/sunny.mp3';
+	theme.volume = 0.3;
+	theme.appendChild(warning);
+	document.appendChild(theme);
+	setTimeout(function(){theme.play();}, 1000);
 };
