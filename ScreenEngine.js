@@ -28,19 +28,19 @@ loadingScreens = loadingScreens.map(function(loadingScreen){
 });
 
 function load(index){
-	if(typeof index !== 'number'){
-		index = Math.floor(Math.random()*loadingScreens.length);
+	if(typeof index !== 'number' || index < 0 || index > loadingScreens.length){
+		index = Math.floor(Math.random() * loadingScreens.length);
 	}
 	var selectedScreen = loadingScreens[index];
 	setBackground(selectedScreen.url);
-	setTimeout(selectedScreen.callback, 1000);
+	setTimeout(selectedScreen.callback, 500);
 	setFont();
 };
 function setBackground(url){
 	document.body.style.backgroundImage = url;
 }
 function setFont(){
-    var fpc = window.innerWidth/200;
+    var fpc = window.innerWidth / 200;
     document.body.style.fontSize = fpc+'px';
 }
 function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode ) {
