@@ -1,21 +1,22 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+		<!-- GGG's server loading screen -->
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="LoadingScreens.css">
-		<script src="SpecialEvents.js"></script>
-		<script src="ScreenEngine.js"></script>
+		<script src="SpecialEvents.js">//event callbacks for some screens</script>
+		<script src="ScreenEngine.js">//screen list and loading engine</script>
 		<title>	GGG Gmod Server	</title>
 	</head>
 	<body onresize="setFont()">
 		<img src="http://i.imgur.com/hMfgEFz.png" id="logo"><!-- small GGG logo -->
 		<div id='boilerplate'>
-			<div id='title'>
+			<div id='title'> <!-- Server name -->
 				Gentlemen's Gaming Server
 			</div>
-
 			<div id='dynamicstats'>
 				--Currently Playing--<br>
+				<!-- server stats, updated by a GameDetails call -->
 				Gamemode:<span id='mode'></span><br>
 				Map:<span id='map'></span>
 			</div>
