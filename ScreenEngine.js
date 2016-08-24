@@ -2,7 +2,8 @@
  * Basic code for making the Loading Screens work. Selects a screen at random
  * from the loadingScreenDirectory defined in Directory.js. Loads the screen
  * image in the background, calls the trigger callback. Also automatically
- * adjusts the size of displayed text depenting on the width of the screen. 
+ * adjusts the size of displayed text to one determined by the width of the
+ * screen.
 **/
 console.log('butt');
 
@@ -20,7 +21,7 @@ function load(index){
 	}
 	var selectedScreen = loadingScreenDirectory[index];
 	setBackground(selectedScreen.url);
-	setTimeout(selectedScreen.callback, 500);
+	setTimeout(selectedScreen.callback, 100);
 	setFont();
 };
 function setBackground(url){
