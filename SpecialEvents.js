@@ -3,16 +3,23 @@
  * loading screens. Should be referenced and loaded before Directoy.js
 **/
 
+/**
+ * Generic function that plays a sound located at the indicated path
+**/
+function playsound(path){
+	var sfx = document.createElement("audio");
+	sfx.src = path;
+	sfx.volume = 0.3;
+	document.getElementById("logo").appendChild(sfx);
+	setTimeout(function(){sfx.play();}, 1000);
+}
+
 /** sunny()
  * Plays the theme from "Always Sunny In Philadelphia"
  * Trigger Screen: 'Always Sunny in Terrortown' by Brett
 **/
 function sunny(){
-	var theme = document.createElement("audio");
-	theme.src = 'res/sunny.mp3';
-	theme.volume = 0.3;
-	document.appendChild(theme);
-	setTimeout(function(){theme.play();}, 1000);
+		playsound("res/audio/sunny.mp3");
 };
 
 
@@ -24,11 +31,6 @@ function sunny(){
  * Tell a programmer!
 **/
 function indexError(){
-	document.getElementById("boilerplate").style.display = 'none';
-	document.getElementById("logo").style.display = "none";
-	document.getElementById("test").style.display = "none";
-	//TODO: play windows error ding
-	//TODO: run feature detection (use http://diveintohtml5.info/everything.html ? or Modernizr?) 
 	function clickToReturn(){
 		document.getElementById("boilerplate").style.display = "initial";
 		document.getElementById("logo").style.display = "initial";
@@ -36,4 +38,9 @@ function indexError(){
 		document.removeEventListener("click", clickToReturn, true);
 	}
 	document.addEventListener("click", clickToReturn, true);
+	document.getElementById("boilerplate").style.display = 'none';
+	document.getElementById("logo").style.display = "none";
+	document.getElementById("test").style.display = "none";
+	playsound('res/audio/error-ding.wav');
+	//TODO: run feature detection (use http://diveintohtml5.info/everything.html ? or Modernizr?)
 }
