@@ -1,53 +1,84 @@
 
 var loadingScreenDirectory = [
-	 {
+	{
 		url:"http://i.imgur.com/J0zYUX2.png",
-		description:"Brett: The Original"
-	},{
+		title:"The Original",
+        credit:"Brett"
+	},
+    {
 		url:"http://i.imgur.com/sDYG7yd.png",
-		description:"Rav-T: Dank Memes"
-	},{
+		title:"Sweet Skins and Hella Mods",
+        credit:"Rav-T"
+	},
+    {
 		url:"http://i.imgur.com/lmMNbwD.png",
-		description:"Mike: MLG"
-	},{
+		title:"MLG",
+        credit:"Mike"
+	},
+    {
 		url:"http://i.imgur.com/7q6bIB0.png",
-		description:"Rav-T: /u/"
-	},{
+		title:"/u/",
+        credit:"Rav-T"
+	},
+    {
 		url:"http://i.imgur.com/Zex9uqR.png",
-		description:"Rav-T: Terrorist Town Gazette 01-01"
-	},{
+		title:"Terrorist Town Gazette 01-01",
+        credit:"Rav-T"
+	},
+    {
 		url:"http://i.imgur.com/AmDjSaW.jpg",
-		description:"Brett: Safety Record"
-	},{
+		title:"Safety Record",
+        credit:"Brett"
+	},
+    {
 		url:"http://i.imgur.com/qkV5qT9.jpg",
-		description:"Matt: Atlas Park"
-	},{
+		title:"Atlas Park",
+        credit:"Matt"
+	},
+    {
 		url:"http://i.imgur.com/rP04dbU.jpg",
-		description:"Mike, Rav-T: Winners2"
-	},{
+		title:"Winners",
+        credit:"Mike, Rav-T"
+	},
+    {
 		url:"http://i.imgur.com/FgbK3qI.jpg",
-		description:"Rav-T: Damage Control"
-	},{
+		title:"Damage Control",
+        credit:"Rav-T"
+	},
+    {
 		url:"http://i.imgur.com/vvmlkuv.png",
-		description:"Rav-T: Postcards"
-	},{
+		title:"Postcards",
+        credit:"Rav-T"
+	},
+    {
 		url:"http://i.imgur.com/qPkc4CV.png",
-		description:"Rav-T: Robotnik"
-	},{
+		title:"Robotnik",
+        credit:"Rav-T"
+	},
+    {
 		url:"http://i.imgur.com/yFbdPTn.png",
-		description:"Rav-T: Don't Forget:"
-	},{
+		title:"Don't Forget:",
+        credit:"Rav-T"
+	},
+    {
 		url:"http://i.imgur.com/lrmn5ek.png",
-		description:"Jason: Badmins"
-	},{
+		title:"Badmins",
+        credit:"Jason"
+	},
+    {
 		url:"http://i.imgur.com/pMCeOiw.png",
-		description:"Mike: Minimal"
-	},{
+		title:"Minimal",
+        credit:"Mike, Rav-T"
+	},
+    {
 		url:"http://i.imgur.com/3bBK6Fc.jpg",
-		description:"Brett: No Fun"
-	},{
+		title:"No Fun",
+        credit:"Brett"
+	},
+    {
 		url:"http://i.imgur.com/0RDXGqs.jpg",
-		description:"Brett: Always Sunny in Terrortown",
+		title:"Always Sunny in Terrortown",
+        credit:"Brett",
         trigger:sunny
     }
 ];

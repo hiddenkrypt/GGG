@@ -4,7 +4,7 @@ console.log('butt');
 loadingScreenDirectory = loadingScreenDirectory.map(function(loadingScreen){
 	return {
 		url: 'url("'+loadingScreen.url+'")',
-		description: loadingScreen.description,
+		description: loadingScreen.credit + ": " + loadingScreen.title,
 		callback: loadingScreen.trigger
 	};
 });
