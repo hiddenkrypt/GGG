@@ -23,6 +23,10 @@ function load(index){
 	setBackground(selectedScreen.url);
 	setTimeout(selectedScreen.callback, 100);
 	setFont();
+
+	//QUICK TEST, REMOVE THIS SOON!
+			playsound("res/audio/sunny.mp3");
+
 };
 function setBackground(url){
 	document.body.style.backgroundImage = url;

@@ -44,6 +44,3 @@ function indexError(){
 	playsound('res/audio/error-ding.wav');
 	//TODO: run feature detection (use http://diveintohtml5.info/everything.html ? or Modernizr?)
 }
-
-//QUICK TEST, REMOVE THIS SOON!
-		playsound("res/audio/sunny.mp3");
