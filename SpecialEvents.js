@@ -11,7 +11,7 @@ function playsound(path){
 	sfx.src = path;
 	sfx.volume = 0.3;
 	document.getElementById("logo").appendChild(sfx);
-	setTimeout(function(){sfx.play();}, 1000);
+	sfx.play();
 }
 
 /** sunny()
