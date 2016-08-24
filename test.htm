@@ -18,6 +18,7 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="LoadingScreens.css">
 		<script src="SpecialEvents.js"></script>
+		<script src="Directory.js"></script>
 		<script src="ScreenEngine.js"></script>
 		<title>	GGG Gmod Server (SCREEN TEST MODE)	</title>
 		<style>
@@ -72,7 +73,7 @@
 			 * The select menu is cached and populated
 			**/
 			var select = document.getElementById("selectBackground");
-			backgrounds.forEach( function(bg, i){
+			loadingScreenDirectory.forEach( function(bg, i){
 				var newOption = document.createElement("option");
 				newOption.innerHTML = bg.description;
 				select.appendChild(newOption);

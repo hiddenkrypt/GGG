@@ -3,7 +3,7 @@
 html{
 	font-size:10px;
 }
-body { 
+body {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -22,8 +22,8 @@ body {
 	top: 10em;
 	font-family:Courier, monospace;
 	color:#fff;
-	text-shadow:  
-   -1px -1px 0 #000,  
+	text-shadow:
+   -1px -1px 0 #000,
     1px -1px 0 #000,
    -1px  1px 0 #000,
     1px  1px 0 #000;
