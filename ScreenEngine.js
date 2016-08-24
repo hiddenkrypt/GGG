@@ -1,14 +1,7 @@
 /* 4g.js */
 console.log('butt');
 
-
-
-sunny = function(){ 
-	var audio = new Audio('res/sunny.mp3');
-	audio.play(); 
-};
-
-var backgrounds = [ 
+var loadingScreens = [
 	 {url:"http://i.imgur.com/J0zYUX2.png", description:"Brett: The Original"}
 	,{url:"http://i.imgur.com/sDYG7yd.png", description:"Rav-T: Dank Memes"}
 	,{url:"http://i.imgur.com/lmMNbwD.png", description:"Mike: MLG"}
@@ -25,19 +18,22 @@ var backgrounds = [
 	,{url:"http://i.imgur.com/pMCeOiw.png", description:"Mike: Minimal"}
 	,{url:"http://i.imgur.com/3bBK6Fc.jpg", description:"Brett: No Fun"}
 	,{url:"http://i.imgur.com/0RDXGqs.jpg", description:"Brett: Always sunny in Terrortown", trigger:sunny}
-	
-	
 ];
-backgrounds = backgrounds.map(function(bg){
-	return {url:'url("'+bg.url+'")', description:bg.description, callback:bg.trigger};
+loadingScreens = loadingScreens.map(function(loadingScreen){
+	return {
+		url: 'url("'+loadingScreen.url+'")',
+		description: loadingScreen.description,
+		callback: loadingScreen.trigger
+	};
 });
+
 function load(index){
 	if(typeof index !== 'number'){
-		index = Math.floor(Math.random()*backgrounds.length);
+		index = Math.floor(Math.random()*loadingScreens.length);
 	}
-	var bg = backgrounds[index];
-	setBackground(bg.url);
-	setTimeout(bg.callback, 1000);
+	var selectedScreen = loadingScreens[index];
+	setBackground(selectedScreen.url);
+	setTimeout(selectedScreen.callback, 1000);
 	setFont();
 };
 function setBackground(url){
