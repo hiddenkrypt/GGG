@@ -91,5 +91,11 @@ var loadingScreenDirectory = [
 		title:"Always Sunny in Terrortown",
         credit:"Brett",
         trigger:sunny
-    }
+    },
+	{
+		url:"http://i.imgur.com/XUVcFQx.jpg",
+		title: "ERROR",
+		credit: "Rav-T",
+		trigger: indexError
+	}
 ];
