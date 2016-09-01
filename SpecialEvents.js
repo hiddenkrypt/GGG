@@ -60,11 +60,26 @@ function featureDetect(){
 			} catch(e) {
 			  return false;
 			}
+		}},
+		{name:"setTimeout (PENDING)", test:function(){
+			setTimeout(function(){
+				box.appendChild(document.createTextNode('TIMEOUT SUCCESS'));
+				box.appendChild(document.createElement("br"));
+			}, 300);
+		}},
+		{name:"setInterval (PENDING)", test:function(){
+			var i = 0;
+			var id = setInterval(function(){
+				box.appendChild(document.createTextNode('INTERVAL SUCCESS MARK '+(i++)));
+				box.appendChild(document.createElement("br"));
+				if(i===3){
+					clearInterval(id);
+				}
+			}, 300);
 		}}
 	];
-	setInterval(function(){
-		var test = tests.shift();
-		box.appendChild(document.createTextNode(test.name + ":" + (test.test()?'pass':'fail')));
+	tests.forEach(function(e){
+		box.appendChild(document.createTextNode(e.name + ":" + (e.test()?'pass':'fail')));
 		box.appendChild(document.createElement("br"));
 	}, 600);
 }
@@ -100,5 +115,5 @@ function indexError(){
 	document.getElementById("logo").style.display = "none";
 	document.getElementById("test").style.display = "none";
 	playsound('res/audio/error-ding.wav');
-	setTimeout(featureDetect,2000);
+	featureDetect();
 }

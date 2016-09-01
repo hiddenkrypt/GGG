@@ -21,7 +21,9 @@ function load(index){
 	}
 	var selectedScreen = loadingScreenDirectory[index];
 	setBackground(selectedScreen.url);
-	setTimeout(selectedScreen.callback, 100);
+	if(typeof selectedScreen.callback === 'function'){
+		selectedScreen.callback();
+	}
 	setFont();
 };
 function setBackground(url){
