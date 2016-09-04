@@ -11,6 +11,9 @@
 **/
 
 var loadingScreenDirectory = [
+
+/*
+
 	{
 		url:"http://i.imgur.com/J0zYUX2.png",
 		title:"The Original",
@@ -92,6 +95,9 @@ var loadingScreenDirectory = [
         credit:"Brett",
         trigger:sunny
     },
+
+*/
+
 	{
 		url:"http://i.imgur.com/XUVcFQx.jpg",
 		title: "ERROR",

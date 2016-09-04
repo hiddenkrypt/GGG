@@ -32,6 +32,8 @@ function featureDetect(){
 	var a = document.createElement('audio');
 	var c = document.createElement('canvas');
 	var v = document.createElement('video');
+
+
 	var tests = [
 		{name:"New Audio", test:function(){ return !!a.canPlayType; }},
 		{name:"Audio MP3 playback", test:function(){ return !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));}},
@@ -44,6 +46,9 @@ function featureDetect(){
 		{name:"Canvas 2d Context", test:function(){ return c.getContext('2d'); }},
 		{name:"Canvas webGL Context", test:function(){ return c.getContext('webgl'); }},
 		{name:"Canvas text API", test:function(){ return c.getContext && typeof c.getContext('2d').fillText == 'function'; }},
+		{name:"requestAnimationFrame found", test:function(){ return (typeof window.requestAnimFrame === 'function' ); }},
+		{name:"webkit requestAnimationFrame found", test:function(){ return (typeof   window.webkitRequestAnimationFrame === 'function' ); }},
+		{name:"mozilla requestAnimationFrame found", test:function(){ return (typeof window.mozRequestAnimationFrame === 'function' ); }},
 		{name:"XHR", test:function(){ return !!(new XMLHttpRequest()); }},
 		{name:"XHR crossdomain", test:function(){ return "withCredentials" in new XMLHttpRequest;}},
 		{name:"WebSocket", test:function(){ return !!window.WebSocket; }},
@@ -104,16 +109,21 @@ function sunny(){
  * Tell a programmer!
 **/
 function indexError(){
-	function clickToReturn(){
-		document.getElementById("boilerplate").style.display = "initial";
-		document.getElementById("logo").style.display = "initial";
-		document.getElementById("test").style.display = "initial";
-		document.removeEventListener("click", clickToReturn, true);
-	}
-	document.addEventListener("click", clickToReturn, true);
+
+/*	document.addEventListener(
+		"click",
+		function clickToReturn(){
+			console.log("clicked to return");
+			document.getElementById("boilerplate").style.display = "initial";
+			document.getElementById("logo").style.display = "initial";
+			document.getElementById("test").style.display = "initial";
+			document.removeEventListener("click", clickToReturn, false);
+		}, false);*/
 	document.getElementById("boilerplate").style.display = 'none';
 	document.getElementById("logo").style.display = "none";
 	document.getElementById("test").style.display = "none";
+	console.log(document.getElementById("boilerplate"));
+	console.log(document.getElementById("boilerplate").style.display);
 	playsound('res/audio/error-ding.wav');
 	featureDetect();
 }
