@@ -55,7 +55,7 @@
 		<div id="test" style="position:absolute; top:1em; right:1em;" >
 			<!-- This option menu is populated with all registered loading
 			screens. When a selection is made, the screen is loaded.-->
-			<select id="selectBackground" onchange="selectBackground()"></select><br>
+			<select id="selectBackground" onchange="Test.selectBackground()"></select><br>
 			<!-- This textfield is populated with a URL that will load this page
 			with the current screen. Population is done on page load and on
 			selection of a screen-->
@@ -67,53 +67,55 @@
 
 		<!-- Testing code -->
 		<script>
-			/* This code runs after the elements are set up. */
+			var Test = new (function(){
+				/* This code runs after the elements are set up. */
 
-			/**
-			 * The select menu is cached and populated
-			**/
-			var select = document.getElementById("selectBackground");
-			loadingScreenDirectory.forEach( function(bg, i){
-				var newOption = document.createElement("option");
-				newOption.innerHTML = bg.credit + ":  " + bg.title;
-				select.appendChild(newOption);
-			});
+				/**
+				 * The select menu is cached and populated
+				**/
+				var select = document.getElementById("selectBackground");
+				loadingScreenDirectory.forEach( function(bg, i){
+					var newOption = document.createElement("option");
+					newOption.innerHTML = bg.credit + ":  " + bg.title;
+					select.appendChild(newOption);
+				});
 
-			/**
-			 * This function is called on change of the select menu. The
-			 * selected screen is loaded, and a url for that screen is
-			 * generated.
-			**/
-			function selectBackground(){
-				ScreenEngine.load(select.selectedIndex);
-				document.getElementById("urlGen").value = window.location.href.split("?")[0] + "?screen=" + select.selectedIndex;
-			}
+				/**
+				 * This function is called on change of the select menu. The
+				 * selected screen is loaded, and a url for that screen is
+				 * generated.
+				**/
+				this.selectBackground = function(){
+					ScreenEngine.load(select.selectedIndex);
+					document.getElementById("urlGen").value = window.location.href.split("?")[0] + "?screen=" + select.selectedIndex;
+				}
 
-			/**
-			 * This function is run on click of the quick test button.
-			 * We attempt to load the supplied URL as a screen image.
-			**/
-			function quickTest(){
-				setBackground("url('" + document.getElementById('imgSrc').value + "')");
-			}
+				/**
+				 * This function is run on click of the quick test button.
+				 * We attempt to load the supplied URL as a screen image.
+				**/
+				function quickTest(){
+					setBackground("url('" + document.getElementById('imgSrc').value + "')");
+				}
 
-			/**
-			 * one second after the code is parsed, the GameDetails
-			 * hook of Garry's Mod is simulated.
-			**/
-			setTimeout(function(){
-				GameDetails( '', '', "dunno, probably deathcookin", '', '', "ttt unless we're bored" );
-			},1000);
+				/**
+				 * one second after the code is parsed, the GameDetails
+				 * hook of Garry's Mod is simulated.
+				**/
+				setTimeout(function(){
+					GameDetails( '', '', "dunno, probably deathcookin", '', '', "ttt unless we're bored" );
+				},1000);
 
-			/**
-			 * window.onload is overwritten from the normal ScreenEngine Code with a custion test version.
-			 * This checks the url for an argument to select a specific screen. If the argument is unavailable, a random screen is selected by default.
-			**/
-			window.onload = function(){
-				ScreenEngine.load(window.location.search.split('=')[1] >> 0);
-				select.selectedIndex = window.location.search.split('=')[1] >> 0;
-				document.getElementById("urlGen").value = window.location.href
-			}
+				/**
+				 * window.onload is overwritten from the normal ScreenEngine Code with a custion test version.
+				 * This checks the url for an argument to select a specific screen. If the argument is unavailable, a random screen is selected by default.
+				**/
+				window.onload = function(){
+					ScreenEngine.load(window.location.search.split('=')[1] >> 0);
+					select.selectedIndex = window.location.search.split('=')[1] >> 0;
+					document.getElementById("urlGen").value = window.location.href
+				}
+			})();
 		</script>
 	</body>
 </html>
