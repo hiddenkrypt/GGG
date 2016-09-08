@@ -26,7 +26,7 @@ function featureDetect(){
 	box.appendChild(document.createElement('br'));
 	box.style.float = 'right';
 	box.style.background = "#ededed";
-	box.style.fontSize = '3em';
+	box.style.fontSize = '2em';
 	box.style.color = '#a10000';
 	document.body.appendChild(box);
 	var a = document.createElement('audio');
