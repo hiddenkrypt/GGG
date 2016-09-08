@@ -5,7 +5,6 @@
  * adjusts the size of displayed text to one determined by the width of the
  * screen.
 **/
-console.log('butt');
 
 loadingScreenDirectory = loadingScreenDirectory.map(function(loadingScreen){
 	return {

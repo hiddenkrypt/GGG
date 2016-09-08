@@ -122,8 +122,5 @@ function indexError(){
 	document.getElementById("boilerplate").style.display = 'none';
 	document.getElementById("logo").style.display = "none";
 	document.getElementById("test").style.display = "none";
-	console.log(document.getElementById("boilerplate"));
-	console.log(document.getElementById("boilerplate").style.display);
 	playsound('res/audio/error-ding.wav');
-	featureDetect();
 }
