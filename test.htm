@@ -34,7 +34,7 @@
 			}
 		</style>
 	</head>
-	<body onresize="setFont()">
+	<body>
 
 		<!-- Loading Screen Elements -->
 
@@ -75,7 +75,7 @@
 			var select = document.getElementById("selectBackground");
 			loadingScreenDirectory.forEach( function(bg, i){
 				var newOption = document.createElement("option");
-				newOption.innerHTML = bg.description;
+				newOption.innerHTML = bg.credit + ":  " + bg.title;
 				select.appendChild(newOption);
 			});
 
@@ -85,7 +85,7 @@
 			 * generated.
 			**/
 			function selectBackground(){
-				load(select.selectedIndex);
+				ScreenEngine.load(select.selectedIndex);
 				document.getElementById("urlGen").value = window.location.href.split("?")[0] + "?screen=" + select.selectedIndex;
 			}
 
@@ -110,7 +110,7 @@
 			 * This checks the url for an argument to select a specific screen. If the argument is unavailable, a random screen is selected by default.
 			**/
 			window.onload = function(){
-				load(window.location.search.split('=')[1] >> 0);
+				ScreenEngine.load(window.location.search.split('=')[1] >> 0);
 				select.selectedIndex = window.location.search.split('=')[1] >> 0;
 				document.getElementById("urlGen").value = window.location.href
 			}

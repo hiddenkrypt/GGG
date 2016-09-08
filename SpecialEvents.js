@@ -110,20 +110,16 @@ function sunny(){
 **/
 function indexError(){
 
-/*	document.addEventListener(
+	document.addEventListener(
 		"click",
 		function clickToReturn(){
-			console.log("clicked to return");
 			document.getElementById("boilerplate").style.display = "initial";
 			document.getElementById("logo").style.display = "initial";
 			document.getElementById("test").style.display = "initial";
 			document.removeEventListener("click", clickToReturn, false);
-		}, false);*/
+		}, false);
 	document.getElementById("boilerplate").style.display = 'none';
 	document.getElementById("logo").style.display = "none";
 	document.getElementById("test").style.display = "none";
-	console.log(document.getElementById("boilerplate"));
-	console.log(document.getElementById("boilerplate").style.display);
 	playsound('res/audio/error-ding.wav');
-	featureDetect();
 }
