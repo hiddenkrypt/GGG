@@ -22,7 +22,7 @@ var SpecialEvents = new (function(){
 	 * Trigger Screen: 'Always Sunny in Terrortown' by Brett
 	**/
 	this.sunny = function(){
-		playsound("res/audio/sunny.mp3");
+		playsound("res/audio/sunny.wav");
 	};
 
 
