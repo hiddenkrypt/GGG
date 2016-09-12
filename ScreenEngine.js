@@ -22,7 +22,7 @@ var ScreenEngine = new (function(){
 		document.body.style.backgroundImage = url;
 	}
 	this.setFont = function(){
-	    var fpc = window.innerWidth / 200;
+	    var fpc = window.innerWidth / 250;
 	    document.body.style.fontSize = fpc+'px';
 	}
 	this.GameDetails = function( servername, serverurl, mapname, maxplayers, steamid, gamemode ) {

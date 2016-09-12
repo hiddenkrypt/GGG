@@ -1,7 +1,11 @@
 /* 4g.css */
 
+@font-face{
+	font-family: "Boxy-Bold";
+	src: url("res/font/Boxy-Bold.woff");
+}
 html{
-	font-size:10px;
+	font-size: 10px;
 }
 body {
 	background-size: cover;
@@ -10,29 +14,31 @@ body {
 	background-position: center;
 }
 #logo{
-	float:left;
+	float: left;
 }
 #title{
 	font-size: 8em;
-	font-weight:bold;
-	text-align:center;
+	font-weight: bold;
+	text-align: center;
 }
 #boilerplate{
-	position:relative;
+	position: relative;
 	top: 10em;
-	font-family:Courier, monospace;
-	color:#fff;
+	font-family:"Boxy-Bold";
+	color:#000;
+	/*font-family: Courier, monospace;*/
+
 	text-shadow:
-   -1px -1px 0 #000,
-    1px -1px 0 #000,
-   -1px  1px 0 #000,
-    1px  1px 0 #000;
+	   -.5em -.5em 0 #fff,
+	    .5em -.5em 0 #fff,
+	   -.5em  .5em 0 #fff,
+	    .5em  .5em 0 #fff;
 }
 #dynamicstats{
-	font-size:3em;
-	margin-left:auto;
-	margin-right:auto;
-	display:block;
-	width:20em;
-	text-align:right;
+	font-size: 3em;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	width: 20em;
+	text-align: right;
 }

@@ -27,10 +27,10 @@
 				font-family:Courier, monospace;
 				color:#fff;
 				text-shadow:
-					-1px -1px 0 #000,
-					1px -1px 0 #000,
-					-1px  1px 0 #000,
-					1px  1px 0 #000;
+					-.1em -.1em 0 #000,
+					 .1em -.1em 0 #000,
+					-.1em  .1em 0 #000,
+					 .1em  .1em 0 #000;
 			}
 		</style>
 	</head>
@@ -45,8 +45,7 @@
 			</div>
 			<div id='dynamicstats'>
 				--Currently Playing--<br>
-				Gamemode:<span id='mode'></span><br>
-				Map:<span id='map'></span>
+				<span id='mode'></span> - <span id='map'></span>
 			</div>
 		</div>
 
@@ -103,7 +102,7 @@
 				 * hook of Garry's Mod is simulated.
 				**/
 				setTimeout(function(){
-					GameDetails( '', '', "dunno, probably deathcookin", '', '', "ttt unless we're bored" );
+					GameDetails( '', '', "de_deathcookin", '', '', "terrortown" );
 				},1000);
 
 				/**
