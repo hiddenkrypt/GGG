@@ -55,14 +55,14 @@ var SpecialEvents = new (function(){
 		container.style.textAlign="center";
 		container.style.fontSize="4em";
 		container.id = "canvasContainer";
+		container.style.position="absolute";
+		container.style.bottom = 0;
 		canvas.width=width
 		canvas.height=height
 		canvas.style.width=width;
 		canvas.style.height=height;
 		canvas.style.border="1px solid black";
 		canvas.style.display="inline"
-		console.log("window width: "+window.innerWidth);
-		console.log(canvas.width);
 		container.appendChild(canvas);
 		document.body.appendChild(container);
 		return canvas.getContext("2d");
@@ -95,7 +95,13 @@ var SpecialEvents = new (function(){
 	 * A simple pong game as a proof-of-concept for canvas animations
 	**/
 	this.snow = function(){
-		hideUI();
+		document.body.style.background = "#fff";
+	//	hideUI();
+		var C_WIDTH = 300;
+		var C_HEIGHT = 300;
+		var BALL_SIZE = 5;
+		var ctx = addCanvas(C_WIDTH,C_HEIGHT);
+
 		var colorMode = Math.random();
 		if(colorMode < (1/3)){
 			colorMode = "8color";
@@ -104,52 +110,47 @@ var SpecialEvents = new (function(){
 		} else{
 			colorMode = "b/w";
 		}
-		var canvasW = 300;
-		var canvasH = 300;
-		var ctx = addCanvas(canvasW,canvasH);
+
 		var Ball = function(){
-			var size=5;
 			var myStyle = (function(){
 				if(colorMode === "8color"){
-					return "#" + ((Math.random()>.5)?'00':'FF') + ((Math.random()>.5)?'00':'FF') + ((Math.random()>.5)?'00':'FF');;
+					return "#" + ((Math.random()>0.5)?'00':'FF') + ((Math.random()>0.5)?'00':'FF') + ((Math.random()>0.5)?'00':'FF');
 				}
 				if(colorMode === "grayscale"){
 					var grayscale = Math.floor(Math.random()*255);
 					return "rgb("+grayscale+","+grayscale+","+grayscale+")";
 				}
 				if(colorMode === "b/w"){
-					var bw = ((Math.random()>.5)?'00':'FF');
+					var bw = ((Math.random()>0.5)?'00':'FF');
 					return ("#"+bw+bw+bw);
 				}
 			}());
 			var coords = {
-				x:canvasW/2,
-				y:canvasH/2
+				x: C_WIDTH/2,
+				y: C_HEIGHT/2
 			};
 			var velocity = {
-				dx:(Math.random()-.5)*5,
-				dy:(Math.random()-0.5)*7
+				dx: (Math.random()-0.5) * 6,
+				dy: (Math.random()-0.5) * 6
 			};
 			this.tick = function(){
 				coords.x += velocity.dx;
 				coords.y += velocity.dy;
-				if(coords.x < 0 || coords.x+size >= canvasW){
-					velocity.dx = -velocity.dx + ((Math.random()-.5)/4);
-					coords.x += velocity.dx;
+				if(coords.x < 0 || (coords.x + BALL_SIZE) >= C_WIDTH){
+					velocity.dx = -velocity.dx;
 				}
-				if(coords.y < 0 || coords.y+size >= canvasH){
-					velocity.dy = -velocity.dy + ((Math.random()-.5)/4);
-					coords.y += velocity.dy;
+				if(coords.y < 0 || (coords.y + BALL_SIZE) >= C_HEIGHT){
+					velocity.dy = -velocity.dy;
 				}
-			}
+			};
 			this.draw = function(ctx){
 				ctx.fillStyle = myStyle
-				ctx.fillRect(coords.x, coords.y, size,size);
-			}
+				ctx.fillRect(coords.x, coords.y, BALL_SIZE, BALL_SIZE);
+			};
 		}
 		var balls = [];
 		var FPSLIMIT = 40;
-		var fps = 10000;
+		var fps = 60;
 		var frames = 0;
 		setInterval(function(){
 			fps = frames;
@@ -161,16 +162,16 @@ var SpecialEvents = new (function(){
 				balls.unshift(new Ball());
 				balls.unshift(new Ball());
 				balls.unshift(new Ball());
-				balls.unshift(new Ball());
-				balls.unshift(new Ball());
-				balls.unshift(new Ball());
+				balls.push(new Ball());
+				balls.push(new Ball());
+				balls.push(new Ball());
 			}
-			ctx.fillStyle = "#696969";
-			ctx.fillRect(0,0,canvasW,canvasH);
-			balls.forEach(function(e){e.tick()});
-			balls.forEach(function(e){e.draw(ctx)});
+			ctx.fillRect(0,0,C_WIDTH,C_HEIGHT);
+			balls.forEach(function(e){
+				e.draw(ctx),e.tick();
+			});
 			ctx.fillStyle = "#ffffff";
-			ctx.fillRect(0,0,120,60);
+			ctx.fillRect(0,0,150,60);
 			ctx.font="20px Georgia";
 			ctx.fillStyle = "#000000";
 			ctx.fillText("FPS:"+fps,5,15);
