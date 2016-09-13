@@ -102,6 +102,6 @@ var loadingScreenDirectory = [
 		url: "http://i.imgur.com/pMCeOiw.png",
 		title: "simpleGame",
 		credit: "Rav-T",
-		trigger: SpecialEvents.simpleGame
+		trigger: SpecialEvents.snow
 	}
 ];
