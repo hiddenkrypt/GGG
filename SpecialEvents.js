@@ -5,7 +5,7 @@
 
 var SpecialEvents = new (function(){
 
-//~~~~~~~~~~~~UTILITY FUNCTIONS~~~~~~~~~~~~
+	//~~~~~~~~~~~~UTILITY FUNCTIONS~~~~~~~~~~~~
 	/**
 	 * Generic function that plays a sound located at the indicated path
 	**/
@@ -33,8 +33,29 @@ var SpecialEvents = new (function(){
 		document.getElementById("logo").style.display = "none";
 		document.getElementById("test").style.display = "none";
 	}
-
-
+	/**
+	 *creates a new Canvas Element of indicated size (default 400x400)
+	 * returns the 2d context for the Canvas
+	**/
+	function addCanvas(width, height){
+		width=width||400;
+		height=height||400;
+		var canvas = document.createElement("canvas");
+		var container = document.createElement("div");
+		container.style.width="100%";
+		container.style.textAlign="center";
+		canvas.width=width
+		canvas.height=height
+		canvas.style.width=width;
+		canvas.style.height=height;
+		canvas.style.border="1px solid black";
+		canvas.style.display="inline"
+		console.log("window width: "+window.innerWidth);
+		console.log(canvas.width);
+		container.appendChild(canvas);
+		document.body.appendChild(container);
+		return canvas.getContext("2d");
+	}
 
 
 //~~~~~~~~~~~~EVENT FUNCTIONS~~~~~~~~~~~~
@@ -59,5 +80,12 @@ var SpecialEvents = new (function(){
 		playsound('res/audio/error-ding.wav');
 	}
 
-
+	/** simpleGame()
+	 * A simple pong game as a proof-of-concept for canvas based games backed
+	 * by XHR to a DB for persistence
+	**/
+	this.simpleGame = function(){
+		hideUI();
+		var ctx = addCanvas(400,700);
+	}
 })();

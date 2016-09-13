@@ -97,5 +97,11 @@ var loadingScreenDirectory = [
 		title: "ERROR",
 		credit: "Rav-T",
 		trigger: SpecialEvents.indexError
+    },
+	{
+		url: "http://i.imgur.com/pMCeOiw.png",
+		title: "simpleGame",
+		credit: "Rav-T",
+		trigger: SpecialEvents.simpleGame
 	}
 ];
