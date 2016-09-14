@@ -62,11 +62,6 @@ var loadingScreenDirectory = [
         credit: "Rav-T"
 	},
     {
-		url: "http://i.imgur.com/qPkc4CV.png",
-		title: "Robotnik",
-        credit: "Rav-T"
-	},
-    {
 		url: "http://i.imgur.com/yFbdPTn.png",
 		title: "Don't Forget:",
         credit: "Rav-T"
@@ -85,6 +80,24 @@ var loadingScreenDirectory = [
 		url: "http://i.imgur.com/3bBK6Fc.jpg",
 		title: "No Fun",
         credit: "Brett"
+	},
+    {
+		url: "http://i.imgur.com/0RDXGqs.jpg",
+		title: "Always Sunny in Terrortown",
+        credit: "Brett",
+        trigger: SpecialEvents.sunny
+    },
+	{
+		url: "http://i.imgur.com/XUVcFQx.jpg",
+		title: "ERROR",
+		credit: "Rav-T",
+		trigger: SpecialEvents.indexError
+    },
+	{
+		url: "http://i.imgur.com/pMCeOiw.png",
+		title: "simpleGame",
+		credit: "Rav-T",
+		trigger: SpecialEvents.snow
 	},
     {
 		url: "http://i.imgur.com/0RDXGqs.jpg",
