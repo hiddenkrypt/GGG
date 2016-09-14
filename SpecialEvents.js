@@ -18,10 +18,10 @@ var SpecialEvents = new (function(){
 	/**
 	 * Generic function that plays a sound located at the indicated path
 	**/
-	function playsound(path){
+	function playsound(path, vol){
 		var sfx = document.createElement("audio");
 		sfx.src = path;
-		sfx.volume = 0.3;
+		sfx.volume = vol || 0.1;
 		document.getElementById("logo").appendChild(sfx);
 		sfx.play();
 	}
@@ -88,7 +88,7 @@ var SpecialEvents = new (function(){
 	**/
 	this.indexError = function(){
 		hideUI();
-		playsound('res/audio/error-ding.wav');
+		playsound('res/audio/error-ding.wav', 1);
 	}
 
 	/** snow()
