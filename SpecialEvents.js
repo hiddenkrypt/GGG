@@ -97,41 +97,20 @@ var SpecialEvents = new (function(){
 	this.snow = function(){
 		document.body.style.background = "#fff";
 	//	hideUI();
-		var C_WIDTH = 300;
-		var C_HEIGHT = 300;
+		var C_WIDTH = 600;
+		var C_HEIGHT = 600;
 		var BALL_SIZE = 5;
 		var ctx = addCanvas(C_WIDTH,C_HEIGHT);
 
-		var colorMode = Math.random();
-		if(colorMode < (1/3)){
-			colorMode = "8color";
-		} else if(colorMode < (2/3)){
-			colorMode = "grayscale";
-		} else{
-			colorMode = "b/w";
-		}
-
-		var Ball = function(){
-			var myStyle = (function(){
-				if(colorMode === "8color"){
-					return "#" + ((Math.random()>0.5)?'00':'FF') + ((Math.random()>0.5)?'00':'FF') + ((Math.random()>0.5)?'00':'FF');
-				}
-				if(colorMode === "grayscale"){
-					var grayscale = Math.floor(Math.random()*255);
-					return "rgb("+grayscale+","+grayscale+","+grayscale+")";
-				}
-				if(colorMode === "b/w"){
-					var bw = ((Math.random()>0.5)?'00':'FF');
-					return ("#"+bw+bw+bw);
-				}
-			}());
+		var Ball = function(style){
+			var myStyle = style || "#" + ((Math.random()>0.5)?'00':'FF') + ((Math.random()>0.5)?'00':'FF') + ((Math.random()>0.5)?'00':'FF');
 			var coords = {
 				x: C_WIDTH/2,
 				y: C_HEIGHT/2
 			};
 			var velocity = {
-				dx: (Math.random()-0.5) * 6,
-				dy: (Math.random()-0.5) * 6
+				dx: (Math.random()-0.5) * 10,
+				dy: (Math.random()-0.5) * 10
 			};
 			this.tick = function(){
 				coords.x += velocity.dx;
@@ -148,44 +127,17 @@ var SpecialEvents = new (function(){
 				ctx.fillRect(coords.x, coords.y, BALL_SIZE, BALL_SIZE);
 			};
 		}
-		var balls = [];
-		var FPSLIMIT = 40;
-		var fps = 60;
-		var frames = 0;
-		setInterval(function(){
-			fps = frames;
-			frames = 0;
-		}, 1000)
+		var balls = [new Ball("#FFFF00"), new Ball("#FF00FF"), new Ball("#00FFFF"),
+			new Ball("#FF0000"), new Ball("#00FF00"), new Ball("#0000FF"),
+			new Ball("#FFFF00"), new Ball("#FF00FF"), new Ball("#00FFFF"),
+			new Ball("#FF0000"), new Ball("#00FF00"), new Ball("#0000FF")];
 		function startGame(){
-			frames++;
-			if(fps > FPSLIMIT){
-				balls.unshift(new Ball());
-				balls.unshift(new Ball());
-				balls.unshift(new Ball());
-				balls.push(new Ball());
-				balls.push(new Ball());
-				balls.push(new Ball());
-			}
-			ctx.fillRect(0,0,C_WIDTH,C_HEIGHT);
+			ctx.clearRect(0,0,C_WIDTH,C_HEIGHT);
 			balls.forEach(function(e){
 				e.draw(ctx),e.tick();
 			});
-			ctx.fillStyle = "#ffffff";
-			ctx.fillRect(0,0,150,60);
-			ctx.font="20px Georgia";
-			ctx.fillStyle = "#000000";
-			ctx.fillText("FPS:"+fps,5,15);
-			ctx.fillText("Balls:"+balls.length,5,35);
-			ctx.fillText("Mode:"+colorMode,5,55);
 			anim(startGame);
 		}
 		startGame();
-		document.getElementById("canvasContainer")
-			.appendChild(
-				document.createElement("p")
-			).appendChild(
-				document.createTextNode("This bouncing ball simulation is a simple proof-of-concept")
-			)
-
 	};
 })();
