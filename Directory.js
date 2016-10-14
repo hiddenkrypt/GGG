@@ -113,8 +113,13 @@ var loadingScreenDirectory = [
     },
 	{
 		url: "http://i.imgur.com/pMCeOiw.png",
-		title: "simpleGame",
+		title: "snowbomb",
 		credit: "Rav-T",
 		trigger: SpecialEvents.snow
+	},
+	{
+		url:"http://i.imgur.com/s65Yr86.png",
+		title:"components",
+		credit:"Rav-T, Ken"
 	}
 ];
