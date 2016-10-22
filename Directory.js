@@ -95,16 +95,10 @@ var loadingScreenDirectory = [
     },
 	{
 		url: "http://i.imgur.com/pMCeOiw.png",
-		title: "simpleGame",
+		title: "Bouncyballs",
 		credit: "Rav-T",
 		trigger: SpecialEvents.snow
 	},
-    {
-		url: "http://i.imgur.com/0RDXGqs.jpg",
-		title: "Always Sunny in Terrortown",
-        credit: "Brett",
-        trigger: SpecialEvents.sunny
-    },
 	{
 		url:"http://i.imgur.com/s65Yr86.png",
 		title:"components",
