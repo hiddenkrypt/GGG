@@ -106,18 +106,6 @@ var loadingScreenDirectory = [
         trigger: SpecialEvents.sunny
     },
 	{
-		url: "http://i.imgur.com/XUVcFQx.jpg",
-		title: "ERROR",
-		credit: "Rav-T",
-		trigger: SpecialEvents.indexError
-    },
-	{
-		url: "http://i.imgur.com/pMCeOiw.png",
-		title: "snowbomb",
-		credit: "Rav-T",
-		trigger: SpecialEvents.snow
-	},
-	{
 		url:"http://i.imgur.com/s65Yr86.png",
 		title:"components",
 		credit:"Rav-T, Ken"
