@@ -60,7 +60,7 @@
 			<test>URL:</test><input id="urlGen"><br>
 			<!-- This input allows a user to dynamically load an image to see
 			how well it works as a loading screen -->
-			<test>Quick Image test:</test><input id="imgSrc" value="stick image URL here!"></input><input type="button" value="load" onclick="quickTest()" >
+			<test>Quick Image test:</test><input id="imgSrc" value="stick image URL here!"></input><input type="button" value="load" onclick="Test.quickTest()" >
 		</div>
 
 		<!-- Testing code -->
@@ -92,8 +92,8 @@
 				 * This function is run on click of the quick test button.
 				 * We attempt to load the supplied URL as a screen image.
 				**/
-				function quickTest(){
-					setBackground("url('" + document.getElementById('imgSrc').value + "')");
+				this.quickTest = function(){
+					ScreenEngine.setBackground("url('" + document.getElementById('imgSrc').value + "')");
 				}
 
 				/**

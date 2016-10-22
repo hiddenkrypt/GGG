@@ -12,13 +12,13 @@ var ScreenEngine = new (function(){
 			index = Math.floor(Math.random() * loadingScreenDirectory.length);
 		}
 		var selectedScreen = loadingScreenDirectory[index];
-		setBackground('url("'+selectedScreen.url+'")');
+		ScreenEngine.setBackground('url("'+selectedScreen.url+'")');
 		if(typeof selectedScreen.trigger === 'function'){
 			selectedScreen.trigger();
 		}
 		ScreenEngine.setFont();
 	};
-	function setBackground(url){
+	this.setBackground = function(url){
 		document.body.style.backgroundImage = url;
 	}
 	this.setFont = function(){
