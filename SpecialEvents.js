@@ -93,7 +93,11 @@ var SpecialEvents = new (function(){
 		console.log(firstScriptTag);
 	
 		function onYouTubeIframeAPIReady() {
-		console.log("API LOADED");
+			if(typeof YT === 'undefined'){
+				console.log("fail");
+				setTimeout(onYouTubeIframeAPIReady, 250);
+				return
+			}
 			player = new YT.Player('player', {
 				height: container.scrollHeight,
 				width: container.scrollWidth,
@@ -108,7 +112,7 @@ var SpecialEvents = new (function(){
 				}
 			});
 		}
-		setTimeout(onYouTubeIframeAPIReady, 1000);
+		setTimeout(onYouTubeIframeAPIReady, 250);
 
 	}
 
