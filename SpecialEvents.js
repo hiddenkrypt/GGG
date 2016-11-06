@@ -3,6 +3,7 @@
  * loading screens. Should be referenced and loaded before Directoy.js
 **/
 
+		var player;
 var SpecialEvents = new (function(){
 
 //~~~~~~~~~~~~UTILITY FUNCTIONS~~~~~~~~~~~~
@@ -68,6 +69,46 @@ var SpecialEvents = new (function(){
 		return canvas.getContext("2d");
 	}
 
+	function addYTVideo(w,h,videoId){
+		//<iframe width="560" height="315" src="https://www.youtube.com/embed/ruhki3rbJNg" frameborder="0" allowfullscreen></iframe>
+		var p = document.createElement("div");
+		var container = document.createElement("div");
+		p.setAttribute("id", "player");
+		console.log(container);
+		container.style.border = "2px black solid";
+		container.style.height = "100%";
+		container.style.width = "100%";
+		container.style.overflow = 'hidden';
+
+		container.appendChild(p);
+		document.body.appendChild(container);
+		
+		console.log("loading");
+		var tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/iframe_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		console.log(firstScriptTag);
+	
+		function onYouTubeIframeAPIReady() {
+		console.log("API LOADED");
+			player = new YT.Player('player', {
+				height: container.scrollHeight,
+				width: container.scrollWidth,
+				videoId: videoId,
+				events: {
+					'onReady': function(event){
+						console.log("play");
+						player.setVolume(50);
+						player.playVideo();
+					},
+					'onStateChange': ()=>{}
+				}
+			});
+		}
+		setTimeout(onYouTubeIframeAPIReady, 1000);
+
+	}
 
 //~~~~~~~~~~~~EVENT FUNCTIONS~~~~~~~~~~~~
 
@@ -140,4 +181,14 @@ var SpecialEvents = new (function(){
 		}
 		startGame();
 	};
+	
+	
+	
+	this.feliciaVideo = function(){
+		hideUI();
+		addYTVideo(560,315,"ruhki3rbJNg");
+		//<iframe width="560" height="315" src="https://www.youtube.com/embed/ruhki3rbJNg" frameborder="0" allowfullscreen></iframe>
+		
+	};
+	
 })();
