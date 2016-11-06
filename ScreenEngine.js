@@ -55,24 +55,7 @@ console.log("\t"+error)
 		document.body.appendChild(out);
 	}	
 	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
+	out.appendChild(document.createElement("br");
 }
 function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode ){
 	ScreenEngine.GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode );
