@@ -41,7 +41,9 @@ var SpecialEvents = new (function(){
 			}, false);
 		document.getElementById("boilerplate").style.display = 'none';
 		document.getElementById("logo").style.display = "none";
-		document.getElementById("test").style.display = "none";
+		if(typeof Test !== "undefined"){
+			document.getElementById("test").style.display = "none";
+		}
 	}
 	/**
 	 *creates a new Canvas Element of indicated size (default 400x400)
