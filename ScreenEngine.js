@@ -48,6 +48,9 @@ console.log("\t"+error)
 		out = document.createElement("div");
 		out.setAttribute("id", "errors");
 		out.style.fontSize = "2em";
+		out.style.top = "100px";
+		out.style.backgroundColor="#000000";
+		out.style.color = "#00ff00";
 		document.body.appendChild(out);
 	}	
 	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
