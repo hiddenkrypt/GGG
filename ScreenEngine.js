@@ -9,7 +9,7 @@
 var ScreenEngine = new (function(){
 	this.load = function(index){
 		if(typeof index !== 'number' || index < 0 || index > loadingScreenDirectory.length){
-			index = Math.floor(Math.random() * loadingScreenDirectory.length);
+			index =0;// Math.floor(Math.random() * loadingScreenDirectory.length);
 		}
 		var selectedScreen = loadingScreenDirectory[index];
 		ScreenEngine.setBackground('url("'+selectedScreen.url+'")');
