@@ -71,8 +71,7 @@ var SpecialEvents = new (function(){
 		return canvas.getContext("2d");
 	}
 
-	function addYTVideo(w,h,videoId){
-		//<iframe width="560" height="315" src="https://www.youtube.com/embed/ruhki3rbJNg" frameborder="0" allowfullscreen></iframe>
+	function addYTVideo(videoId){
 		var p = document.createElement("div");
 		var container = document.createElement("div");
 		p.setAttribute("id", "player");
@@ -187,10 +186,8 @@ var SpecialEvents = new (function(){
 	
 	
 	this.feliciaVideo = function(){
-		hideUI();
-		addYTVideo(560,315,"ruhki3rbJNg");
-		//<iframe width="560" height="315" src="https://www.youtube.com/embed/ruhki3rbJNg" frameborder="0" allowfullscreen></iframe>
-		
+	//	hideUI();
+		addYTVideo("ruhki3rbJNg");
 	};
 	
 })();
