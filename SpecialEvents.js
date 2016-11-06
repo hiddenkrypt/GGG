@@ -76,7 +76,6 @@ var SpecialEvents = new (function(){
 		var p = document.createElement("div");
 		var container = document.createElement("div");
 		p.setAttribute("id", "player");
-		console.log(container);
 		container.style.border = "2px black solid";
 		container.style.height = "100%";
 		container.style.width = "100%";
@@ -85,13 +84,11 @@ var SpecialEvents = new (function(){
 		container.appendChild(p);
 		document.body.appendChild(container);
 		
-		console.log("loading");
 		var tag = document.createElement('script');
 		tag.src = "https://www.youtube.com/iframe_api";
 		var firstScriptTag = document.getElementsByTagName('script')[0];
 		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-		console.log(firstScriptTag);
-	
+
 		function onYouTubeIframeAPIReady() {
 			if(typeof YT === 'undefined'){
 				console.log("fail");
@@ -104,7 +101,6 @@ var SpecialEvents = new (function(){
 				videoId: videoId,
 				events: {
 					'onReady': function(event){
-						console.log("play");
 						player.setVolume(50);
 						player.playVideo();
 					},
