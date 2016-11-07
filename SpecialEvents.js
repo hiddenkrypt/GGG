@@ -75,11 +75,10 @@ var SpecialEvents = new (function(){
 		var p = document.createElement("div");
 		var container = document.createElement("div");
 		p.setAttribute("id", "player");
-		container.style.border = "2px black solid";
 		container.style.height = "100%";
 		container.style.width = "100%";
 		container.style.overflow = 'hidden';
-
+		
 		container.appendChild(p);
 		document.body.appendChild(container);
 		
@@ -94,8 +93,9 @@ var SpecialEvents = new (function(){
 				setTimeout(onYouTubeIframeAPIReady, 250);
 				return
 			}
+			console.log("H: " + container.scrollHeight);
 			player = new YT.Player('player', {
-				height: container.scrollHeight,
+				height: container.scrollHeight - document.getElementById("logo").height,
 				width: container.scrollWidth,
 				videoId: videoId,
 				events: {
