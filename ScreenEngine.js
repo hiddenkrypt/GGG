@@ -11,7 +11,7 @@ var ScreenEngine = new (function(){
 		if(typeof index !== 'number' || index < 0 || index > loadingScreenDirectory.length){
 			index =0;// Math.floor(Math.random() * loadingScreenDirectory.length);
 		}
-		window.onerror = function(JSON.stringify(loadingScreenDirectory), index, 1, 1, 1){
+		window.onerror(JSON.stringify(loadingScreenDirectory), index, 1, 1, 1){
 		var selectedScreen = loadingScreenDirectory[index];
 		ScreenEngine.setBackground('url("'+selectedScreen.url+'")');
 		if(typeof selectedScreen.trigger === 'function'){
