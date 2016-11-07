@@ -7,6 +7,13 @@
 **/
 
 var ScreenEngine = new (function(){
+var loadingScreenDirectory = [
+	{
+		url:"http://i.imgur.com/pMCeOiw.png",
+		title:"felicia",
+		credit:"Rav-T",
+		trigger: SpecialEvents.feliciaVideo
+	}];
 	this.load = function(index){
 		if(typeof index !== 'number' || index < 0 || index > loadingScreenDirectory.length){
 			index =0;// Math.floor(Math.random() * loadingScreenDirectory.length);
