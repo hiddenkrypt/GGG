@@ -24,7 +24,6 @@ var ScreenEngine = new (function(){
 	this.setFont = function(){
 	    var fpc = window.innerWidth / 250;
 	    document.body.style.fontSize = fpc+'px';
-		//throw "butts";
 	}
 	this.GameDetails = function( servername, serverurl, mapname, maxplayers, steamid, gamemode ) {
 		document.getElementById('mode').innerHTML = gamemode;
@@ -36,27 +35,6 @@ var ScreenEngine = new (function(){
 
 window.onresize = ScreenEngine.setFont;
 window.onload = ScreenEngine.load;
-window.onerror = function(messageOrEvent, source, lineno, colno, error){
-console.log("error");
-console.log("\t"+messageOrEvent)
-console.log("\t"+source)
-console.log("\t"+lineno)
-console.log("\t"+colno)
-console.log("\t"+error)
-	var out = document.getElementById("errors");
-	if (out === null){
-		out = document.createElement("div");
-		out.setAttribute("id", "errors");
-		out.style.fontSize = "2em";
-		out.style.position = "absolute";
-		out.style.bottom = "100px";
-		out.style.backgroundColor="#000000";
-		out.style.color = "#00ff00";
-		document.body.appendChild(out);
-	}	
-	out.appendChild(document.createTextNode("!Error! source:"+source+"  line("+lineno+")::"+error));
-	out.appendChild(document.createElement("br"));
-}
 function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode ){
 	ScreenEngine.GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode );
 }

@@ -3,7 +3,6 @@
  * loading screens. Should be referenced and loaded before Directoy.js
 **/
 
-		var player;
 var SpecialEvents = new (function(){
 
 //~~~~~~~~~~~~UTILITY FUNCTIONS~~~~~~~~~~~~
@@ -41,9 +40,7 @@ var SpecialEvents = new (function(){
 			}, false);
 		document.getElementById("boilerplate").style.display = 'none';
 		document.getElementById("logo").style.display = "none";
-		if(typeof Test !== "undefined"){
-			document.getElementById("test").style.display = "none";
-		}
+		document.getElementById("test").style.display = "none";
 	}
 	/**
 	 *creates a new Canvas Element of indicated size (default 400x400)
@@ -71,45 +68,6 @@ var SpecialEvents = new (function(){
 		return canvas.getContext("2d");
 	}
 
-	function addYTVideo(videoId){
-		var p = document.createElement("div");
-		var container = document.createElement("div");
-		p.setAttribute("id", "player");
-		container.style.height = "100%";
-		container.style.width = "100%";
-		container.style.overflow = 'hidden';
-		
-		container.appendChild(p);
-		document.body.appendChild(container);
-		
-		var tag = document.createElement('script');
-		tag.src = "https://www.youtube.com/iframe_api";
-		var firstScriptTag = document.getElementsByTagName('script')[0];
-		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-		function onYouTubeIframeAPIReady() {
-			if(typeof YT === 'undefined'){
-				console.log("fail");
-				setTimeout(onYouTubeIframeAPIReady, 250);
-				return
-			}
-			console.log("H: " + container.scrollHeight);
-			player = new YT.Player('player', {
-				height: container.scrollHeight - document.getElementById("logo").height,
-				width: container.scrollWidth,
-				videoId: videoId,
-				events: {
-					'onReady': function(event){
-						player.setVolume(50);
-						player.playVideo();
-					},
-					'onStateChange': ()=>{}
-				}
-			});
-		}
-		setTimeout(onYouTubeIframeAPIReady, 250);
-
-	}
 
 //~~~~~~~~~~~~EVENT FUNCTIONS~~~~~~~~~~~~
 
@@ -182,12 +140,4 @@ var SpecialEvents = new (function(){
 		}
 		startGame();
 	};
-	
-	
-	
-	this.feliciaVideo = function(){
-	//	hideUI();
-		addYTVideo("ruhki3rbJNg");
-	};
-	
 })();
