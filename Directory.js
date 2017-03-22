@@ -113,5 +113,17 @@ var loadingScreenDirectory = [
 		url: "http://i.imgur.com/CtRAxUR.png",
 		title: "Stranger Salts",
 		credit: "Rav-T"
+	},
+	{
+		url: "http://i.imgur.com/Fjg9xDy.png",
+		title: "Scenic",
+		credit: "Rav-T"
+	},
+	{
+		url: "http://i.imgur.com/5qeoapz.png",
+		title: "VACB&",
+		credit: "Rav-T",
+		trigger: SpecialEvents.hide
 	}
+
 ];
