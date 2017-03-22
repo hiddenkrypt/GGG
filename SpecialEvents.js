@@ -30,9 +30,11 @@ var SpecialEvents = new (function(){
 	 * that will bring the elements back
 	**/
 	function hideUI(){
+		console.log("HIDING");
 		document.addEventListener(
 			"click",
 			function clickToReturn(){
+				console.log("RETURN");
 				document.getElementById("boilerplate").style.display = "initial";
 				document.getElementById("logo").style.display = "initial";
 				document.getElementById("test").style.display = "initial";
@@ -79,6 +81,10 @@ var SpecialEvents = new (function(){
 		playsound("res/audio/sunny.wav");
 	};
 
+	/** hide()
+	 * Clears out UI elements
+	**/
+	this.hide = hideUI;
 
 	/** indexError()
 	 * Fakes a "Too many indices" error by clearing out the normal display
@@ -90,7 +96,6 @@ var SpecialEvents = new (function(){
 		hideUI();
 		playsound('res/audio/error-ding.wav', 1);
 	}
-
 	/** snow()
 	 * A simple pong game as a proof-of-concept for canvas animations
 	**/
