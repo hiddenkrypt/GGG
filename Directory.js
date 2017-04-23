@@ -9,7 +9,6 @@
  *			 Special Events. This function should be in SpecialEvents.js
  * }
 **/
-
 var loadingScreenDirectory = [
 	{
 		url: "http://i.imgur.com/J0zYUX2.png",
@@ -115,15 +114,16 @@ var loadingScreenDirectory = [
 		credit: "Rav-T"
 	},
 	{
-		url: "http://i.imgur.com/Fjg9xDy.png",
-		title: "Scenic",
-		credit: "Rav-T"
-	},
-	{
 		url: "http://i.imgur.com/5qeoapz.png",
 		title: "VACB&",
 		credit: "Rav-T",
 		trigger: SpecialEvents.hide
+	},
+	{
+		url:"https://i.imgur.com/bBpVw2u.gif",
+		title: "Corgi Loadin",
+		credit: "Rav-T",
+		trigger: SpecialEvents.loading
 	}
 
 ];

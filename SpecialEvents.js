@@ -30,11 +30,9 @@ var SpecialEvents = new (function(){
 	 * that will bring the elements back
 	**/
 	function hideUI(){
-		console.log("HIDING");
 		document.addEventListener(
 			"click",
 			function clickToReturn(){
-				console.log("RETURN");
 				document.getElementById("boilerplate").style.display = "initial";
 				document.getElementById("logo").style.display = "initial";
 				document.getElementById("test").style.display = "initial";
@@ -145,4 +143,22 @@ var SpecialEvents = new (function(){
 		}
 		startGame();
 	};
+	this.loading = function(){
+		document.body.style.backgroundSize = "auto";
+		var load = document.createElement("div");
+		load.style.position="absolute";
+		load.style.bottom = "3em";
+		load.style.textAlign="center";
+		load.style.width="100%";
+		load.style.fontFamily = "georga serif";
+		load.style.fontSize = "5em";
+		load.style.fontWeight = "bold";
+		load.append(document.createTextNode("Loading..."));
+		document.body.append(load);
+		var fade = 1;
+		(function loadingFade(){
+			load.style.color = `rgba(0,0,0,${Math.sin(fade += .05)})`;
+			anim(loadingFade);
+		})()
+	}
 })();
