@@ -124,6 +124,11 @@ var loadingScreenDirectory = [
 		title: "Corgi Loadin",
 		credit: "Rav-T",
 		trigger: SpecialEvents.loading
+	},
+	{
+		url:"http://i.imgur.com/BAfpoOo.gif",
+		title: "The furry cometh",
+		credit: "Rav-T",
+		trigger: SpecialEvents.loading
 	}
-
 ];
