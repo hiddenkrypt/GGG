@@ -157,7 +157,7 @@ var SpecialEvents = new (function(){
 		document.body.append(load);
 		var fade = 1;
 		(function loadingFade(){
-			load.style.color = `rgba(0,0,0,${Math.sin(fade += .05)})`;
+			load.style.color = "rgba(0,0,0,"+Math.sin(fade += .05)+")";
 			anim(loadingFade);
 		})()
 	}
