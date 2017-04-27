@@ -130,5 +130,10 @@ var loadingScreenDirectory = [
 		title: "The furry cometh",
 		credit: "Rav-T",
 		trigger: SpecialEvents.loading
+	},
+	{
+		url:"http://i.imgur.com/KwlQODl.jpg",
+		title:"WHYFIRE",
+		credit: "Brett"
 	}
 ];
