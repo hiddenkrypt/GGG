@@ -135,5 +135,10 @@ var loadingScreenDirectory = [
 		url:"http://i.imgur.com/KwlQODl.jpg",
 		title:"WHYFIRE",
 		credit: "Brett"
-	}
+	},
+	{
+		url:"http://i.imgur.com/DvWDePs.png",
+		title:"Virtual Betrayal",
+		credit: "Matt"
+	}	
 ];
