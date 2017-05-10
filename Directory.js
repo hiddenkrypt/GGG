@@ -120,25 +120,30 @@ var loadingScreenDirectory = [
 		trigger: SpecialEvents.hide
 	},
 	{
-		url:"https://i.imgur.com/bBpVw2u.gif",
+		url: "https://i.imgur.com/bBpVw2u.gif",
 		title: "Corgi Loadin",
 		credit: "Rav-T",
 		trigger: SpecialEvents.loading
 	},
 	{
-		url:"http://i.imgur.com/BAfpoOo.gif",
+		url: "http://i.imgur.com/BAfpoOo.gif",
 		title: "The furry cometh",
 		credit: "Rav-T",
 		trigger: SpecialEvents.loading
 	},
 	{
-		url:"http://i.imgur.com/KwlQODl.jpg",
-		title:"WHYFIRE",
+		url: "http://i.imgur.com/KwlQODl.jpg",
+		title: "WHYFIRE",
 		credit: "Brett"
 	},
 	{
-		url:"http://i.imgur.com/DvWDePs.png",
-		title:"Virtual Betrayal",
+		url: "http://i.imgur.com/DvWDePs.png",
+		title: "Virtual Betrayal",
 		credit: "Matt"
-	}	
+	},
+	{
+		url: "http://i.imgur.com/IYKrQm8.png",
+		title: "Owlturd",
+		credit: "Rav-T"
+	}
 ];
