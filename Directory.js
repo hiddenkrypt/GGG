@@ -145,5 +145,10 @@ var loadingScreenDirectory = [
 		url: "http://i.imgur.com/IYKrQm8.png",
 		title: "Owlturd",
 		credit: "Rav-T"
+	},
+	{
+		url: "http://i.imgur.com/XZmYKvQ.png",
+		title: "'Hot'",
+		credit: "Rav-T"
 	}
 ];
