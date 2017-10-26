@@ -161,4 +161,37 @@ var SpecialEvents = new (function(){
 			anim(loadingFade);
 		})()
 	}
+  this.spooky = function(){
+    document.body.style.background = "#000"
+    var C_WIDTH = 501
+    var C_HEIGHT = 687
+    var girlLoaded = false
+    var spookLoaded = false
+    var ctx = addCanvas(C_WIDTH,C_HEIGHT)
+    var girl = new Image(501, 687)
+    var spook = new Image(400, 358)
+    var cutOff = 456
+    var cut = 0
+    girl.onload = function(){girlLoaded = true}
+    spook.onload = function(){spookLoaded = true}
+    girl.src = 'res/img/girl.jpg'
+    spook.src = 'res/img/spooky.jpg'
+    function spookem(){
+      if(girlLoaded){
+        ctx.drawImage(girl, 0, 0)
+        ctx.fillStyle = "#ffffff"
+        ctx.fillRect(0,cut,1000,1000)
+        if(cut < cutOff){
+          cut++;
+        }
+      }
+      if(spookLoaded && cut >= cutOff){
+        ctx.clearRect(0,0,C_WIDTH,C_HEIGHT)
+        ctx.drawImage(spook, (C_WIDTH - spook.width) /2,(C_HEIGHT - spook.height) /2)
+      } else {
+        anim(spookem)
+      }
+    };
+      spookem()
+    }
 })();

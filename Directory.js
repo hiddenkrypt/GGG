@@ -150,5 +150,11 @@ var loadingScreenDirectory = [
 		url: "http://i.imgur.com/XZmYKvQ.png",
 		title: "'Hot'",
 		credit: "Rav-T"
-	}
+	},
+  {
+    url: "",
+    title: "spooky",
+    credit: "Rav-T",
+    trigger: SpecialEvents.spooky
+  }
 ];
