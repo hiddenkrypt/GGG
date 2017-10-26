@@ -168,5 +168,53 @@ var loadingScreenDirectory = [
     title: "spooky",
     credit: "Rav-T",
     trigger: SpecialEvents.spooky
+  },
+  {
+    url: "",
+    title: "spooky",
+    credit: "Rav-T",
+    trigger: SpecialEvents.spooky
+  },
+  {
+    url: "",
+    title: "spooky",
+    credit: "Rav-T",
+    trigger: SpecialEvents.spooky
+  },
+  {
+    url: "",
+    title: "spooky",
+    credit: "Rav-T",
+    trigger: SpecialEvents.spooky
+  },
+  {
+    url: "",
+    title: "spooky",
+    credit: "Rav-T",
+    trigger: SpecialEvents.spooky
+  },
+  {
+    url: "",
+    title: "spooky",
+    credit: "Rav-T",
+    trigger: SpecialEvents.spooky
+  },
+  {
+    url: "",
+    title: "spooky",
+    credit: "Rav-T",
+    trigger: SpecialEvents.spooky
+  },
+  {
+    url: "",
+    title: "spooky",
+    credit: "Rav-T",
+    trigger: SpecialEvents.spooky
+  },
+  {
+    url: "",
+    title: "spooky",
+    credit: "Rav-T",
+    trigger: SpecialEvents.spooky
   }
 ];

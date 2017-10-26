@@ -147,6 +147,7 @@ var SpecialEvents = new (function(){
         ctx.drawImage(spook, (C_WIDTH - spook.width) /2,(C_HEIGHT - spook.height) /2)
         playsound("res/audio/spooky.ogg", .06, true)
         document.getElementById("logo").src = "res/img/doot.gif"
+        document.getElementById("title").innerHTML = "Gentlemen's SPOOK GROUP"
         var meter = document.createElement("img")
         var doot2 = document.createElement("img")
         meter.src = "res/img/2SpookyMeter.gif"
