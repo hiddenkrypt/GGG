@@ -91,13 +91,7 @@ var loadingScreenDirectory = [
 		title: "ERROR",
 		credit: "Rav-T",
 		trigger: SpecialEvents.indexError
-    },
-	{
-		url: "http://i.imgur.com/pMCeOiw.png",
-		title: "Bouncyballs",
-		credit: "Rav-T",
-		trigger: SpecialEvents.snow
-	},
+  },
 	{
 		url:"http://i.imgur.com/s65Yr86.png",
 		title:"components",

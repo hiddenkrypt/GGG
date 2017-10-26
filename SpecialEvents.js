@@ -94,55 +94,6 @@ var SpecialEvents = new (function(){
 		hideUI();
 		playsound('res/audio/error-ding.wav', 1);
 	}
-	/** snow()
-	 * A simple pong game as a proof-of-concept for canvas animations
-	**/
-	this.snow = function(){
-		document.body.style.background = "#fff";
-	//	hideUI();
-		var C_WIDTH = 600;
-		var C_HEIGHT = 600;
-		var BALL_SIZE = 5;
-		var ctx = addCanvas(C_WIDTH,C_HEIGHT);
-
-		var Ball = function(style){
-			var myStyle = style || "#" + ((Math.random()>0.5)?'00':'FF') + ((Math.random()>0.5)?'00':'FF') + ((Math.random()>0.5)?'00':'FF');
-			var coords = {
-				x: C_WIDTH/2,
-				y: C_HEIGHT/2
-			};
-			var velocity = {
-				dx: (Math.random()-0.5) * 10,
-				dy: (Math.random()-0.5) * 10
-			};
-			this.tick = function(){
-				coords.x += velocity.dx;
-				coords.y += velocity.dy;
-				if(coords.x < 0 || (coords.x + BALL_SIZE) >= C_WIDTH){
-					velocity.dx = -velocity.dx;
-				}
-				if(coords.y < 0 || (coords.y + BALL_SIZE) >= C_HEIGHT){
-					velocity.dy = -velocity.dy;
-				}
-			};
-			this.draw = function(ctx){
-				ctx.fillStyle = myStyle
-				ctx.fillRect(coords.x, coords.y, BALL_SIZE, BALL_SIZE);
-			};
-		}
-		var balls = [new Ball("#FFFF00"), new Ball("#FF00FF"), new Ball("#00FFFF"),
-			new Ball("#FF0000"), new Ball("#00FF00"), new Ball("#0000FF"),
-			new Ball("#FFFF00"), new Ball("#FF00FF"), new Ball("#00FFFF"),
-			new Ball("#FF0000"), new Ball("#00FF00"), new Ball("#0000FF")];
-		function startGame(){
-			ctx.clearRect(0,0,C_WIDTH,C_HEIGHT);
-			balls.forEach(function(e){
-				e.draw(ctx),e.tick();
-			});
-			anim(startGame);
-		}
-		startGame();
-	};
 	this.loading = function(){
 		document.body.style.backgroundSize = "auto";
 		var load = document.createElement("div");
