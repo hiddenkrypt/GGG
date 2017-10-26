@@ -18,11 +18,17 @@ var SpecialEvents = new (function(){
 	/**
 	 * Generic function that plays a sound located at the indicated path
 	**/
-	function playsound(path, vol){
+	function playsound(path, vol, loop){
 		var sfx = document.createElement("audio");
 		sfx.src = path;
 		sfx.volume = vol || 0.1;
 		document.getElementById("logo").appendChild(sfx);
+    if(loop){
+      sfx.addEventListener('ended', function() {
+          sfx.currentTime = 0;
+          sfx.play();
+      }, false);
+    }
 		sfx.play();
 	}
 	/**
@@ -76,7 +82,7 @@ var SpecialEvents = new (function(){
 	 * Trigger Screen: 'Always Sunny in Terrortown' by Brett
 	**/
 	this.sunny = function(){
-		playsound("res/audio/sunny.wav");
+		playsound("res/audio/sunny.wav", 1);
 	};
 
 	/** hide()
@@ -133,12 +139,31 @@ var SpecialEvents = new (function(){
         ctx.fillStyle = "#ffffff"
         ctx.fillRect(0,cut,1000,1000)
         if(cut < cutOff){
-          cut++;
+          cut+=.75;
         }
       }
       if(spookLoaded && cut >= cutOff){
         ctx.clearRect(0,0,C_WIDTH,C_HEIGHT)
         ctx.drawImage(spook, (C_WIDTH - spook.width) /2,(C_HEIGHT - spook.height) /2)
+        playsound("res/audio/spooky.ogg", .06, true)
+        document.getElementById("logo").src = "res/img/doot.gif"
+        var meter = document.createElement("img")
+        var doot2 = document.createElement("img")
+        meter.src = "res/img/2SpookyMeter.gif"
+        doot2.src = "res/img/doot2.gif"
+        meter.style.float = "left"
+        doot2.style.float = "right"
+        setTimeout(function(){ document.body.appendChild(doot2)}, 3300)
+        setTimeout(function(){ document.body.appendChild(doot2.cloneNode())}, 4300)
+        setTimeout(function(){ document.body.appendChild(doot2.cloneNode())}, 5000)
+        setTimeout(function(){ document.body.appendChild(doot2.cloneNode())}, 6000)
+        setTimeout(function(){ document.body.appendChild(doot2.cloneNode())}, 6300)
+        setTimeout(function(){ document.body.appendChild(doot2.cloneNode())}, 6700)
+        setTimeout(function(){ document.body.appendChild(doot2.cloneNode())}, 6800)
+        setTimeout(function(){ document.body.appendChild(doot2.cloneNode())}, 6900)
+        setTimeout(function(){ document.body.appendChild(doot2.cloneNode())}, 6950)
+        setTimeout(function(){ document.body.appendChild(doot2.cloneNode())}, 7000)
+        setTimeout(function(){ document.body.appendChild(meter)}, 1600)
       } else {
         anim(spookem)
       }
