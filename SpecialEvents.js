@@ -139,7 +139,7 @@ var SpecialEvents = new (function(){
         ctx.fillStyle = "#ffffff"
         ctx.fillRect(0,cut,1000,1000)
         if(cut < cutOff){
-          cut+=.75;
+          cut+=1.25;
         }
       }
       if(spookLoaded && cut >= cutOff){
