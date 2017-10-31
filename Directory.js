@@ -145,81 +145,15 @@ var loadingScreenDirectory = [
 		title: "'Hot'",
 		credit: "Rav-T"
 	},
-  {
+    {
     url: "",
     title: "spooky",
     credit: "Rav-T",
     trigger: SpecialEvents.spooky
-  },
-  {
-    url: "",
-    title: "spooky",
-    credit: "Rav-T",
-    trigger: SpecialEvents.spooky
-  },
-  {
-    url: "",
-    title: "spooky",
-    credit: "Rav-T",
-    trigger: SpecialEvents.spooky
-  },
-  {
-    url: "",
-    title: "spooky",
-    credit: "Rav-T",
-    trigger: SpecialEvents.spooky
-  },
-  {
-    url: "",
-    title: "spooky",
-    credit: "Rav-T",
-    trigger: SpecialEvents.spooky
-  },
-  {
-    url: "",
-    title: "spooky",
-    credit: "Rav-T",
-    trigger: SpecialEvents.spooky
-  },
-  {
-    url: "",
-    title: "spooky",
-    credit: "Rav-T",
-    trigger: SpecialEvents.spooky
-  },
-  {
-    url: "",
-    title: "spooky",
-    credit: "Rav-T",
-    trigger: SpecialEvents.spooky
-  },
-  {
-    url: "",
-    title: "spooky",
-    credit: "Rav-T",
-    trigger: SpecialEvents.spooky
-  },
-  {
-    url: "",
-    title: "spooky",
-    credit: "Rav-T",
-    trigger: SpecialEvents.spooky
-  },
-  {
-    url: "",
-    title: "spooky",
-    credit: "Rav-T",
-    trigger: SpecialEvents.spooky
-  },
-  {
-    url: "",
-    title: "spooky",
-    credit: "Rav-T",
-    trigger: SpecialEvents.spooky
-  },
-  {
+    },
+    {
     url: "https://i.imgur.com/VfkZWw6.png",
     title: "buttsy",
     credit: "Brett, Rav-T"
-  }
+    }
 ];
