@@ -157,7 +157,7 @@ var loadingScreenDirectory = [
     credit: "Brett, Rav-T"
   },
   {
-    url: "https://imgur.com/5gQwuh8",
+    url: "https://imgur.com/5gQwuh8.png",
     title: "Snek wit hat",
     credit: "cards against humanity"
   }
