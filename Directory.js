@@ -145,15 +145,20 @@ var loadingScreenDirectory = [
 		title: "'Hot'",
 		credit: "Rav-T"
 	},
-    {
+  {
     url: "",
     title: "spooky",
     credit: "Rav-T",
     trigger: SpecialEvents.spooky
     },
-    {
+  {
     url: "https://i.imgur.com/VfkZWw6.png",
     title: "buttsy",
     credit: "Brett, Rav-T"
-    }
+  },
+  {
+    url: "https://imgur.com/5gQwuh8",
+    title: "Snek wit hat",
+    credit: "cards against humanity"
+  }
 ];
