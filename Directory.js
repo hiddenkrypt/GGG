@@ -160,5 +160,10 @@ var loadingScreenDirectory = [
     url: "https://imgur.com/5gQwuh8.png",
     title: "Snek wit hat",
     credit: "cards against humanity"
+  },
+  {
+    url:"https://i.imgur.com/GtvYSKc.jpg",
+    title: "Just Monika",
+    credit: "Mike"
   }
 ];
