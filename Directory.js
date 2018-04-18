@@ -169,6 +169,6 @@ var loadingScreenDirectory = [
   {
     url:"https://i.imgur.com/FP1VMYO.png",
     title: "Danke Memes",
-    cretit: "Satan"
+    creDit: "Rav-T"
   }
 ];
