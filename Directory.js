@@ -165,5 +165,10 @@ var loadingScreenDirectory = [
     url:"https://i.imgur.com/GtvYSKc.jpg",
     title: "Just Monika",
     credit: "Mike"
+  },
+  {
+    url:"https://i.imgur.com/FP1VMYO.png",
+    title: "Danke Memes",
+    cretit: "Satan"
   }
 ];
