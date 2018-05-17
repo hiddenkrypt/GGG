@@ -169,6 +169,11 @@ var loadingScreenDirectory = [
   {
     url:"https://i.imgur.com/FP1VMYO.png",
     title: "Danke Memes",
-    creDit: "Rav-T"
+    credit: "Rav-T"
+  },
+  {
+    url: "https://i.imgur.com/g0jiA9E.png",
+    title: "No grils",
+    credit: "Rav-T" 
   }
 ];
