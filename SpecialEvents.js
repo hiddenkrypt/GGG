@@ -169,6 +169,69 @@ var SpecialEvents = new (function(){
         anim(spookem)
       }
     };
-      spookem()
+    spookem()
+  };
+  this.loadCards = function(){
+    function parseDeck(){
+      var cardSize = "250";
+      var deck = JSON.parse(this.responseText);
+      console.log(deck)
+      var cardBox = document.createElement("div");
+
+      var grab = Math.floor(Math.random()*deck.calls.length)
+      var call = deck.calls[grab];
+      var blackCard = document.createElement("div");
+      blackCard.style.backgroundColor = "#000";
+      blackCard.style.display = "inline-block"
+      blackCard.style.width = cardSize+"px";
+      blackCard.style.height = cardSize+"px";
+      blackCard.style.borderRadius = ((cardSize*0.15)>>0)+"px";
+      blackCard.style.padding = ((cardSize*0.15)>>0)+"px";
+      blackCard.style.margin = ((cardSize*0.15)>>0)+"px";
+      blackCard.style.border = "1px solid white";
+      blackCard.style.boxShadow = ((cardSize*0.1)>>0)+"px " + ((cardSize*0.15)>>0)+"px #888888";
+      blackCard.style.color = "#fff";
+      blackCard.style.fontSize = ((cardSize/12)>>0)+"px";
+      blackCard.innerHTML = call.text.join(" ____ ");
+      cardBox.appendChild(blackCard);
+      function addWhite(){
+        var grabRes = Math.floor(Math.random()*deck.responses.length);
+        var resp = deck.responses[grabRes];
+        var whiteCard = document.createElement("div");
+        whiteCard.style.backgroundColor = "#fff";
+        whiteCard.style.display = "inline-block"
+        whiteCard.style.width = cardSize+"px";
+        whiteCard.style.height = cardSize+"px";
+        whiteCard.style.borderRadius = ((cardSize*0.15)>>0)+"px";
+        whiteCard.style.padding = ((cardSize*0.15)>>0)+"px";
+        whiteCard.style.margin = ((cardSize*0.15)>>0)+"px";
+        whiteCard.style.border = "1px solid black";
+        whiteCard.style.boxShadow = ((cardSize*0.1)>>0)+"px " + ((cardSize*0.15)>>0)+"px #888888";
+        whiteCard.style.color = "#000";
+        whiteCard.style.fontSize = ((cardSize/12)>>0)+"px";
+        whiteCard.innerHTML = resp.text[0];
+        cardBox.appendChild(whiteCard);
+      }
+      for(var i = 0; i < call.text.length-1; i++){
+        console.log("")
+        addWhite();
+      }
+
+      document.body.appendChild(cardBox);
+
     }
+    function failed(){
+      var errorBox = document.createElement("div");
+      errorBox.style.color="#ff0000";
+      errorBox.style.fontSize = "4em";
+      errorBox.innerHTML = "CAH CARD ERROR :<";
+      document.body.appendChild(errorBox);
+    }
+    xmlhr = new XMLHttpRequest();
+    xmlhr.addEventListener("load", parseDeck);
+    xmlhr.addEventListener("error", failed);
+    xmlhr.open("GET", "https://api.cardcastgame.com/v1/decks/JPJVC/cards");
+    xmlhr.send();
+  }
+
 })();

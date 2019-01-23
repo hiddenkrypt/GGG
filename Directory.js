@@ -180,5 +180,12 @@ var loadingScreenDirectory = [
     url: "https://i.imgur.com/aHFnCvV.png",
     title: "later virgins",
     credit: "Rav-T"
+  },
+  {
+    url:"",
+    title: "GGG CAH",
+    credit: "Rav-T's 1337 coding",
+    trigger: SpecialEvents.loadCards
+
   }
 ];
