@@ -93,11 +93,6 @@ var loadingScreenDirectory = [{
         credit: "Ada",
         trigger: SpecialEvents.hide
     }, {
-        url: "https://i.imgur.com/bBpVw2u.gif",
-        title: "Corgi Loadin",
-        credit: "Ada",
-        trigger: SpecialEvents.loading
-    }, {
         url: "http://i.imgur.com/BAfpoOo.gif",
         title: "The furry cometh",
         credit: "Ada",
