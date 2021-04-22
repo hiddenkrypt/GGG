@@ -6,35 +6,44 @@
  * screen.
 **/
 
-var ScreenEngine = new (function(){
-	this.load = function(index){
-		if(typeof index !== 'number' || index < 0 || index > loadingScreenDirectory.length){
-			index = Math.floor(Math.random() * loadingScreenDirectory.length);
-		}
+function ScreenEngineBuilder(){
+	console.log("build screen engine");
+	function loadScreenIndex( index ){	
 		var selectedScreen = loadingScreenDirectory[index];
 		ScreenEngine.setBackground('url("'+selectedScreen.url+'")');
 		if(typeof selectedScreen.trigger === 'function'){
 			selectedScreen.trigger();
 		}
+	}
+	function loadScreenEngine(index){
+		console.log("screen engine load");
+		if(typeof index !== 'number' || index < 0 || index > loadingScreenDirectory.length){
+			index = Math.floor(Math.random() * loadingScreenDirectory.length);
+		}
+
 		ScreenEngine.setFont();
-	};
-	this.setBackground = function(url){
+		let testRig = TestRig();
+		testRig.init();
+	}
+	function setBackground(url){
 		document.body.style.backgroundImage = url;
 	}
-	this.setFont = function(){
+	function setFont(){
 	    var fpc = window.innerWidth / 250;
 	    document.body.style.fontSize = fpc+'px';
 	}
-	this.GameDetails = function( servername, serverurl, mapname, maxplayers, steamid, gamemode ) {
-		document.getElementById('mode').innerHTML = gamemode;
-		document.getElementById('map').innerHTML = mapname;
-	}
+	return {
+		load: loadScreenEngine,
+		loadScreenIndex: loadScreenIndex,
+		setFont: setFont,
+		setBackground: setBackground
+	};
+}
 
-})();
-
-
+var ScreenEngine = ScreenEngineBuilder();
 window.onresize = ScreenEngine.setFont;
 window.onload = ScreenEngine.load;
-function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode ){
-	ScreenEngine.GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode );
+function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode ) {
+	document.getElementById('mode').innerHTML = gamemode;
+	document.getElementById('map').innerHTML = mapname;
 }
