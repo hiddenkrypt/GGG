@@ -38,17 +38,27 @@ var SpecialEvents = new(function () {
      * that will bring the elements back
      **/
     function hideUI() {
+		let logo = document.getElementById("logo");
+		let boilerplate = document.getElementById("boilerplate");
+		
         document.addEventListener(
             "click",
             function clickToReturn() {
-            document.getElementById("boilerplate").style.display = "initial";
-            document.getElementById("logo").style.display = "initial";
-            document.getElementById("test").style.display = "initial";
-            document.removeEventListener("click", clickToReturn, false);
-        }, false);
-        document.getElementById("boilerplate").style.display = 'none';
-        document.getElementById("logo").style.display = "none";
-        document.getElementById("test").style.display = "none";
+				if( boilerplate) {
+					boilerplate.style.display = "initial";
+				}
+				if( logo ){
+					logo.style.display = "initial";
+				}
+				document.removeEventListener("click", clickToReturn, false);
+			}, 
+			false);
+		if( boilerplate) {
+			boilerplate.style.display = "none";
+		}
+		if( logo ){
+			logo.style.display = "none";
+		}
     }
     /**
      *creates a new Canvas Element of indicated size (default 400x400)
@@ -59,19 +69,20 @@ var SpecialEvents = new(function () {
         height = height || 400;
         var canvas = document.createElement("canvas");
         var container = document.createElement("div");
+		container.id = "SpecialEvent";
         container.style.width = "100%";
         container.style.textAlign = "center";
         container.style.fontSize = "4em";
         container.id = "canvasContainer";
         container.style.position = "absolute";
         container.style.bottom = 0;
-        canvas.width = width
-            canvas.height = height
-            canvas.style.width = width;
+        canvas.width = width;
+		canvas.height = height;
+		canvas.style.width = width;
         canvas.style.height = height;
         canvas.style.border = "1px solid black";
         canvas.style.display = "inline"
-            container.appendChild(canvas);
+        container.appendChild(canvas);
         document.body.appendChild(container);
         return canvas.getContext("2d");
     }
