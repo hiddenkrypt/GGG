@@ -48,3 +48,30 @@ body {
 	width: 20em;
 	text-align: center;
 }
+#coverup{
+	position: absolute;
+	top: 0; left:0;
+	z-index:999;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background-color: #000;
+	animation-duration: 2s;
+	pointer-events: none;
+}
+.fadeIn{
+	animation-name: fadeOutAnimation;
+}
+.fadeInThenOut{
+	animation-name: fadeInOutAnimation;
+}
+@keyframes fadeOutAnimation {
+   0% {opacity: 1;}
+   100% {opacity: 0;}
+} 
+@keyframes fadeInOutAnimation {
+   0% {opacity: 0;}
+   40% {opacity: 1;}
+   60% {opacity: 1;}
+   100% {opacity: 0;}
+} 
