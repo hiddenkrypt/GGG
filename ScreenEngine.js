@@ -20,6 +20,11 @@ var ScreenEngine = new (function(){
 	};
 	this.setBackground = function(url){
 		document.body.style.backgroundImage = url;
+		let sfx = document.getElementById("sfx");
+		let se = document.getElementById("SpecialEvents");
+		if( se ){ se.remove(); }
+		if( sfx ){ sfx.remove(); }
+		
 	}
 	this.setFont = function(){
 	    var fpc = window.innerWidth / 250;
