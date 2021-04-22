@@ -28,10 +28,9 @@ function ScreenEngineBuilder(){
 	function setBackground(url){
 		document.body.style.backgroundImage = url;
 		let sfx = document.getElementById("sfx");
-		let se = document.getElementById("SpecialEvents");
+		let se = document.getElementById("SpecialEvent");
 		if( se ){ se.remove(); }
 		if( sfx ){ sfx.remove(); }
-		
 	}
 	function setFont(){
 	    var fpc = window.innerWidth / 250;
