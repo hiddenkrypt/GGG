@@ -16,10 +16,6 @@ function TestRig(){
 		setTimeout(function(){
 			GameDetails( '', '', "de_deathcookin", '', '', "terrortown" );
 		}, 1000);
-		setTimeout( ()=>{
-			document.getElementById("coverup").classList.remove("fadeIn");	
-		}, 2000 );
-		
 		let controlPanel = document.createElement( "div" );
 		controlPanel.style.position = "absolute";
 		controlPanel.style.top = "1em";
@@ -56,23 +52,14 @@ function TestRig(){
 		imageQuickTest.appendChild( imgLoadbutton );
 		controlPanel.appendChild( imageQuickTest );
 		
-		
 		document.body.appendChild( controlPanel);
-		
-		
 		
 		ScreenEngine.loadScreenIndex(URLParams.screen);
 		screenSelect.selectedIndex = URLParams.screen;
 	}
 	
 	function selectBackground(){
-		document.getElementById("coverup").classList.add("fadeInThenOut");
-		setTimeout( ()=>{
-			ScreenEngine.loadScreenIndex( screenSelect.selectedIndex );			
-		}, 1000 );		
-		setTimeout( ()=>{
-			document.getElementById("coverup").classList.remove("fadeInThenOut");
-		}, 2300 );
+		ScreenEngine.loadScreenIndex( screenSelect.selectedIndex );		
 		urlTextBox.value = window.location.href.split("?")[0] + "?test=1&screen=" + screenSelect.selectedIndex;
 	}
 

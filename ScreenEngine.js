@@ -9,18 +9,21 @@
 function ScreenEngineBuilder(){
 	console.log("build screen engine");
 	function loadScreenIndex( index ){	
+		if (!index){
+			index = Math.floor(Math.random() * loadingScreenDirectory.length);
+			console.log(`load screen: RNG{${index}}`);
+		} else {
+			console.log(`load screen: ${index}`);
+		}
 		var selectedScreen = loadingScreenDirectory[index];
 		ScreenEngine.setBackground('url("'+selectedScreen.url+'")');
 		if(typeof selectedScreen.trigger === 'function'){
 			selectedScreen.trigger();
 		}
 	}
-	function loadScreenEngine(index){
-		console.log("screen engine load");
-		if(typeof index !== 'number' || index < 0 || index > loadingScreenDirectory.length){
-			index = Math.floor(Math.random() * loadingScreenDirectory.length);
-		}
-
+	function loadScreenEngine(){
+		console.log("screen engine init");
+		loadScreenIndex();
 		ScreenEngine.setFont();
 		let testRig = TestRig();
 		testRig.init();
