@@ -24,7 +24,12 @@ body {
 	top:.5em;
 }
 #title{
-	font-size: 8em;
+	font-size: 10em;
+	font-weight: bold;
+	text-align: center;
+}
+#tagline{
+	font-size: 5em;
 	font-weight: bold;
 	text-align: center;
 }
