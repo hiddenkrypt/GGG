@@ -15,8 +15,10 @@ function ScreenEngineBuilder(){
 		} else {
 			console.log(`load screen: ${index}`);
 		}
-		var selectedScreen = loadingScreenDirectory[index];
+		let selectedScreen = loadingScreenDirectory[index];
 		ScreenEngine.setBackground('url("'+selectedScreen.url+'")');
+		let tag = taglineDirectory[Math.floor(Math.random() * taglineDirectory.length)];
+		document.getElementById("tagline").innerHTML = tag;
 		if(typeof selectedScreen.trigger === 'function'){
 			selectedScreen.trigger();
 		}
@@ -34,8 +36,6 @@ function ScreenEngineBuilder(){
 		let se = document.getElementById("SpecialEvent");
 		if( se ){ se.remove(); }
 		if( sfx ){ sfx.remove(); }
-		let tag = taglineDirectory[Math.floor(Math.random() * taglineDirectory.length)];
-		document.getElementById("tagline").innerHTML = tag;
 	}
 	function setFont(){
 	    var fpc = window.innerWidth / 250;
