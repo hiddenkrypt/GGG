@@ -20,8 +20,9 @@ body {
 #logo{
 	position:absolute;
 	z-index:-1;
-	left:.5em;
-	top:.5em;
+	left:4em;
+	top:4em;
+	opacity:.4;
 }
 #title{
 	font-size: 10em;
