@@ -73,7 +73,6 @@ var SpecialEvents = new(function () {
         container.style.width = "100%";
         container.style.textAlign = "center";
         container.style.fontSize = "4em";
-        container.id = "canvasContainer";
         container.style.position = "absolute";
         container.style.bottom = 0;
         canvas.width = width;
@@ -235,5 +234,242 @@ var SpecialEvents = new(function () {
         }
         document.body.appendChild(cardBox);
     };
+	this.sto = function stoLoader( ){
+		hideUI();
+        var stoBox = document.createElement("canvas");
+		stoBox.id = "SpecialEvent";
+		stoBox.width = 1920;
+		stoBox.height = 1080;
+		stoBox.style.width = "1920px";
+		stoBox.style.height = "1080px";
+		stoBox.style.position  = "absolute";
+		stoBox.style.top = "0"; 
+		stoBox.style.left = "0";
+		let ctx = stoBox.getContext( "2d" );
+		romulanColors = {};
+        document.body.appendChild(stoBox);
+		
+		let destination = document.createElement("div");
+		destination.style.position = "absolute";
+		destination.style.zIndex = 7;
+		destination.style.right = "0";
+		destination.style.top = "0";
+		destination.style.backgroundColor = "#000";
+		destination.style.color = "rgb(152,135,66)";
+		destination.style.fontFamily = "LCARS";
+		destination.style.fontSize = "5em";
+		destination.style.letterSpacing = "2px";
+		destination.style.marginRight = "10px";
+		destination.innerHTML = "LOADING...";
+        document.body.appendChild(destination);
+		
+		let percbox = document.createElement("div");
+		percbox.style.position = "absolute";
+		percbox.style.zIndex = 7;
+		percbox.style.right = "38px";
+		percbox.style.top = "200px";
+		percbox.style.color = "rgb(152,135,66)";
+		percbox.style.fontFamily = "LCARS";
+		percbox.style.letterSpacing = "4px";
+		let percL = document.createElement("span");
+		percL.style.fontSize = "8em";
+		percL.innerHTML = "00";
+		let percS = document.createElement("span");
+		percS.style.fontSize = "4em";
+		percS.style.marginLeft = "7px";
+		percS.innerHTML = "00";
+		percbox.appendChild( percL );
+		percbox.appendChild( percS );
+        document.body.appendChild(percbox);
 
+		function gradient( x, color ){ 
+			let linearGradient = ctx.createLinearGradient(x, 0, x+color.width, 0);
+			color.stops.forEach( stop=>{ linearGradient.addColorStop( stop.position, stop.color); } );
+			return linearGradient;
+		}
+		function stop( position, color ){
+			return { position:position, color:color };
+		}
+		let factionColors = {
+			KDF:{
+				box1: {
+					width:138, stops:[
+					stop(0,"rgb(73,25,3)"),
+					stop(1,"rgb(106,35,3)")
+				]},
+				jagBar: { width: 240, stops:[
+					stop(0,"rgb(27,8,2)"),
+					stop(1,"rgb(47,12,5)")
+				]},
+				loadBarRailBehind: { width: 561, stops:[
+					stop(0,"rgb(47,12,6)"), 
+					stop(1,"rgb(63,21,8)")
+				]},
+				box2: { width: 138, stops:[
+					stop(0,"rgb(47,41,17)"),
+					stop(1,"rgb(69,63,29)")
+				]},
+				box3: { width: 138, stops:[
+					stop(0,"rgb(120,41,10)"),
+					stop(1,"rgb(174,58,11)")
+				]},
+				box4: { width: 138, stops:[
+					stop(0,"rgb(41,17,5)"),
+					stop(1,"rgb(60,24,8)")
+				]},
+				rightBars: { width: 1072, stops:[
+					stop(0,"rgb(53,21,8)"),
+					//stop(.8,"rgb(48,20,7)"),
+					stop(1,"rgb(29,10,3)")
+				]},
+				timer: { width: 54, stops:[
+					stop(0,"rgb(133,40,9)"),
+					stop(1,"rgb(108,32,0)")
+				]},
+				loadSledMain: "rgb(146,50,12)",
+				loadSledTopSliver: "rgb(54,22,9)",
+				loadSledBottomSliver: "rgb(69,57,17)",
+				loadBarRailTop: "rgb(51,22,8)",
+				loadBarRailBottom: "rgb(21,10,8)",
+				
+				
+				
+			}
+		};
+		
+		let faction = "KDF";
+		let textureGradient = ctx.createRadialGradient(1920/4,1080/4,300, 1920/2,1080/2, 1920/1.5);
+		textureGradient.addColorStop( 0, "rgba( 100, 100, 100, .05)");
+		textureGradient.addColorStop( 1, "rgba( 40, 40, 40, .01)");
+		
+		let textureGradient2 = ctx.createRadialGradient(1920/2,1080/4,300, 1920/2,1080/2, 1920/1.5);
+		textureGradient2.addColorStop( 0, "rgba( 70, 70, 70, .05)");
+		textureGradient2.addColorStop( 1, "rgba( 20, 20, 20, .1)");
+		
+		let bgGradient = ctx.createRadialGradient(1920/2,1080/2,300, 1920/2,1080/2, 1920/1.5);
+		bgGradient.addColorStop( 0, "rgb( 25, 17, 1)");
+		bgGradient.addColorStop( 1, "rgb( 2, 1, 1)");
+		let loading = 0;
+		let loadBarWidth = 560;
+		let loadingSledWidth = 155;
+		function drawFrame(){
+			let map =  document.getElementById("map").innerHTML.toUpperCase();
+			map = map?map:"...";
+			destination.innerHTML = "LOADING "+map;
+			loading += .57;
+			loading = Math.min( loading, 99.99 );
+			let loadHigh = parseInt( loading );
+			let loadLow = parseInt( 100 * ( loading - loadHigh ) );
+			loadHigh = (loadHigh < 10)? "0"+loadHigh : ""+loadHigh;
+			loadLow = (loadLow < 10)? "0"+loadLow : ""+loadLow;
+			percL.innerHTML = loadHigh;
+			percS.innerHTML = loadLow;
+			ctx.fillStyle = bgGradient;
+			ctx.fillRect(0,0,2000,1100);
+			
+			ctx.fillStyle = gradient ( 30, factionColors[faction].box1 );
+			ctx.fillRect( 30, 0, 138, 55);
+			ctx.fillStyle = textureGradient;
+			ctx.fillRect( 30, 0, 138, 55);
+		
+			ctx.fillStyle = gradient( 30, factionColors[faction].jagBar);
+			if(faction == "KDF"){
+				ctx.beginPath();
+				ctx.moveTo(30, 55+8);
+				ctx.lineTo(30+138, 63);
+				ctx.lineTo(168, 63+6);
+				ctx.lineTo(168+36,69+36);
+				ctx.lineTo(204+66,105);
+				ctx.lineTo(270,105+28);
+				ctx.lineTo(270-176,133);
+				ctx.lineTo(30,69);
+				ctx.closePath();
+				ctx.fill();
+				ctx.fillStyle = textureGradient;
+				ctx.fill();
+				
+				ctx.fillStyle = gradient( 30, factionColors[faction].jagBar);
+				ctx.beginPath();
+				ctx.moveTo(270, 133+8);
+				ctx.lineTo(270,141+28);
+				ctx.lineTo(270-66,169);
+				ctx.lineTo(204-36,169+36);
+				ctx.lineTo(168,205+105);
+				ctx.lineTo(168-138,310);
+				ctx.lineTo(30,310-105);
+				ctx.lineTo(30+64,205-64);
+				ctx.closePath();
+				ctx.fill();
+				ctx.fillStyle = textureGradient;
+				ctx.fill();
+				
+				
+				ctx.strokeStyle = gradient( 1758, factionColors[faction].timer);
+				ctx.beginPath();
+				ctx.moveTo(1921,192);
+				ctx.lineTo(1782,192);
+				ctx.lineTo(1782-24,192+24);
+				ctx.lineTo(1758,216+42);
+				ctx.lineTo(1758+42,258+42);
+				ctx.lineTo(1921,258+42);
+				ctx.closePath();
+				ctx.lineWidth = 8;
+				ctx.stroke();
+				ctx.fillStyle = textureGradient;
+				ctx.fill();
+			}
+			
+			ctx.fillStyle = gradient( 30, factionColors[faction].box2);
+			ctx.fillRect(30, 310+8, 138, 64); 
+			ctx.fillStyle = textureGradient;
+			ctx.fillRect(30, 310+8, 138, 64); 
+			
+			ctx.fillStyle = gradient( 30, factionColors[faction].box3);
+			ctx.fillRect(30, 318+64+8, 138, 64); 
+			ctx.fillStyle = textureGradient;
+			ctx.fillRect(30, 318+64+8, 138, 64); 
+			
+			ctx.fillStyle = gradient( 30, factionColors[faction].box4);
+			ctx.fillRect(30, 390+64+8, 138, 564); 
+			ctx.fillStyle = textureGradient;
+			ctx.fillRect(30, 390+64+8, 138, 564); 
+			
+			ctx.fillStyle = gradient( 848, factionColors[faction].rightBars);
+			ctx.fillRect(278+loadBarWidth+8, 105, 1072, 28); 
+			ctx.fillRect(278+loadBarWidth+8, 105+28+8, 1072, 28); 
+			ctx.fillStyle = textureGradient;
+			ctx.fillRect(278+loadBarWidth+8, 105, 1072, 28); 
+			ctx.fillRect(278+loadBarWidth+8, 105+28+8, 1072, 28); 
+			
+			ctx.fillStyle = gradient( 270+8, factionColors[faction].loadBarRailBehind); //starts at right edge of jag +8
+			ctx.fillRect(270+8, 105, (loadBarWidth-loadingSledWidth-8)*(loading/100), 28); 
+			ctx.fillRect(270+8, 105+28+8, (loadBarWidth-loadingSledWidth-8)*(loading/100), 28); 
+			
+			ctx.fillStyle = factionColors[faction].loadSledMain;
+			ctx.fillRect(278+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8, 105, 54, 28);
+			ctx.fillRect(278+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8, 105+28+8, 54, 28);
+			ctx.fillStyle = textureGradient;
+			ctx.fillRect(278+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8, 105, 54, 28);
+			ctx.fillRect(278+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8, 105+28+8, 54, 28);
+			
+			ctx.fillStyle = factionColors[faction].loadSledTopSliver;
+			ctx.fillRect(286+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8+54, 105+16, 92, 12);
+			ctx.fillStyle = factionColors[faction].loadSledBottomSliver;
+			ctx.fillRect(286+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8+54, 105+28+8, 92, 12);
+			ctx.fillStyle = textureGradient;
+			ctx.fillRect(286+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8+54, 105+16, 92, 12);
+			ctx.fillRect(286+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8+54, 105+28+8, 92, 12);
+
+			ctx.fillStyle = factionColors[faction].loadBarRailTop;
+			ctx.fillRect(286+loadBarWidth-8, 105, Math.min(0,0-loadBarWidth+loadingSledWidth+(loadBarWidth-loadingSledWidth-8)*(loading/100)+8+8), 28);
+			
+			ctx.fillStyle = factionColors[faction].loadBarRailBottom
+			ctx.fillRect(286+loadBarWidth-8, 105+8+28, Math.min(0,0-loadBarWidth+loadingSledWidth+(loadBarWidth-loadingSledWidth-8)*(loading/100)+8+8), 28);
+			ctx.fillStyle = textureGradient;
+			ctx.fillRect(286+loadBarWidth-8, 105, Math.min(0,0-loadBarWidth+loadingSledWidth+(loadBarWidth-loadingSledWidth-8)*(loading/100)+8+8), 28);
+			ctx.fillRect(286+loadBarWidth-8, 105+8+28, Math.min(0,0-loadBarWidth+loadingSledWidth+(loadBarWidth-loadingSledWidth-8)*(loading/100)+8+8), 28);
+			
+		}
+			setInterval( drawFrame, 50);
+	};
 })();

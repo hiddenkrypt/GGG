@@ -147,6 +147,11 @@ var loadingScreenDirectory = [{
         title: "GGG CAH",
         credit: "Ada's 1337 coding",
         trigger: SpecialEvents.loadCards
+    }, {
+        url: "",
+        title: "STOloader",
+        credit: "Cryptic Games / Ada's 1337 coding",
+        trigger: SpecialEvents.sto
     }
 ];
 
@@ -217,8 +222,8 @@ var taglineDirectory = [
 	"too gee, too tee",
 	"First Blood Part II",
 	"the quickening",
-	"",
-	"",
+	"the good stuff",
+	"teeth teeth teeth teeth",
 	"",
 	"",
 	"",
