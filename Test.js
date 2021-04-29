@@ -18,6 +18,7 @@ function TestRig(){
 		}, 1000);
 		let controlPanel = document.createElement( "div" );
 		controlPanel.style.position = "absolute";
+		controlPanel.style.zIndex = "999";
 		controlPanel.style.top = "1em";
 		controlPanel.style.right = "1em";
 		controlPanel.style.backgroundColor = "#fff";
@@ -51,6 +52,16 @@ function TestRig(){
 		imgLoadbutton.innerHTML = "Load";
 		imageQuickTest.appendChild( imgLoadbutton );
 		controlPanel.appendChild( imageQuickTest );
+		
+		let hideTest = document.createElement("button");
+		hideTest.innerHTML = "Hide Test UI";
+		hideTest.addEventListener("click", ()=>{
+			controlPanel.style.display = "none";
+			document.body.addEventListener("click", ()=>{
+				controlPanel.style.display = "default";
+			});
+		});
+		controlPanel.appendChild(hideTest);
 		
 		document.body.appendChild( controlPanel);
 		
