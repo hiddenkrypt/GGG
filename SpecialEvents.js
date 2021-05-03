@@ -60,31 +60,6 @@ var SpecialEvents = new(function () {
 			logo.style.display = "none";
 		}
     }
-    /**
-     *creates a new Canvas Element of indicated size (default 400x400)
-     * returns the 2d context for the Canvas
-     **/
-    function addCanvas(width, height) {
-        width = width || 400;
-        height = height || 400;
-        var canvas = document.createElement("canvas");
-        var container = document.createElement("div");
-		container.id = "SpecialEvent";
-        container.style.width = "100%";
-        container.style.textAlign = "center";
-        container.style.fontSize = "4em";
-        container.style.position = "absolute";
-        container.style.bottom = 0;
-        canvas.width = width;
-		canvas.height = height;
-		canvas.style.width = width;
-        canvas.style.height = height;
-        canvas.style.border = "1px solid black";
-        canvas.style.display = "inline"
-        container.appendChild(canvas);
-        document.body.appendChild(container);
-        return canvas.getContext("2d");
-    }
 
     //~~~~~~~~~~~~EVENT FUNCTIONS~~~~~~~~~~~~
 
@@ -117,7 +92,25 @@ var SpecialEvents = new(function () {
         var C_HEIGHT = 687;
         var girlLoaded = false;
         var spookLoaded = false;
-        var ctx = addCanvas(C_WIDTH, C_HEIGHT);
+		
+        var canvas = document.createElement("canvas");
+        var container = document.createElement("div");
+		container.id = "SpecialEvent";
+        container.style.width = "100%";
+        container.style.textAlign = "center";
+        container.style.fontSize = "4em";
+        container.style.position = "absolute";
+        container.style.bottom = 0;
+        canvas.width = C_WIDTH;
+		canvas.height = C_HEIGHT;
+		canvas.style.width = C_WIDTH;
+        canvas.style.height = C_HEIGHT;
+        canvas.style.border = "1px solid black";
+        canvas.style.display = "inline"
+        container.appendChild(canvas);
+        document.body.appendChild(container);
+		
+        var ctx = canvas.getContext("2d");
         var girl = new Image(501, 687);
         var spook = new Image(400, 358);
         var cutOff = 456;
@@ -152,37 +145,37 @@ var SpecialEvents = new(function () {
                 meter.style.float = "left";
                 doot2.style.float = "right";
                 setTimeout(function () {
-                    document.body.appendChild(doot2);
+                    container.appendChild(doot2);
                 }, 3300);
                 setTimeout(function () {
-                    document.body.appendChild(doot2.cloneNode());
+                    container.appendChild(doot2.cloneNode());
                 }, 4300);
                 setTimeout(function () {
-                    document.body.appendChild(doot2.cloneNode());
+                    container.appendChild(doot2.cloneNode());
                 }, 5000);
                 setTimeout(function () {
-                    document.body.appendChild(doot2.cloneNode());
+                    container.appendChild(doot2.cloneNode());
                 }, 6000);
                 setTimeout(function () {
-                    document.body.appendChild(doot2.cloneNode());
+                    container.appendChild(doot2.cloneNode());
                 }, 6300);
                 setTimeout(function () {
-                    document.body.appendChild(doot2.cloneNode());
+                    container.appendChild(doot2.cloneNode());
                 }, 6700);
                 setTimeout(function () {
-                    document.body.appendChild(doot2.cloneNode());
+                    container.appendChild(doot2.cloneNode());
                 }, 6800);
                 setTimeout(function () {
-                    document.body.appendChild(doot2.cloneNode());
+                    container.appendChild(doot2.cloneNode());
                 }, 6900);
                 setTimeout(function () {
-                    document.body.appendChild(doot2.cloneNode());
+                    container.appendChild(doot2.cloneNode());
                 }, 6950);
                 setTimeout(function () {
-                    document.body.appendChild(doot2.cloneNode());
+                    container.appendChild(doot2.cloneNode());
                 }, 7000);
                 setTimeout(function () {
-                    document.body.appendChild(meter);
+                    container.appendChild(meter);
                 }, 1600);
             } else {
                 anim(spookem);
