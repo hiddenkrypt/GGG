@@ -243,6 +243,7 @@ var SpecialEvents = new(function () {
 		stoBox.style.width = "1920px";
 		stoBox.style.height = "1080px";
 		stoBox.style.position  = "absolute";
+		stoBox.style.zIndex  = 1;
 		stoBox.style.top = "0"; 
 		stoBox.style.left = "0";
 		let ctx = stoBox.getContext( "2d" );
@@ -261,7 +262,7 @@ var SpecialEvents = new(function () {
 		destination.style.letterSpacing = "2px";
 		destination.style.marginRight = "10px";
 		destination.innerHTML = "LOADING...";
-        document.body.appendChild(destination);
+        stoBox.appendChild(destination);
 		
 		let percbox = document.createElement("div");
 		percbox.style.position = "absolute";
@@ -280,7 +281,17 @@ var SpecialEvents = new(function () {
 		percS.innerHTML = "00";
 		percbox.appendChild( percL );
 		percbox.appendChild( percS );
-        document.body.appendChild(percbox);
+        stoBox.appendChild(percbox);
+		
+		let image = document.createElement("img");
+		image.src="res/img/sto.jpg";
+		image.style.position = "absolute";
+		image.style.zIndex = 2;
+		image.style.top = "285px";
+		image.style.left = "284px";105+28+8+28+16
+		image.style.border = "8px solid rgb(46,19,8)";
+		image.style.borderRadius = "8px";
+        stoBox.appendChild(image);
 
 		function gradient( x, color ){ 
 			let linearGradient = ctx.createLinearGradient(x, 0, x+color.width, 0);
