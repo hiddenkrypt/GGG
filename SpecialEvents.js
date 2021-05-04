@@ -229,19 +229,21 @@ var SpecialEvents = new(function () {
     };
 	this.sto = function stoLoader( ){
 		hideUI();
-        var stoBox = document.createElement("canvas");
+        var stoBox = document.createElement("div");
+        var canvas = document.createElement("canvas");
 		stoBox.id = "SpecialEvent";
-		stoBox.width = 1920;
-		stoBox.height = 1080;
-		stoBox.style.width = "1920px";
-		stoBox.style.height = "1080px";
-		stoBox.style.position  = "absolute";
-		stoBox.style.zIndex  = 1;
-		stoBox.style.top = "0"; 
-		stoBox.style.left = "0";
-		let ctx = stoBox.getContext( "2d" );
-		romulanColors = {};
         document.body.appendChild(stoBox);
+		
+		canvas.width = window.innerWidth;//1920;
+		canvas.height = window.innerHeight;//1080;
+		canvas.style.width = window.innerWidth;//"1920px";
+		canvas.style.height = window.innerHeight;//"1080px";
+		canvas.style.position  = "absolute";
+		canvas.style.zIndex  = 0;
+		canvas.style.top = "0"; 
+		canvas.style.left = "0";
+		let ctx = canvas.getContext( "2d" );
+		stoBox.appendChild( canvas);
 		
 		let destination = document.createElement("div");
 		destination.style.position = "absolute";
@@ -256,25 +258,6 @@ var SpecialEvents = new(function () {
 		destination.style.marginRight = "10px";
 		destination.innerHTML = "LOADING...";
         stoBox.appendChild(destination);
-		
-		let percbox = document.createElement("div");
-		percbox.style.position = "absolute";
-		percbox.style.zIndex = 7;
-		percbox.style.right = "38px";
-		percbox.style.top = "200px";
-		percbox.style.color = "rgb(152,135,66)";
-		percbox.style.fontFamily = "LCARS";
-		percbox.style.letterSpacing = "4px";
-		let percL = document.createElement("span");
-		percL.style.fontSize = "8em";
-		percL.innerHTML = "00";
-		let percS = document.createElement("span");
-		percS.style.fontSize = "4em";
-		percS.style.marginLeft = "7px";
-		percS.innerHTML = "00";
-		percbox.appendChild( percL );
-		percbox.appendChild( percS );
-        stoBox.appendChild(percbox);
 		
 		let image = document.createElement("img");
 		image.src="res/img/sto.jpg";
@@ -294,7 +277,7 @@ var SpecialEvents = new(function () {
 		function stop( position, color ){
 			return { position:position, color:color };
 		}
-		let factionColors = {
+		let factionData = {
 			KDF:{
 				box1: {
 					width:138, stops:[
@@ -335,9 +318,34 @@ var SpecialEvents = new(function () {
 				loadSledBottomSliver: "rgb(69,57,17)",
 				loadBarRailTop: "rgb(51,22,8)",
 				loadBarRailBottom: "rgb(21,10,8)",
-				
-				
-				
+				topJagCoords:[
+					[30, 55+8],
+					[30+138, 63],
+					[168, 63+6],
+					[168+36,69+36],
+					[204+66,105],
+					[270,105+28],
+					[270-176,133],
+					[30,69]
+				],
+				bottomJagCoords:[
+					[270, 133+8],
+					[270,141+28],
+					[270-66,169],
+					[204-36,169+36],
+					[168,205+105],
+					[168-138,310],
+					[30,310-105],
+					[30+64,205-64]
+				],
+				timerCoords:[
+					[2000,192],
+					[1782,192],
+					[1782-24,192+24],
+					[1758,216+42],
+					[1758+42,258+42],
+					[2000,258+42],
+				]			
 			}
 		};
 		
@@ -356,123 +364,128 @@ var SpecialEvents = new(function () {
 		let loading = 0;
 		let loadBarWidth = 560;
 		let loadingSledWidth = 155;
+		
+		ctx.scale(window.innerWidth/1920, window.innerHeight/1080 );
+		function pathFromCoords( coords ){
+			let move = false;;
+			coords.forEach(e=>{
+				if( !move ){
+					ctx.moveTo(e[0],e[1]); 
+					move=true;
+				} else {
+					ctx.lineTo(e[0],e[1]);
+				}
+			});
+		}	
 		function drawFrame(){
 			let map =  document.getElementById("map").innerHTML.toUpperCase();
 			map = map?map:"...";
 			destination.innerHTML = "LOADING "+map;
 			loading += .57;
 			loading = Math.min( loading, 99.99 );
-			let loadHigh = parseInt( loading );
-			let loadLow = parseInt( 100 * ( loading - loadHigh ) );
-			loadHigh = (loadHigh < 10)? "0"+loadHigh : ""+loadHigh;
-			loadLow = (loadLow < 10)? "0"+loadLow : ""+loadLow;
-			percL.innerHTML = loadHigh;
-			percS.innerHTML = loadLow;
+			
 			ctx.fillStyle = bgGradient;
 			ctx.fillRect(0,0,2000,1100);
 			
-			ctx.fillStyle = gradient ( 30, factionColors[faction].box1 );
+			ctx.fillStyle = gradient ( 30, factionData[faction].box1 );
 			ctx.fillRect( 30, 0, 138, 55);
 			ctx.fillStyle = textureGradient;
 			ctx.fillRect( 30, 0, 138, 55);
 		
-			ctx.fillStyle = gradient( 30, factionColors[faction].jagBar);
-			if(faction == "KDF"){
-				ctx.beginPath();
-				ctx.moveTo(30, 55+8);
-				ctx.lineTo(30+138, 63);
-				ctx.lineTo(168, 63+6);
-				ctx.lineTo(168+36,69+36);
-				ctx.lineTo(204+66,105);
-				ctx.lineTo(270,105+28);
-				ctx.lineTo(270-176,133);
-				ctx.lineTo(30,69);
-				ctx.closePath();
-				ctx.fill();
-				ctx.fillStyle = textureGradient;
-				ctx.fill();
-				
-				ctx.fillStyle = gradient( 30, factionColors[faction].jagBar);
-				ctx.beginPath();
-				ctx.moveTo(270, 133+8);
-				ctx.lineTo(270,141+28);
-				ctx.lineTo(270-66,169);
-				ctx.lineTo(204-36,169+36);
-				ctx.lineTo(168,205+105);
-				ctx.lineTo(168-138,310);
-				ctx.lineTo(30,310-105);
-				ctx.lineTo(30+64,205-64);
-				ctx.closePath();
-				ctx.fill();
-				ctx.fillStyle = textureGradient;
-				ctx.fill();
-				
-				
-				ctx.strokeStyle = gradient( 1758, factionColors[faction].timer);
-				ctx.beginPath();
-				ctx.moveTo(1921,192);
-				ctx.lineTo(1782,192);
-				ctx.lineTo(1782-24,192+24);
-				ctx.lineTo(1758,216+42);
-				ctx.lineTo(1758+42,258+42);
-				ctx.lineTo(1921,258+42);
-				ctx.closePath();
-				ctx.lineWidth = 8;
-				ctx.stroke();
-				ctx.fillStyle = textureGradient;
-				ctx.fill();
-			}
+			ctx.fillStyle = gradient( 30, factionData[faction].jagBar);
+			ctx.beginPath();
+			pathFromCoords(factionData[faction].topJagCoords)
+			ctx.closePath();
+			ctx.fill();
+			ctx.fillStyle = textureGradient;
+			ctx.fill();
 			
-			ctx.fillStyle = gradient( 30, factionColors[faction].box2);
+			ctx.fillStyle = gradient( 30, factionData[faction].jagBar);
+			ctx.beginPath();
+			pathFromCoords(factionData[faction].bottomJagCoords)
+			ctx.closePath();
+			ctx.fill();
+			ctx.fillStyle = textureGradient;
+			ctx.fill();
+			
+			ctx.strokeStyle = gradient( 1758, factionData[faction].timer);
+			ctx.beginPath();
+			pathFromCoords(factionData[faction].timerCoords);
+			ctx.closePath();
+			ctx.lineWidth = 8;
+			ctx.stroke();
+			ctx.fillStyle = textureGradient;
+			ctx.fill();
+			
+			ctx.fillStyle = gradient( 30, factionData[faction].box2);
 			ctx.fillRect(30, 310+8, 138, 64); 
 			ctx.fillStyle = textureGradient;
 			ctx.fillRect(30, 310+8, 138, 64); 
 			
-			ctx.fillStyle = gradient( 30, factionColors[faction].box3);
+			ctx.fillStyle = gradient( 30, factionData[faction].box3);
 			ctx.fillRect(30, 318+64+8, 138, 64); 
 			ctx.fillStyle = textureGradient;
 			ctx.fillRect(30, 318+64+8, 138, 64); 
 			
-			ctx.fillStyle = gradient( 30, factionColors[faction].box4);
-			ctx.fillRect(30, 390+64+8, 138, 564); 
+			ctx.fillStyle = gradient( 30, factionData[faction].box4);
+			ctx.fillRect(30, 390+64+8, 138, 664); 
 			ctx.fillStyle = textureGradient;
-			ctx.fillRect(30, 390+64+8, 138, 564); 
+			ctx.fillRect(30, 390+64+8, 138, 664); 
 			
-			ctx.fillStyle = gradient( 848, factionColors[faction].rightBars);
-			ctx.fillRect(278+loadBarWidth+8, 105, 1072, 28); 
-			ctx.fillRect(278+loadBarWidth+8, 105+28+8, 1072, 28); 
+			ctx.fillStyle = gradient( 848, factionData[faction].rightBars);
+			ctx.fillRect(278+loadBarWidth+8, 105, 1100, 28); 
+			ctx.fillRect(278+loadBarWidth+8, 105+28+8, 1100, 28); 
 			ctx.fillStyle = textureGradient;
-			ctx.fillRect(278+loadBarWidth+8, 105, 1072, 28); 
-			ctx.fillRect(278+loadBarWidth+8, 105+28+8, 1072, 28); 
+			ctx.fillRect(278+loadBarWidth+8, 105, 1100, 28); 
+			ctx.fillRect(278+loadBarWidth+8, 105+28+8, 1100, 28); 
 			
-			ctx.fillStyle = gradient( 270+8, factionColors[faction].loadBarRailBehind); //starts at right edge of jag +8
+			ctx.fillStyle = gradient( 270+8, factionData[faction].loadBarRailBehind); //starts at right edge of jag +8
 			ctx.fillRect(270+8, 105, (loadBarWidth-loadingSledWidth-8)*(loading/100), 28); 
 			ctx.fillRect(270+8, 105+28+8, (loadBarWidth-loadingSledWidth-8)*(loading/100), 28); 
 			
-			ctx.fillStyle = factionColors[faction].loadSledMain;
+			ctx.fillStyle = factionData[faction].loadSledMain;
 			ctx.fillRect(278+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8, 105, 54, 28);
 			ctx.fillRect(278+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8, 105+28+8, 54, 28);
 			ctx.fillStyle = textureGradient;
 			ctx.fillRect(278+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8, 105, 54, 28);
 			ctx.fillRect(278+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8, 105+28+8, 54, 28);
 			
-			ctx.fillStyle = factionColors[faction].loadSledTopSliver;
+			ctx.fillStyle = factionData[faction].loadSledTopSliver;
 			ctx.fillRect(286+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8+54, 105+16, 92, 12);
-			ctx.fillStyle = factionColors[faction].loadSledBottomSliver;
+			ctx.fillStyle = factionData[faction].loadSledBottomSliver;
 			ctx.fillRect(286+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8+54, 105+28+8, 92, 12);
 			ctx.fillStyle = textureGradient;
 			ctx.fillRect(286+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8+54, 105+16, 92, 12);
 			ctx.fillRect(286+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8+54, 105+28+8, 92, 12);
 
-			ctx.fillStyle = factionColors[faction].loadBarRailTop;
+			ctx.fillStyle = factionData[faction].loadBarRailTop;
 			ctx.fillRect(286+loadBarWidth-8, 105, Math.min(0,0-loadBarWidth+loadingSledWidth+(loadBarWidth-loadingSledWidth-8)*(loading/100)+8+8), 28);
 			
-			ctx.fillStyle = factionColors[faction].loadBarRailBottom
+			ctx.fillStyle = factionData[faction].loadBarRailBottom
 			ctx.fillRect(286+loadBarWidth-8, 105+8+28, Math.min(0,0-loadBarWidth+loadingSledWidth+(loadBarWidth-loadingSledWidth-8)*(loading/100)+8+8), 28);
 			ctx.fillStyle = textureGradient;
 			ctx.fillRect(286+loadBarWidth-8, 105, Math.min(0,0-loadBarWidth+loadingSledWidth+(loadBarWidth-loadingSledWidth-8)*(loading/100)+8+8), 28);
 			ctx.fillRect(286+loadBarWidth-8, 105+8+28, Math.min(0,0-loadBarWidth+loadingSledWidth+(loadBarWidth-loadingSledWidth-8)*(loading/100)+8+8), 28);
 			
+			let mostSignificantDigit = parseInt( loading / 10 );
+			let secondMostSignificantDigit = parseInt( loading % 10) ;
+			let loadLow = parseInt( 100 * ( loading - parseInt( loading ) ) );
+			let secondLeastSignificanDigit = parseInt( loadLow / 10 );
+			let leastSignificantDigit = parseInt( loadLow % 10 );
+			
+			let spacing = 4;
+			ctx.font = "8em LCARS";
+			ctx.fillStyle = "rgb(152,135,66)";
+			ctx.fillText( mostSignificantDigit, 1782, 192+24+40 );
+			let msdWidth = ctx.measureText(mostSignificantDigit).width;
+			ctx.fillText( secondMostSignificantDigit, 1782 + msdWidth + spacing, 192+24+40 );
+			let mswWidth = msdWidth + spacing + ctx.measureText(secondMostSignificantDigit).width
+			ctx.font = "4em LCARS";
+			ctx.fillStyle = "rgb(152,135,66)";
+			ctx.fillText( secondLeastSignificanDigit, 1782 + spacing + mswWidth, 192+24+40 );
+			ctx.fillText( leastSignificantDigit, 1782 + spacing + mswWidth + spacing + ctx.measureText(secondLeastSignificanDigit).width, 192+24+40 );
+			
+		
 		}
 			setInterval( drawFrame, 50);
 	};
