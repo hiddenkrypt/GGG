@@ -252,7 +252,7 @@ var SpecialEvents = new(function () {
 		destination.style.top = "0";
 		destination.style.backgroundColor = "#000";
 		destination.style.color = "rgb(152,135,66)";
-		destination.style.fontFamily = "LCARS";
+		destination.style.fontFamily = "okuda";
 		destination.style.fontSize = "5em";
 		destination.style.letterSpacing = "2px";
 		destination.style.marginRight = "10px";
@@ -263,11 +263,16 @@ var SpecialEvents = new(function () {
 		image.src="res/img/sto.jpg";
 		image.style.position = "absolute";
 		image.style.zIndex = 2;
-		image.style.top = "285px";
-		image.style.left = "284px";105+28+8+28+16
+		image.style.top = 185 * ( window.innerHeight / 1080 ) + "px";
+		image.style.left = 185 * ( window.innerWidth / 1920 ) + "px";
+		image.width = image.naturalHeight * ( window.innerHeight / 1080 );
+		image.width = image.naturalWidth * ( window.innerWidth / 1920 );
 		image.style.border = "8px solid rgb(46,19,8)";
 		image.style.borderRadius = "8px";
         stoBox.appendChild(image);
+		console.log(image.naturalWidth);
+		console.log(image.clientWidth);
+		console.log("scaleH: "+window.innerHeight / 1080+"  scaleW:"+window.innerWidth / 1920);
 
 		function gradient( x, color ){ 
 			let linearGradient = ctx.createLinearGradient(x, 0, x+color.width, 0);
@@ -306,7 +311,6 @@ var SpecialEvents = new(function () {
 				]},
 				rightBars: { width: 1072, stops:[
 					stop(0,"rgb(53,21,8)"),
-					//stop(.8,"rgb(48,20,7)"),
 					stop(1,"rgb(29,10,3)")
 				]},
 				timer: { width: 54, stops:[
@@ -377,12 +381,40 @@ var SpecialEvents = new(function () {
 				}
 			});
 		}	
-		function drawFrame(){
+		let boxNumbers = [
+			"00-0000",
+			"01-0000",
+			"02-0000",
+			"03-0000",
+			"04-0000",
+			"05-0000"
+		];
+		function rngNumberString( digits ){
+			let num = parseInt( Math.random() * Math.pow(10, digits) ) + "";
+			while( num.length < digits ){
+				num = "0" + num;
+			}
+			return num
+		}
+		function rngBoxNumber(){
+			return rngNumberString( 2 ) + "-" + rngNumberString( 4 );
+		}
+		boxNumbers = boxNumbers.map(rngBoxNumber);
+		
+		
+		function frameLogic(){
 			let map =  document.getElementById("map").innerHTML.toUpperCase();
 			map = map?map:"...";
 			destination.innerHTML = "LOADING "+map;
 			loading += .57;
 			loading = Math.min( loading, 99.99 );
+			
+			if(Math.random() < .1){
+				boxNumbers[parseInt(Math.random()*boxNumbers.length)] = rngBoxNumber();
+			}
+		}
+		function drawFrame(){
+			frameLogic();
 			
 			ctx.fillStyle = bgGradient;
 			ctx.fillRect(0,0,2000,1100);
@@ -391,10 +423,11 @@ var SpecialEvents = new(function () {
 			ctx.fillRect( 30, 0, 138, 55);
 			ctx.fillStyle = textureGradient;
 			ctx.fillRect( 30, 0, 138, 55);
-		
+	
+			
 			ctx.fillStyle = gradient( 30, factionData[faction].jagBar);
 			ctx.beginPath();
-			pathFromCoords(factionData[faction].topJagCoords)
+			pathFromCoords(factionData[faction].topJagCoords)//FEDS need quadraticCurveTo
 			ctx.closePath();
 			ctx.fill();
 			ctx.fillStyle = textureGradient;
@@ -402,7 +435,7 @@ var SpecialEvents = new(function () {
 			
 			ctx.fillStyle = gradient( 30, factionData[faction].jagBar);
 			ctx.beginPath();
-			pathFromCoords(factionData[faction].bottomJagCoords)
+			pathFromCoords(factionData[faction].bottomJagCoords) //FEDS need quadraticCurveTo
 			ctx.closePath();
 			ctx.fill();
 			ctx.fillStyle = textureGradient;
@@ -410,7 +443,7 @@ var SpecialEvents = new(function () {
 			
 			ctx.strokeStyle = gradient( 1758, factionData[faction].timer);
 			ctx.beginPath();
-			pathFromCoords(factionData[faction].timerCoords);
+			pathFromCoords(factionData[faction].timerCoords);//FEDS need quadraticCurveTo
 			ctx.closePath();
 			ctx.lineWidth = 8;
 			ctx.stroke();
@@ -469,24 +502,33 @@ var SpecialEvents = new(function () {
 			
 			let mostSignificantDigit = parseInt( loading / 10 );
 			let secondMostSignificantDigit = parseInt( loading % 10) ;
-			let loadLow = parseInt( 100 * ( loading - parseInt( loading ) ) );
+			let loadLow = parseInt( loading * 100 % 100 );
 			let secondLeastSignificanDigit = parseInt( loadLow / 10 );
 			let leastSignificantDigit = parseInt( loadLow % 10 );
 			
 			let spacing = 4;
-			ctx.font = "8em LCARS";
+			ctx.font = "bold 9em okuda";
 			ctx.fillStyle = "rgb(152,135,66)";
-			ctx.fillText( mostSignificantDigit, 1782, 192+24+40 );
-			let msdWidth = ctx.measureText(mostSignificantDigit).width;
-			ctx.fillText( secondMostSignificantDigit, 1782 + msdWidth + spacing, 192+24+40 );
-			let mswWidth = msdWidth + spacing + ctx.measureText(secondMostSignificantDigit).width
-			ctx.font = "4em LCARS";
+			ctx.fillText( mostSignificantDigit, 1782, 256 );
+			let msdWidth = ctx.measureText( mostSignificantDigit ).width;
+			ctx.fillText( secondMostSignificantDigit, 1800 + spacing, 256 );
+			ctx.font = "bold 5em okuda";
 			ctx.fillStyle = "rgb(152,135,66)";
-			ctx.fillText( secondLeastSignificanDigit, 1782 + spacing + mswWidth, 192+24+40 );
-			ctx.fillText( leastSignificantDigit, 1782 + spacing + mswWidth + spacing + ctx.measureText(secondLeastSignificanDigit).width, 192+24+40 );
+			ctx.fillText( secondLeastSignificanDigit, 1825 + spacing , 256 );
+			ctx.fillText( leastSignificantDigit, 1840 + spacing, 256 );
 			
-		
+			ctx.font = "3em okuda";
+			ctx.fillStyle = bgGradient;
+			let x = 168 - ctx.measureText( "00-0000" + ".." ).width;
+			let gap = 8;
+			ctx.fillText( boxNumbers[0], x, 55-gap);
+			ctx.fillText( boxNumbers[1], x, 63+16+gap);
+			ctx.fillText( boxNumbers[2], x, 310-gap);
+			ctx.fillText( boxNumbers[3], x, 318+64-gap);
+			ctx.fillText( boxNumbers[4], x, 324+128-gap);
+			ctx.fillText( boxNumbers[5], x, 324+128+32+gap);
 		}
-			setInterval( drawFrame, 50);
+		setInterval( drawFrame, 75);
 	};
 })();
+

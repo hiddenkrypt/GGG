@@ -9,8 +9,8 @@
 	src: url("res/font/PixelEmulator-xq08.woff");
 }
 @font-face{
-	font-family: "LCARS";
-	src: url("res/font/LCARS-911.woff");
+	font-family: "okuda";
+	src: url("res/font/okuda.woff");
 }
 html{
 	font-size: 10px;
