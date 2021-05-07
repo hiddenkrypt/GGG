@@ -1,17 +1,11 @@
 //test.js
 function TestRig(){
 	var self = {};
-    var URLParams = {};
-    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        URLParams[key] = value;
-    });
 
 	let screenSelect, urlTextBox;	
-	self.init = function testRigInit(){	
+	self.init = function testRigInit( screenSetting ){	
 		console.log("test rig init");
-		if ( URLParams.test != 1 ){
-			return;
-		}
+
 		
 		setTimeout(function(){
 			GameDetails( '', '', "de_deathcookin", '', '', "terrortown" );
@@ -64,9 +58,8 @@ function TestRig(){
 		controlPanel.appendChild(hideTest);
 		
 		document.body.appendChild( controlPanel);
-		
-		ScreenEngine.loadScreenIndex(URLParams.screen);
-		screenSelect.selectedIndex = URLParams.screen;
+	
+		screenSelect.selectedIndex = screenSetting;
 	}
 	
 	function selectBackground(){

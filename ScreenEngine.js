@@ -25,10 +25,17 @@ function ScreenEngineBuilder(){
 	}
 	function loadScreenEngine(){
 		console.log("screen engine init");
-		loadScreenIndex();
-		ScreenEngine.setFont();
+		
 		let testRig = TestRig();
-		testRig.init();
+		var URLParams = {};
+		window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+			URLParams[key] = value;
+		});
+		if ( URLParams.test ){
+			testRig.init( URLParams.screen );
+		}
+		loadScreenIndex( URLParams.screen );
+		ScreenEngine.setFont();
 	}
 	function setBackground(url){
 		document.body.style.backgroundImage = url;
