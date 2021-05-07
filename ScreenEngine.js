@@ -8,6 +8,8 @@
 
 function ScreenEngineBuilder(){
 	console.log("build screen engine");
+	let testRig = TestRig();
+	
 	function loadScreenIndex( index ){	
 		if (!index){
 			index = Math.floor(Math.random() * loadingScreenDirectory.length);
@@ -25,8 +27,6 @@ function ScreenEngineBuilder(){
 	}
 	function loadScreenEngine(){
 		console.log("screen engine init");
-		
-		let testRig = TestRig();
 		var URLParams = {};
 		window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
 			URLParams[key] = value;
@@ -36,6 +36,13 @@ function ScreenEngineBuilder(){
 		}
 		loadScreenIndex( URLParams.screen );
 		ScreenEngine.setFont();
+		function testRigActivate(){
+			if( !testRig.active ){
+				testRig.init();
+			}
+			document.body.removeEventListener( "click", testRigActivate );
+		}
+		document.body.addEventListener("click", testRigActivate);
 	}
 	function setBackground(url){
 		document.body.style.backgroundImage = url;

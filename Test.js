@@ -1,11 +1,12 @@
 //test.js
 function TestRig(){
 	var self = {};
+	self.active = false;
 
 	let screenSelect, urlTextBox;	
 	self.init = function testRigInit( screenSetting ){	
 		console.log("test rig init");
-
+		self.active = true;
 		
 		setTimeout(function(){
 			GameDetails( '', '', "de_deathcookin", '', '', "terrortown" );
@@ -49,11 +50,16 @@ function TestRig(){
 		
 		let hideTest = document.createElement("button");
 		hideTest.innerHTML = "Hide Test UI";
-		hideTest.addEventListener("click", ()=>{
+		hideTest.addEventListener("click", (e)=>{
 			controlPanel.style.display = "none";
-			document.body.addEventListener("click", ()=>{
-				controlPanel.style.display = "default";
-			});
+			e.preventDefault();
+			setTimeout( ()=>{ //anti-bounce hackery
+				function testUIReturn(){
+					controlPanel.style.display = "block";
+					document.body.removeEventListener( "click", testUIReturn );
+				}					
+				document.body.addEventListener( "click", testUIReturn );
+			}, 50);
 		});
 		controlPanel.appendChild(hideTest);
 		
