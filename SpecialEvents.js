@@ -354,17 +354,20 @@ var SpecialEvents = new(function () {
 		};
 		
 		let faction = "KDF";
+		
 		let textureGradient = ctx.createRadialGradient(1920/4,1080/4,300, 1920/2,1080/2, 1920/1.5);
 		textureGradient.addColorStop( 0, "rgba( 100, 100, 100, .05)");
 		textureGradient.addColorStop( 1, "rgba( 40, 40, 40, .01)");
-		
 		let textureGradient2 = ctx.createRadialGradient(1920/2,1080/4,300, 1920/2,1080/2, 1920/1.5);
 		textureGradient2.addColorStop( 0, "rgba( 70, 70, 70, .05)");
 		textureGradient2.addColorStop( 1, "rgba( 20, 20, 20, .1)");
-		
 		let bgGradient = ctx.createRadialGradient(1920/2,1080/2,300, 1920/2,1080/2, 1920/1.5);
 		bgGradient.addColorStop( 0, "rgb( 25, 17, 1)");
 		bgGradient.addColorStop( 1, "rgb( 2, 1, 1)");
+		let stringGradient = ctx.createLinearGradient(0, 0, 0, 84);
+		stringGradient.addColorStop( 0, "rgb(29,29,29)" );
+		stringGradient.addColorStop( 1, "rgb(47,47,49)" );
+		
 		let loading = 0;
 		let loadBarWidth = 560;
 		let loadingSledWidth = 155;
@@ -381,14 +384,8 @@ var SpecialEvents = new(function () {
 				}
 			});
 		}	
-		let boxNumbers = [
-			"00-0000",
-			"01-0000",
-			"02-0000",
-			"03-0000",
-			"04-0000",
-			"05-0000"
-		];
+		let boxNumbers = ["00-0000","01-0000","02-0000","03-0000","04-0000","05-0000"];
+		let dataStrings = new Array(6).fill(1).map(()=> {return {str:"",updated:false}; });
 		function rngNumberString( digits ){
 			let num = parseInt( Math.random() * Math.pow(10, digits) ) + "";
 			while( num.length < digits ){
@@ -400,30 +397,55 @@ var SpecialEvents = new(function () {
 			return rngNumberString( 2 ) + "-" + rngNumberString( 4 );
 		}
 		boxNumbers = boxNumbers.map(rngBoxNumber);
+		function rngDataString(){
+			let numLengths = [
+				5,6,4,6,3,2,5,7,2,2,
+				2,3,2,9,1,8,4,5,5,4,
+				4,8,4,1,8,8,9,7,3,1,
+				5,4,8,5,6,4,2,6,4,8,
+				6,4,6,2,8,2,6,2
+			];
+			return numLengths.map(rngNumberString).join(" ");
+		}
 		
 		
+		let frames = 0;
+		let activeDataString = 0;
 		function frameLogic(){
+			if ( frames > 400 ){ frames = 0; }
+			frames++;
 			let map =  document.getElementById("map").innerHTML.toUpperCase();
 			map = map?map:"...";
 			destination.innerHTML = "LOADING "+map;
 			loading += .57;
 			loading = Math.min( loading, 99.99 );
-			
 			if(Math.random() < .1){
 				boxNumbers[parseInt(Math.random()*boxNumbers.length)] = rngBoxNumber();
 			}
+			if( frames % 17 == 0 ){
+				if( activeDataString == 1 ){
+					dataStrings[dataStrings.length-1].updated = false;
+				} else {
+					let firstActive = dataStrings.find(e=>e.updated);
+					if( firstActive ){ 
+						firstActive.updated = false;
+					}
+				}
+				
+				if( dataStrings[activeDataString].str != "" ){
+					dataStrings[activeDataString].updated = true;
+				}
+				dataStrings[activeDataString].str = rngDataString();
+				activeDataString = (activeDataString+1)%dataStrings.length;
+			}
 		}
 		function drawFrame(){
+			
 			frameLogic();
 			
 			ctx.fillStyle = bgGradient;
 			ctx.fillRect(0,0,2000,1100);
 			
-			ctx.fillStyle = gradient ( 30, factionData[faction].box1 );
-			ctx.fillRect( 30, 0, 138, 55);
-			ctx.fillStyle = textureGradient;
-			ctx.fillRect( 30, 0, 138, 55);
-	
 			
 			ctx.fillStyle = gradient( 30, factionData[faction].jagBar);
 			ctx.beginPath();
@@ -450,55 +472,32 @@ var SpecialEvents = new(function () {
 			ctx.fillStyle = textureGradient;
 			ctx.fill();
 			
-			ctx.fillStyle = gradient( 30, factionData[faction].box2);
-			ctx.fillRect(30, 310+8, 138, 64); 
-			ctx.fillStyle = textureGradient;
-			ctx.fillRect(30, 310+8, 138, 64); 
-			
-			ctx.fillStyle = gradient( 30, factionData[faction].box3);
-			ctx.fillRect(30, 318+64+8, 138, 64); 
-			ctx.fillStyle = textureGradient;
-			ctx.fillRect(30, 318+64+8, 138, 64); 
-			
-			ctx.fillStyle = gradient( 30, factionData[faction].box4);
-			ctx.fillRect(30, 390+64+8, 138, 664); 
-			ctx.fillStyle = textureGradient;
-			ctx.fillRect(30, 390+64+8, 138, 664); 
-			
-			ctx.fillStyle = gradient( 848, factionData[faction].rightBars);
-			ctx.fillRect(278+loadBarWidth+8, 105, 1100, 28); 
-			ctx.fillRect(278+loadBarWidth+8, 105+28+8, 1100, 28); 
-			ctx.fillStyle = textureGradient;
-			ctx.fillRect(278+loadBarWidth+8, 105, 1100, 28); 
-			ctx.fillRect(278+loadBarWidth+8, 105+28+8, 1100, 28); 
-			
-			ctx.fillStyle = gradient( 270+8, factionData[faction].loadBarRailBehind); //starts at right edge of jag +8
-			ctx.fillRect(270+8, 105, (loadBarWidth-loadingSledWidth-8)*(loading/100), 28); 
-			ctx.fillRect(270+8, 105+28+8, (loadBarWidth-loadingSledWidth-8)*(loading/100), 28); 
-			
-			ctx.fillStyle = factionData[faction].loadSledMain;
-			ctx.fillRect(278+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8, 105, 54, 28);
-			ctx.fillRect(278+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8, 105+28+8, 54, 28);
-			ctx.fillStyle = textureGradient;
-			ctx.fillRect(278+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8, 105, 54, 28);
-			ctx.fillRect(278+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8, 105+28+8, 54, 28);
-			
-			ctx.fillStyle = factionData[faction].loadSledTopSliver;
-			ctx.fillRect(286+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8+54, 105+16, 92, 12);
-			ctx.fillStyle = factionData[faction].loadSledBottomSliver;
-			ctx.fillRect(286+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8+54, 105+28+8, 92, 12);
-			ctx.fillStyle = textureGradient;
-			ctx.fillRect(286+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8+54, 105+16, 92, 12);
-			ctx.fillRect(286+((loadBarWidth-loadingSledWidth-8)*(loading/100))+8+54, 105+28+8, 92, 12);
-
-			ctx.fillStyle = factionData[faction].loadBarRailTop;
-			ctx.fillRect(286+loadBarWidth-8, 105, Math.min(0,0-loadBarWidth+loadingSledWidth+(loadBarWidth-loadingSledWidth-8)*(loading/100)+8+8), 28);
-			
-			ctx.fillStyle = factionData[faction].loadBarRailBottom
-			ctx.fillRect(286+loadBarWidth-8, 105+8+28, Math.min(0,0-loadBarWidth+loadingSledWidth+(loadBarWidth-loadingSledWidth-8)*(loading/100)+8+8), 28);
-			ctx.fillStyle = textureGradient;
-			ctx.fillRect(286+loadBarWidth-8, 105, Math.min(0,0-loadBarWidth+loadingSledWidth+(loadBarWidth-loadingSledWidth-8)*(loading/100)+8+8), 28);
-			ctx.fillRect(286+loadBarWidth-8, 105+8+28, Math.min(0,0-loadBarWidth+loadingSledWidth+(loadBarWidth-loadingSledWidth-8)*(loading/100)+8+8), 28);
+			function drawBox(style, x, y, w, h){
+				if( typeof style == "string" ){
+					ctx.fillStyle = style
+				} else {
+					ctx.fillStyle = gradient( x, style);
+				}
+				ctx.fillRect(x, y, w, h); 
+				ctx.fillStyle = textureGradient;
+				ctx.fillRect(x, y, w, h); 
+			}
+	
+			drawBox(factionData[faction].box1, 30, 0, 138, 55);
+			drawBox(factionData[faction].box2, 30, 310+8, 138, 64);
+			drawBox(factionData[faction].box3, 30, 318+64+8, 138, 64);
+			drawBox(factionData[faction].box4, 30, 390+64+8, 138, 664);
+			drawBox(factionData[faction].rightBars, 278+loadBarWidth+8, 105,      1100, 28);
+			drawBox(factionData[faction].rightBars, 278+loadBarWidth+8, 105+28+8, 1100, 28);
+			let sledPosition = (loadBarWidth-loadingSledWidth-8)*(loading/100)+8;
+			drawBox(factionData[faction].loadBarRailBehind, 270+8, 105, sledPosition-8, 28);
+			drawBox(factionData[faction].loadBarRailBehind, 270+8, 105+28+8, sledPosition-8, 28);
+			drawBox(factionData[faction].loadSledMain, 278+sledPosition, 105, 54, 28);
+			drawBox(factionData[faction].loadSledMain, 278+sledPosition, 105+28+8, 54, 28);
+			drawBox(factionData[faction].loadSledTopSliver, 286+sledPosition+54, 105+16, 92, 12);
+			drawBox(factionData[faction].loadSledBottomSliver, 286+sledPosition+54, 105+28+8, 92, 12);
+			drawBox(factionData[faction].loadBarRailTop, 286+loadBarWidth-8, 105, Math.min(0,0-loadBarWidth+loadingSledWidth+sledPosition+8), 28);
+			drawBox(factionData[faction].loadBarRailBottom, 286+loadBarWidth-8, 105+8+28, Math.min(0,0-loadBarWidth+loadingSledWidth+sledPosition+8), 28);
 			
 			let mostSignificantDigit = parseInt( loading / 10 );
 			let secondMostSignificantDigit = parseInt( loading % 10) ;
@@ -527,6 +526,12 @@ var SpecialEvents = new(function () {
 			ctx.fillText( boxNumbers[3], x, 318+64-gap);
 			ctx.fillText( boxNumbers[4], x, 324+128-gap);
 			ctx.fillText( boxNumbers[5], x, 324+128+32+gap);
+			
+			ctx.font = "bold 1.6em Lucida Console";
+			dataStrings.forEach((data,i)=>{
+				ctx.fillStyle = data.updated? "rgb(65,82,92)" : stringGradient;
+				ctx.fillText( data.str, 168+24, 14+14*i);
+			});
 		}
 		setInterval( drawFrame, 75);
 	};
