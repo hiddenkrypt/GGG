@@ -335,8 +335,8 @@ var SpecialEvents = new(function () {
                 loadSledBottomSliver: "rgb(69,57,17)",
                 loadBarRailTop: "rgb(51,22,8)",
                 loadBarRailBottom: "rgb(21,10,8)",
-				imageBorderStart: "rgb(57,21,9)",
-				imageBorderStop: "rgb(37,13,3)",
+                imageBorderStart: "rgb(57,21,9)",
+                imageBorderStop: "rgb(37,13,3)",
                 topJagCoords: [
                     [30, 55 + 8],
                     [30 + 138, 63],
@@ -365,16 +365,16 @@ var SpecialEvents = new(function () {
                     [1758 + 42, 258 + 42],
                     [2000, 258 + 42],
                 ],
-				imageBorderCoords: [
-					[198+4, 198-4],
-					[198-4+1280, 198-4],
-					[198+4+1280, 198+4],
-					[198+4+1280, 198-4+720],
-					[198-4+1280, 198+4+720],
-					[198+4, 198+4+720],
-					[198-4, 198-4+720],
-					[198-4, 198+4]
-				]
+                imageBorderCoords: [
+                    [198 + 4, 198 - 4],
+                    [198 - 4 + 1280, 198 - 4],
+                    [198 + 4 + 1280, 198 + 4],
+                    [198 + 4 + 1280, 198 - 4 + 720],
+                    [198 - 4 + 1280, 198 + 4 + 720],
+                    [198 + 4, 198 + 4 + 720],
+                    [198 - 4, 198 - 4 + 720],
+                    [198 - 4, 198 + 4]
+                ]
             }
         };
 
@@ -389,18 +389,17 @@ var SpecialEvents = new(function () {
         let stringGradient = ctx.createLinearGradient(0, 0, 0, 84);
         stringGradient.addColorStop(0, "rgb(21,21,21)");
         stringGradient.addColorStop(1, "rgb(47,47,49)");
-		let imageBorderGradient = ctx.createLinearGradient(195, 195, 195+1280, 195+720);
+        let imageBorderGradient = ctx.createLinearGradient(195, 195, 195 + 1280, 195 + 720);
         imageBorderGradient.addColorStop(0, factionData[faction].imageBorderStart);
         imageBorderGradient.addColorStop(1, factionData[faction].imageBorderStop);
-		let stoImage = document.createElement("img");
-		stoImage.src = "res/img/sto.jpg";
-		
-		
+        let stoImage = document.createElement("img");
+        stoImage.src = "res/img/sto.jpg";
+
         let loading = 0;
         let loadBarWidth = 560;
         let loadingSledWidth = 155;
 
-        function pathFromCoords(coords) {
+        function pathFromCoords(coords) { //FEDS need quadraticCurveTo
             ctx.beginPath();
             let move = false;
             coords.forEach(e => {
@@ -433,8 +432,8 @@ var SpecialEvents = new(function () {
         boxNumbers = boxNumbers.map(rngBoxNumber);
         function rngDataString() {
             let numLengths = [
-				5, 6, 4, 6, 3, 2, 5, 7, 2, 2, 2, 3, 2, 9, 1, 8, 4, 5, 5, 4, 4, 8, 4, 1, 8, 
-				8, 9, 7, 3, 1, 5, 4, 8, 5, 6, 4, 2, 6, 4, 8, 6, 4, 6, 2, 8, 2, 6, 2
+                5, 6, 4, 6, 3, 2, 5, 7, 2, 2, 2, 3, 2, 9, 1, 8, 4, 5, 5, 4, 4, 8, 4, 1, 8,
+                8, 9, 7, 3, 1, 5, 4, 8, 5, 6, 4, 2, 6, 4, 8, 6, 4, 6, 2, 8, 2, 6, 2
             ];
             return numLengths.map(rngNumberString).join(" ");
         }
@@ -472,7 +471,7 @@ var SpecialEvents = new(function () {
             }
         }
 
-        function drawBox(style, x, y, w, h) {
+        function fillBox(style, x, y, w, h) {
             if (typeof style == "string") {
                 ctx.fillStyle = style
             } else {
@@ -482,54 +481,47 @@ var SpecialEvents = new(function () {
             ctx.fillStyle = textureGradient;
             ctx.fillRect(x, y, w, h);
         }
-        function drawFrame() {
-            ctx.fillStyle = bgGradient;
-            ctx.fillRect(0, 0, 2000, 1100);
-			
-			ctx.drawImage(stoImage, 198, 198);
-
-            pathFromCoords(factionData[faction].topJagCoords) //FEDS need quadraticCurveTo
-            ctx.fillStyle = gradient(30, factionData[faction].jagBar);
+        function fillPoly(coords, style) {
+            pathFromCoords(coords);
+            ctx.fillStyle = style;
             ctx.fill();
             ctx.fillStyle = textureGradient;
             ctx.fill();
-
-            pathFromCoords(factionData[faction].bottomJagCoords) //FEDS need quadraticCurveTo
-            ctx.fillStyle = gradient(30, factionData[faction].jagBar);
-            ctx.fill();
-            ctx.fillStyle = textureGradient;
-            ctx.fill();
-
-            pathFromCoords(factionData[faction].timerCoords); //FEDS need quadraticCurveTo
-            ctx.strokeStyle = gradient(1758, factionData[faction].timer);
+        }
+        function strokePoly(coords, style) {
+            pathFromCoords(coords);
+            ctx.strokeStyle = style;
             ctx.lineWidth = 8;
             ctx.stroke();
             ctx.fillStyle = textureGradient;
             ctx.stroke();
-			
-			pathFromCoords( factionData[faction].imageBorderCoords);
-			ctx.strokeStyle = imageBorderGradient;
-			ctx.lineWidth = 8;
-            ctx.stroke();
-            ctx.fillStyle = textureGradient;
-            ctx.stroke();
+        }
+        function drawFrame() {
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, 2000, 1100);
+            ctx.drawImage(stoImage, 198, 198);
 
-            drawBox(factionData[faction].box1, 30, 0, 138, 55);
-            drawBox(factionData[faction].box2, 30, 310 + 8, 138, 64);
-            drawBox(factionData[faction].box3, 30, 318 + 64 + 8, 138, 64);
-            drawBox(factionData[faction].box4, 30, 390 + 64 + 8, 138, 664);
-            drawBox(factionData[faction].rightBars, 278 + loadBarWidth + 8, 105, 1100, 28);
-            drawBox(factionData[faction].rightBars, 278 + loadBarWidth + 8, 105 + 28 + 8, 1100, 28);
-			
+            fillPoly(factionData[faction].topJagCoords, gradient(30, factionData[faction].jagBar));
+            fillPoly(factionData[faction].bottomJagCoords, gradient(30, factionData[faction].jagBar));
+            strokePoly(factionData[faction].timerCoords, gradient(1758, factionData[faction].timer));
+            strokePoly(factionData[faction].imageBorderCoords, imageBorderGradient);
+
+            fillBox(factionData[faction].box1, 30, 0, 138, 55);
+            fillBox(factionData[faction].box2, 30, 310 + 8, 138, 64);
+            fillBox(factionData[faction].box3, 30, 318 + 64 + 8, 138, 64);
+            fillBox(factionData[faction].box4, 30, 390 + 64 + 8, 138, 664);
+            fillBox(factionData[faction].rightBars, 278 + loadBarWidth + 8, 105, 1100, 28);
+            fillBox(factionData[faction].rightBars, 278 + loadBarWidth + 8, 105 + 28 + 8, 1100, 28);
+
             let sledPosition = (loadBarWidth - loadingSledWidth - 8) * (loading / 100) + 8;
-            drawBox(factionData[faction].loadBarRailBehind, 270 + 8, 105, sledPosition - 8, 28);
-            drawBox(factionData[faction].loadBarRailBehind, 270 + 8, 105 + 28 + 8, sledPosition - 8, 28);
-            drawBox(factionData[faction].loadSledMain, 278 + sledPosition, 105, 54, 28);
-            drawBox(factionData[faction].loadSledMain, 278 + sledPosition, 105 + 28 + 8, 54, 28);
-            drawBox(factionData[faction].loadSledTopSliver, 286 + sledPosition + 54, 105 + 16, 92, 12);
-            drawBox(factionData[faction].loadSledBottomSliver, 286 + sledPosition + 54, 105 + 28 + 8, 92, 12);
-            drawBox(factionData[faction].loadBarRailTop, 286 + loadBarWidth - 8, 105, Math.min(0, 0 - loadBarWidth + loadingSledWidth + sledPosition + 8), 28);
-            drawBox(factionData[faction].loadBarRailBottom, 286 + loadBarWidth - 8, 105 + 8 + 28, Math.min(0, 0 - loadBarWidth + loadingSledWidth + sledPosition + 8), 28);
+            fillBox(factionData[faction].loadBarRailBehind, 270 + 8, 105, sledPosition - 8, 28);
+            fillBox(factionData[faction].loadBarRailBehind, 270 + 8, 105 + 28 + 8, sledPosition - 8, 28);
+            fillBox(factionData[faction].loadSledMain, 278 + sledPosition, 105, 54, 28);
+            fillBox(factionData[faction].loadSledMain, 278 + sledPosition, 105 + 28 + 8, 54, 28);
+            fillBox(factionData[faction].loadSledTopSliver, 286 + sledPosition + 54, 105 + 16, 92, 12);
+            fillBox(factionData[faction].loadSledBottomSliver, 286 + sledPosition + 54, 105 + 28 + 8, 92, 12);
+            fillBox(factionData[faction].loadBarRailTop, 286 + loadBarWidth - 8, 105, Math.min(0, 0 - loadBarWidth + loadingSledWidth + sledPosition + 8), 28);
+            fillBox(factionData[faction].loadBarRailBottom, 286 + loadBarWidth - 8, 105 + 8 + 28, Math.min(0, 0 - loadBarWidth + loadingSledWidth + sledPosition + 8), 28);
 
             let mostSignificantDigit = parseInt(loading / 10);
             let secondMostSignificantDigit = parseInt(loading % 10);
@@ -562,17 +554,16 @@ var SpecialEvents = new(function () {
             });
 
         }
-		
-		
-		function tick(){
-			frameLogic();
-			drawFrame();
-		}
+
+        function tick() {
+            frameLogic();
+            drawFrame();
+        }
         ctx.scale(window.innerWidth / 1920, window.innerHeight / 1080);
         setInterval(tick, 75);
-		window.onresize = ()=>{
-			ctx.setTransform(1, 0, 0, 1, 0, 0);
-			ctx.scale(window.innerWidth / 1920, window.innerHeight / 1080);
-		};
+        window.onresize = () => {
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.scale(window.innerWidth / 1920, window.innerHeight / 1080);
+        };
     };
 })();
