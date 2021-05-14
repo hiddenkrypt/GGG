@@ -36,6 +36,11 @@ function ScreenEngineBuilder() {
             testRig.init(URLParams.screen);
         }
         loadScreenIndex(URLParams.screen);
+		setInterval( ()=>{
+			if(!testRig.active && URLParams.screen == undefined){
+				loadScreenIndex();
+			}
+		}, 30000);
         ScreenEngine.setFont();
         function testRigActivate() {
             if (!testRig.active) {
