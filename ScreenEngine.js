@@ -24,6 +24,7 @@ function ScreenEngineBuilder() {
         if (typeof selectedScreen.trigger === 'function') {
             selectedScreen.trigger();
         }
+		document.getElementById("credits").innerHTML = selectedScreen.title + "<br> by " + selectedScreen.credit;
     }
     function loadScreenEngine() {
         console.log("screen engine init");

@@ -68,3 +68,15 @@ body {
 	pointer-events: none;
 	opacity:0;
 }
+#credits{
+	position: absolute;
+	bottom:0;
+	left:0;
+	z-index:12;
+	padding: .5em;
+	background-Color: rgba(0,0,0,.4);
+	color: #fff;
+	font-size:1.5em;
+	font-style: italic;
+	font-family: courier new;
+}

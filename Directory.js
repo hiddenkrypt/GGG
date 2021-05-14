@@ -77,7 +77,7 @@ var loadingScreenDirectory = [{
         trigger: SpecialEvents.indexError
     }, {
         url: "http://i.imgur.com/s65Yr86.png",
-        title: "components",
+        title: "Components",
         credit: "Ada, Ken"
     }, {
         url: "http://i.imgur.com/IEosSyF.png",
@@ -115,12 +115,12 @@ var loadingScreenDirectory = [{
         credit: "Ada"
     }, {
         url: "",
-        title: "spooky",
+        title: "Sspooky",
         credit: "Ada",
         trigger: SpecialEvents.spooky
     }, {
         url: "https://i.imgur.com/VfkZWw6.png",
-        title: "buttsy",
+        title: "Buttsy",
         credit: "Ada, Brett"
     }, {
         url: "https://imgur.com/5gQwuh8.png",
@@ -140,7 +140,7 @@ var loadingScreenDirectory = [{
         credit: "Ada"
     }, {
         url: "https://i.imgur.com/aHFnCvV.png",
-        title: "later virgins",
+        title: "Later Virgins",
         credit: "Ada"
     }, {
         url: "",
@@ -150,7 +150,7 @@ var loadingScreenDirectory = [{
     }, {
         url: "",
         title: "Star Trek Online Loading Screen",
-        credit: "Cryptic Games / Ada",
+        credit: "Cryptic Games, recreated by Ada",
         trigger: SpecialEvents.sto
     }
 ];
