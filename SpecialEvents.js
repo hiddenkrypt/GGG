@@ -376,7 +376,17 @@ var SpecialEvents = new(function () {
                     [198 + 4, 198 + 4 + 720],
                     [198 - 4, 198 - 4 + 720],
                     [198 - 4, 198 + 4]
-                ]
+                ],
+				infoBoxcoords: [
+					[1150,238],
+					[1150+288,238],
+					[1150+288+16,238+16],
+					[1150+288+16,238+16+488],
+					[1150+288,238+32+488],
+					[1150,238+32+488],
+					[1150-16,238+16+488],
+					[1150-16,238+16]
+				]
             }
         };
 
@@ -392,9 +402,22 @@ var SpecialEvents = new(function () {
         let imageBorderGradient = ctx.createLinearGradient(195, 195, 195 + 1280, 195 + 720);
         imageBorderGradient.addColorStop(0, factionData[faction].imageBorderStart);
         imageBorderGradient.addColorStop(1, factionData[faction].imageBorderStop);
+		let infoBoxGradient = ctx.createLinearGradient(1150-16, 238, 1150+16, 238+388+16);
+        infoBoxGradient.addColorStop(0, "rgba(0,0,0,1)");
+        infoBoxGradient.addColorStop(1, "rgba(0,0,0,.5)");		
+		let infoBoxBorderGradient = ctx.createLinearGradient(1150-16, 238, 1150+64, 238+388+16);
+        infoBoxBorderGradient.addColorStop(0, "rgba(86,71,64,1)");
+        infoBoxBorderGradient.addColorStop(1, "rgba(86,71,64,.3)");
+		
         let stoImage = document.createElement("img");
         stoImage.src = "res/img/sto.jpg";
 
+		let tag = document.getElementById("tagline").innerHTML;
+		tag = tag.replace(/<br>/, " ");
+		tag = tag.replace(/<i>/, "");
+		tag = tag.replace(/<\/i>/, "");
+		tag = tag.replace(/<span.+/, "");
+		let tag2 = "";
         let loading = 0;
         let loadBarWidth = 560;
         let loadingSledWidth = 155;
@@ -557,7 +580,66 @@ var SpecialEvents = new(function () {
                 ctx.fillStyle = data.updated ? "rgb(65,82,92)" : stringGradient;
                 ctx.fillText(data.str, 168 + 24, 14 + 14 * i);
             });
+            fillPoly(factionData[faction].infoBoxcoords, infoBoxGradient);
+            strokePoly(factionData[faction].infoBoxcoords, infoBoxBorderGradient, 1);
 			
+			ctx.fillStyle = "rgb(201,51,63)";
+            ctx.font = "bold 3em Pixel-Emulator";
+			ctx.fillText("GGG", 1150+144-(ctx.measureText("GGG").width/2),238+30);
+			ctx.fillStyle = "rgb(246,0,0)";
+            ctx.font = "bold 4em Pixel-Emulator";
+			ctx.fillText("RED ALERT", 1150+144-(ctx.measureText("RED ALERT").width/2),238+60);
+			
+			ctx.fillStyle = "rgb(3,117,3)";
+            ctx.font = "bold 2em Verdana";
+			let tag2Width = ctx.measureText(tag2).width;
+			let tagWidth = ctx.measureText(tag).width;
+			
+			if( tag2.length == 0 && tagWidth > 288 && tagWidth < 550){
+				let firstChunk = tag.substr(0,tag.length/2);
+				firstChunk = firstChunk.substr(0, firstChunk.lastIndexOf(" "));
+				tag2 = tag.substr( firstChunk.length );
+				tag = firstChunk;
+				tagWidth = ctx.measureText(tag).width;
+				tag2Width = ctx.measureText(tag2).width;
+			} else if ( tagWidth > 550 ){
+				tag = "Live from now until we get bored";
+			}
+			ctx.fillText(tag, 1150+144-(tagWidth/2),238+80);
+			if( tag2.length > 0 ){
+				ctx.fillText(tag2, 1150+144-(tag2Width/2),238+100);
+			}
+			
+			ctx.fillStyle = "rgb(232,231,229)";
+            ctx.font = "2em Verdana";
+			let textBlob = [
+				"The Borg, Thollians, Nah'kul,",
+				"Elachi, and Tzenkethi are all a",
+				"little bit sus right now. Join",
+				"any GGG Red Alert to participate",
+				"in this trash fire.",
+				"",
+				"Play the GGG Red Alert Event",
+				"for ten days to be branded a",
+				"total loser. Oh and you earn",
+				"an experimental ultimate captain",
+				"tech upgrade point token",
+				"",
+				"Once you complete the event",
+				"you can never be free again.",
+				"You will repeat the event ",
+				"forever, earning even more ",
+				"AdaBux. You WILL play daily",
+				"to increase the amount you earn",
+				"each day. You won't have a",
+				"choice. There is no escape."
+			];
+			textBlob.forEach((e,i)=>{
+				ctx.fillText(e, 1150+16,238+90+40+(20*i));
+				if( i == 0 || i == 6 || i == 12 ){
+					ctx.fillText("*", 1150,238+90+43+(20*i));
+				}
+			});
 			
 			anim(drawFrame);
         }
