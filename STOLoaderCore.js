@@ -3,8 +3,9 @@
 
 function STOLoader(faction) {
     if (!faction) {
-        faction = "KDF";
+        faction = "RRW";
     }
+	
     var stoBox = document.createElement("div");
     var canvas = document.createElement("canvas");
     stoBox.id = "SpecialEvent";
@@ -36,6 +37,8 @@ function STOLoader(faction) {
     destination.innerHTML = "LOADING...";
     stoBox.appendChild(destination);
 
+	let stoData = new STOData(ctx);
+	
     function gradient(x, color) {
         let linearGradient = ctx.createLinearGradient(x, 0, x + color.width, 0);
         color.stops.forEach(stop => {
@@ -44,24 +47,10 @@ function STOLoader(faction) {
         return linearGradient;
     }
 
-    let textureGradient = ctx.createRadialGradient(1920 / 4, 1080 / 4, 300, 1920 / 2, 1080 / 2, 1920 / 1.5);
-    textureGradient.addColorStop(0, "rgba( 100, 100, 100, .05)");
-    textureGradient.addColorStop(1, "rgba( 40, 40, 40, .01)");
-    let bgGradient = ctx.createRadialGradient(1920 / 2, 1080 / 2, 300, 1920 / 2, 1080 / 2, 1920 / 1.5);
-    bgGradient.addColorStop(0, "rgb( 25, 17, 1)");
-    bgGradient.addColorStop(1, "rgb( 2, 1, 1)");
-    let stringGradient = ctx.createLinearGradient(0, 0, 0, 84);
-    stringGradient.addColorStop(0, "rgb(21,21,21)");
-    stringGradient.addColorStop(1, "rgb(47,47,49)");
+
     let imageBorderGradient = ctx.createLinearGradient(195, 195, 195 + 1280, 195 + 720);
     imageBorderGradient.addColorStop(0, stoData[faction].imageBorderStart);
     imageBorderGradient.addColorStop(1, stoData[faction].imageBorderStop);
-    let infoBoxGradient = ctx.createLinearGradient(1150 - 16, 238, 1150 + 16, 238 + 388 + 16);
-    infoBoxGradient.addColorStop(0, "rgba(0,0,0,1)");
-    infoBoxGradient.addColorStop(1, "rgba(0,0,0,.5)");
-    let infoBoxBorderGradient = ctx.createLinearGradient(1150 - 16, 238, 1150 + 64, 238 + 388 + 16);
-    infoBoxBorderGradient.addColorStop(0, "rgba(86,71,64,1)");
-    infoBoxBorderGradient.addColorStop(1, "rgba(86,71,64,.3)");
 
     let stoImage = document.createElement("img");
     stoImage.src = "res/img/sto.jpg";
@@ -159,14 +148,14 @@ function STOLoader(faction) {
             ctx.fillStyle = gradient(x, style);
         }
         ctx.fillRect(x, y, w, h);
-        ctx.fillStyle = textureGradient;
+        ctx.fillStyle = stoData.textureGradient;
         ctx.fillRect(x, y, w, h);
     }
     function fillPoly(coords, style) {
         pathFromCoords(coords);
         ctx.fillStyle = style;
         ctx.fill();
-        ctx.fillStyle = textureGradient;
+        ctx.fillStyle = stoData.textureGradient;
         ctx.fill();
     }
     function strokePoly(coords, style, width) {
@@ -174,12 +163,12 @@ function STOLoader(faction) {
         ctx.strokeStyle = style;
         ctx.lineWidth = width;
         ctx.stroke();
-        ctx.fillStyle = textureGradient;
+        ctx.fillStyle = stoData.textureGradient;
         ctx.stroke();
     }
 
     function drawFrame() {
-        ctx.fillStyle = bgGradient;
+        ctx.fillStyle = stoData.bgGradient;
         ctx.fillRect(0, 0, 2000, 1100);
         ctx.drawImage(stoImage, 198, 198);
 
@@ -220,7 +209,7 @@ function STOLoader(faction) {
         ctx.fillText(leastSignificantDigit, 1840 + spacing, 256);
 
         ctx.font = "3em okuda";
-        ctx.fillStyle = bgGradient;
+        ctx.fillStyle = stoData.bgGradient;
         let x = 165 - ctx.measureText("00-0000" + "..").width;
         ctx.fillText(boxNumbers[0], x, 47);
         ctx.fillText(boxNumbers[1], x, 87);
@@ -231,11 +220,11 @@ function STOLoader(faction) {
 
         ctx.font = "bold 1.6em Lucida Console";
         dataStrings.forEach((data, i) => {
-            ctx.fillStyle = data.updated ? "rgb(65,82,92)" : stringGradient;
+            ctx.fillStyle = data.updated ? "rgb(65,82,92)" : stoData.stringGradient;
             ctx.fillText(data.str, 168 + 24, 14 + 14 * i);
         });
-        fillPoly(stoData[faction].infoBoxcoords, infoBoxGradient);
-        strokePoly(stoData[faction].infoBoxcoords, infoBoxBorderGradient, 1);
+        fillPoly(stoData[faction].infoBoxcoords, stoData.infoBoxGradient);
+        strokePoly(stoData[faction].infoBoxcoords, stoData.infoBoxBorderGradient, 1);
 
         ctx.fillStyle = "rgb(201,51,63)";
         ctx.font = "bold 3em Pixel-Emulator";
