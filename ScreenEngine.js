@@ -11,7 +11,7 @@ function ScreenEngineBuilder() {
     let testRig = TestRig();
 
     function loadScreenIndex(index) {
-        if (!index) {
+        if (index == undefined) {
             index = Math.floor(Math.random() * loadingScreenDirectory.length);
             console.log(`load screen: RNG{${index}}`);
         } else {
