@@ -227,7 +227,8 @@ var SpecialEvents = new(function () {
         }
         document.body.appendChild(cardBox);
     };
-    this.sto = function stoLoader() {
+    this.sto = function stoLoader( faction ) {
+		if (!faction){ faction = "KDF"; }
         hideUI();
         var stoBox = document.createElement("div");
         var canvas = document.createElement("canvas");
@@ -255,7 +256,8 @@ var SpecialEvents = new(function () {
         destination.style.fontFamily = "okuda";
         destination.style.fontSize = "5em";
         destination.style.letterSpacing = "2px";
-        destination.style.marginRight = "10px";
+		destination.style.paddingLeft = "10px";
+		destination.style.paddingRight = "10px";
         destination.innerHTML = "LOADING...";
         stoBox.appendChild(destination);
 
@@ -378,8 +380,6 @@ var SpecialEvents = new(function () {
             }
         };
 
-        let faction = "KDF";
-
         let textureGradient = ctx.createRadialGradient(1920 / 4, 1080 / 4, 300, 1920 / 2, 1080 / 2, 1920 / 1.5);
         textureGradient.addColorStop(0, "rgba( 100, 100, 100, .05)");
         textureGradient.addColorStop(1, "rgba( 40, 40, 40, .01)");
@@ -407,7 +407,11 @@ var SpecialEvents = new(function () {
                     ctx.moveTo(e[0], e[1]);
                     move = true;
                 } else {
-                    ctx.lineTo(e[0], e[1]);
+					if( e.length == 2){
+						ctx.lineTo(e[0], e[1]);
+					} else if (e.length == 4){
+						ctx.quadraticCurveTo(e[0],e[1],e[2],e[3]);
+					}
                 }
             });
             ctx.closePath();
@@ -488,23 +492,24 @@ var SpecialEvents = new(function () {
             ctx.fillStyle = textureGradient;
             ctx.fill();
         }
-        function strokePoly(coords, style) {
+        function strokePoly(coords, style, width) {
             pathFromCoords(coords);
             ctx.strokeStyle = style;
-            ctx.lineWidth = 8;
+            ctx.lineWidth = width;
             ctx.stroke();
             ctx.fillStyle = textureGradient;
             ctx.stroke();
         }
-        function drawFrame() {
+        
+		function drawFrame() {
             ctx.fillStyle = bgGradient;
             ctx.fillRect(0, 0, 2000, 1100);
             ctx.drawImage(stoImage, 198, 198);
 
             fillPoly(factionData[faction].topJagCoords, gradient(30, factionData[faction].jagBar));
             fillPoly(factionData[faction].bottomJagCoords, gradient(30, factionData[faction].jagBar));
-            strokePoly(factionData[faction].timerCoords, gradient(1758, factionData[faction].timer));
-            strokePoly(factionData[faction].imageBorderCoords, imageBorderGradient);
+            strokePoly(factionData[faction].timerCoords, gradient(1758, factionData[faction].timer), 8);
+            strokePoly(factionData[faction].imageBorderCoords, imageBorderGradient, 8);
 
             fillBox(factionData[faction].box1, 30, 0, 138, 55);
             fillBox(factionData[faction].box2, 30, 310 + 8, 138, 64);
@@ -552,15 +557,13 @@ var SpecialEvents = new(function () {
                 ctx.fillStyle = data.updated ? "rgb(65,82,92)" : stringGradient;
                 ctx.fillText(data.str, 168 + 24, 14 + 14 * i);
             });
-
-        }
-
-        function tick() {
-            frameLogic();
-            drawFrame();
+			
+			
+			anim(drawFrame);
         }
         ctx.scale(window.innerWidth / 1920, window.innerHeight / 1080);
-        setInterval(tick, 75);
+        setInterval(frameLogic, 75);
+		drawFrame();
         window.onresize = () => {
             ctx.setTransform(1, 0, 0, 1, 0, 0);
             ctx.scale(window.innerWidth / 1920, window.innerHeight / 1080);
