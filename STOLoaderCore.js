@@ -2,10 +2,6 @@
 
 
 function STOLoader(faction) {
-    if (!faction) {
-        faction = "RRW";
-    }
-	
     var stoBox = document.createElement("div");
     var canvas = document.createElement("canvas");
     stoBox.id = "SpecialEvent";
@@ -21,6 +17,13 @@ function STOLoader(faction) {
     canvas.style.left = "0";
     let ctx = canvas.getContext("2d");
     stoBox.appendChild(canvas);
+	
+	
+	let stoData = new STOData(ctx);
+    if (!faction) {
+        faction = stoData.faction;
+    }
+	
 
     let destination = document.createElement("div");
     destination.style.position = "absolute";
@@ -37,7 +40,6 @@ function STOLoader(faction) {
     destination.innerHTML = "LOADING...";
     stoBox.appendChild(destination);
 
-	let stoData = new STOData(ctx);
 	
     function gradient(x, color) {
         let linearGradient = ctx.createLinearGradient(x, 0, x + color.width, 0);
@@ -82,13 +84,6 @@ function STOLoader(faction) {
         });
         ctx.closePath();
     }
-    let boxNumbers = ["00-0000", "01-0000", "02-0000", "03-0000", "04-0000", "05-0000"];
-    let dataStrings = new Array(6).fill(1).map(() => {
-        return {
-            str: "",
-            updated: false
-        };
-    });
     function rngNumberString(digits) {
         let num = parseInt(Math.random() * Math.pow(10, digits)) + "";
         while (num.length < digits) {
@@ -99,7 +94,7 @@ function STOLoader(faction) {
     function rngBoxNumber() {
         return rngNumberString(2) + "-" + rngNumberString(4);
     }
-    boxNumbers = boxNumbers.map(rngBoxNumber);
+    stoData.boxNumbers = stoData.boxNumbers.map(rngBoxNumber);
     function rngDataString() {
         let numLengths = [
             5, 6, 4, 6, 3, 2, 5, 7, 2, 2, 2, 3, 2, 9, 1, 8, 4, 5, 5, 4, 4, 8, 4, 1, 8,
@@ -118,27 +113,35 @@ function STOLoader(faction) {
         let map = document.getElementById("map").innerHTML.toUpperCase();
         map = map ? map : "...";
         destination.innerHTML = "LOADING " + map;
-        loading += .57;
+        loading += .37;
         loading = Math.min(loading, 99.99);
         if (Math.random() < .1) {
-            boxNumbers[parseInt(Math.random() * boxNumbers.length)] = rngBoxNumber();
+            stoData.boxNumbers[parseInt(Math.random() * stoData.boxNumbers.length)] = rngBoxNumber();
         }
         if (frames % 17 == 0) {
-            if (activeDataString == 1) {
-                dataStrings[dataStrings.length - 1].updated = false;
-            } else {
-                let firstActive = dataStrings.find(e => e.updated);
-                if (firstActive) {
-                    firstActive.updated = false;
-                }
-            }
+            
+			let firstActive = stoData.dataStrings.find(e => e.updated);
+			if (firstActive) {
+				firstActive.updated = false;
+			}
 
-            if (dataStrings[activeDataString].str != "") {
-                dataStrings[activeDataString].updated = true;
+            if (stoData.dataStrings[activeDataString].str != "") {
+                stoData.dataStrings[activeDataString].updated = true;
             }
-            dataStrings[activeDataString].str = rngDataString();
-            activeDataString = (activeDataString + 1) % dataStrings.length;
+            stoData.dataStrings[activeDataString].str = rngDataString();
+            activeDataString = (activeDataString + 1) % stoData.dataStrings.length;
         }
+		if( frames %15 && Math.random()<.1){
+			let randomRow = Math.random()>.7?0:1
+			let randomBox = Math.floor(Math.random()*20);
+			stoData.cornerBoxes[randomRow][randomBox] = !stoData.cornerBoxes[randomRow][randomBox];
+		}
+		if( !(frames % 22) ){
+			stoData.floorText = stoData.floorText.map((e,i)=>{
+				if(i==0){return e;}
+				return e.replace(/\d/g, ()=>{return rngNumberString(1)});
+			});
+		}
     }
 
     function fillBox(style, x, y, w, h) {
@@ -167,10 +170,23 @@ function STOLoader(faction) {
         ctx.stroke();
     }
 
+	stoData[faction].background.forEach( e=>{
+		stoData.bgGradient.addColorStop(e.position, e.color);			
+	});
     function drawFrame() {
+		
         ctx.fillStyle = stoData.bgGradient;
         ctx.fillRect(0, 0, 2000, 1100);
         ctx.drawImage(stoImage, 198, 198);
+
+        ctx.fillStyle = stoData[faction].loadSledMain;
+		stoData.cornerBoxes.forEach( (row,rowIndex) => {
+			row.forEach((b,i)=>{
+				if(b){
+					ctx.fillRect(198+8+(i*11), 855+(33*rowIndex), 6, 25);
+				}
+			});
+		});
 
         fillPoly(stoData[faction].topJagCoords, gradient(30, stoData[faction].jagBar));
         fillPoly(stoData[faction].bottomJagCoords, gradient(30, stoData[faction].jagBar));
@@ -211,15 +227,15 @@ function STOLoader(faction) {
         ctx.font = "3em okuda";
         ctx.fillStyle = stoData.bgGradient;
         let x = 165 - ctx.measureText("00-0000" + "..").width;
-        ctx.fillText(boxNumbers[0], x, 47);
-        ctx.fillText(boxNumbers[1], x, 87);
-        ctx.fillText(boxNumbers[2], x, 302);
-        ctx.fillText(boxNumbers[3], x, 374);
-        ctx.fillText(boxNumbers[4], x, 444);
-        ctx.fillText(boxNumbers[5], x, 492);
+        ctx.fillText(stoData.boxNumbers[0], x, 47);
+        ctx.fillText(stoData.boxNumbers[1], x, 87);
+        ctx.fillText(stoData.boxNumbers[2], x, 302);
+        ctx.fillText(stoData.boxNumbers[3], x, 374);
+        ctx.fillText(stoData.boxNumbers[4], x, 444);
+        ctx.fillText(stoData.boxNumbers[5], x, 492);
 
         ctx.font = "bold 1.6em Lucida Console";
-        dataStrings.forEach((data, i) => {
+        stoData.dataStrings.forEach((data, i) => {
             ctx.fillStyle = data.updated ? "rgb(65,82,92)" : stoData.stringGradient;
             ctx.fillText(data.str, 168 + 24, 14 + 14 * i);
         });
@@ -254,18 +270,25 @@ function STOLoader(faction) {
         }
 
         ctx.fillStyle = "rgb(232,231,229)";
-        ctx.font = "2em Verdana";
+        ctx.font = "1.9em Verdana";
         stoData.textBlob.forEach((e, i) => {
-            ctx.fillText(e, 1150 + 16, 238 + 90 + 40 + (20 * i));
+            ctx.fillText(e, 1166, 338 + 30 + (20 * i));
             if (i == 0 || i == 6 || i == 12) {
-                ctx.fillText("*", 1150, 238 + 90 + 43 + (20 * i));
+                ctx.fillText("*", 1150, 338 + 33 + (20 * i));
             }
         });
+		
+        ctx.fillStyle = "rgb(42,41,49)";
+        ctx.font = "bold 1.6em Lucida Console";
+		stoData.floorText.forEach((e, i) => {
+            ctx.fillText(e, 190, 950 + (20 * i));
+        });
+		
 
         anim(drawFrame);
     }
     ctx.scale(window.innerWidth / 1920, window.innerHeight / 1080);
-    setInterval(frameLogic, 75);
+    setInterval(frameLogic, 60);
     drawFrame();
     window.onresize = () => {
         ctx.setTransform(1, 0, 0, 1, 0, 0);

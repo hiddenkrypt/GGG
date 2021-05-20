@@ -1,16 +1,28 @@
 //STOData.js
 let STOData = function ( ctx ) {
-
-    function stop(position, color) {
+	this.faction = "KDF";
+	this.dataStrings = new Array(6).fill(1).map(() => {
         return {
-            position: position,
-            color: color
+            str: "",
+            updated: false
         };
-    }
+    });
+	this.boxNumbers = ["00-0000", "01-0000", "02-0000", "03-0000", "04-0000", "05-0000"];
+	this.cornerBoxes = [
+		new Array(20).fill(1).map(e=>Math.random()>.9?false:true),
+		new Array(20).fill(1).map(e=>Math.random()>.7?false:true)
+	];
+	let date = new Date();
+	let dateString = date.getFullYear()+"."+date.getMonth()+"."+date.getDay()+":"+date.getHours()+"."+date.getMinutes()+"."+date.getSeconds();
+	this.floorText = [
+		"98980.91/"+dateString,
+		"262/7237 726.85 9845",
+		"3037 421 594 46 8092",
+		"7189124 924",
+		"176 12 30"
+	];
 	
 	this.bgGradient = ctx.createRadialGradient(1920 / 2, 1080 / 2, 300, 1920 / 2, 1080 / 2, 1920 / 1.5);
-	this.bgGradient.addColorStop(0, "rgb( 25, 17, 1)");
-	this.bgGradient.addColorStop(1, "rgb( 2, 1, 1)");
 	this.textureGradient = ctx.createRadialGradient(1920 / 4, 1080 / 4, 300, 1920 / 2, 1080 / 2, 1920 / 1.5);
 	this.textureGradient.addColorStop(0, "rgba( 100, 100, 100, .05)");
 	this.textureGradient.addColorStop(1, "rgba( 40, 40, 40, .01)");
@@ -26,8 +38,8 @@ let STOData = function ( ctx ) {
 	
 	this.textBlob = [
 		"The Borg, Thollians, Nah'kul,",
-		"Elachi, and Tzenkethi are all a",
-		"little bit sus right now. Join",
+		"Elachi, and Tzenkethi are all",
+		"being total jerks right now. Join",
 		"any GGG Red Alert to participate",
 		"in this trash fire.",
 		"",
@@ -46,7 +58,20 @@ let STOData = function ( ctx ) {
 		"each day. You won't have a",
 		"choice. There is no escape."
 	];
+	
+    function stop(position, color) {
+        return {
+            position: position,
+            color: color
+        };
+    }
+	
 	this.KDF = {
+		background: [
+			stop(0, "rgb( 25, 17, 1)"),
+			stop(1, "rgb( 2, 1, 1)")
+		],		
+			
 		box1: {
 			width: 138,
 			stops: [
@@ -152,14 +177,18 @@ let STOData = function ( ctx ) {
 			[1150, 238],
 			[1150 + 288, 238],
 			[1150 + 288 + 16, 238 + 16],
-			[1150 + 288 + 16, 238 + 16 + 488],
-			[1150 + 288, 238 + 32 + 488],
-			[1150, 238 + 32 + 488],
-			[1150 - 16, 238 + 16 + 488],
+			[1150 + 288 + 16, 238 + 16 + 492],
+			[1150 + 288, 238 + 32 + 492],
+			[1150, 238 + 32 + 492],
+			[1150 - 16, 238 + 16 + 492],
 			[1150 - 16, 238 + 16]
 		]
 	};
 	this.RRW = {
+		background: [
+			stop(0, "rgb( 15, 22, 17)"),
+			stop(1, "rgb( 0, 2, 1)")
+		],	
 		box1: {
 			width: 138,
 			stops: [
@@ -264,14 +293,10 @@ let STOData = function ( ctx ) {
 			[198 - 4, 198 + 4]
 		],
 		infoBoxcoords: [
-			[1150, 238],
-			[1150 + 288, 238],
-			[1150 + 288 + 16, 238 + 16],
-			[1150 + 288 + 16, 238 + 16 + 488],
-			[1150 + 288, 238 + 32 + 488],
-			[1150, 238 + 32 + 488],
-			[1150 - 16, 238 + 16 + 488],
-			[1150 - 16, 238 + 16]
+			[1134, 238],
+			[1150 + 304, 238],
+			[1150 + 304, 238 + 527],
+			[1134, 238 + 527]
 		]
 	};
 };
