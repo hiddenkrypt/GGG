@@ -105,38 +105,63 @@ function STOLoader(faction) {
 
     let frames = 0;
     let activeDataString = 0;
+	let delay = 0;
+	let secondPass = false;
+	let reset = false;
     function frameLogic() {
         if (frames > 400) {
             frames = 0;
         }
         frames++;
+
         let map = document.getElementById("map").innerHTML.toUpperCase();
         map = map ? map : "...";
         destination.innerHTML = "LOADING " + map;
         loading += .37;
         loading = Math.min(loading, 99.99);
-        if (Math.random() < .1) {
+		
+        if (frames % 10 == 0 &&Math.random() < .8) {
             stoData.boxNumbers[parseInt(Math.random() * stoData.boxNumbers.length)] = rngBoxNumber();
         }
-        if (frames % 17 == 0) {
-            
-			let firstActive = stoData.dataStrings.find(e => e.updated);
-			if (firstActive) {
-				firstActive.updated = false;
+        if (frames % 15 == 0) {
+			if( delay == 0 ){
+				if(reset){
+					stoData.dataStrings = stoData.dataStrings.map(()=>{
+						return {
+							str: "",
+							updated: false
+						};
+					});
+					reset = false;
+					secondPass = false;
+				}
+				if(secondPass){
+					stoData.dataStrings[activeDataString].updated = true;
+					if( activeDataString > 1) {
+						stoData.dataStrings[activeDataString-2].updated = false;
+					}
+				}
+				stoData.dataStrings[activeDataString].str = rngDataString();
+				activeDataString = (activeDataString + 1);
+			} else {
+				delay = delay - 1;
 			}
-
-            if (stoData.dataStrings[activeDataString].str != "") {
-                stoData.dataStrings[activeDataString].updated = true;
-            }
-            stoData.dataStrings[activeDataString].str = rngDataString();
-            activeDataString = (activeDataString + 1) % stoData.dataStrings.length;
+			if (activeDataString == stoData.dataStrings.length ){
+				activeDataString = 0;
+				delay = 2;
+				if(!secondPass){
+					secondPass = true;
+				} else {
+					reset = true;
+				}
+			}
         }
-		if( frames %15 && Math.random()<.1){
+		if( frames % 7 == 0 && Math.random() < .6){
 			let randomRow = Math.random()>.7?0:1
 			let randomBox = Math.floor(Math.random()*20);
 			stoData.cornerBoxes[randomRow][randomBox] = !stoData.cornerBoxes[randomRow][randomBox];
 		}
-		if( !(frames % 22) ){
+		if( frames % 20 == 0 ){
 			stoData.floorText = stoData.floorText.map((e,i)=>{
 				if(i==0){return e;}
 				return e.replace(/\d/g, ()=>{return rngNumberString(1)});
