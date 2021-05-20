@@ -44,15 +44,9 @@ var SpecialEvents = new(function () {
         document.addEventListener(
             "click",
             function clickToReturn() {
-            if (boilerplate) {
-                boilerplate.style.display = "initial";
-            }
-            if (logo) {
-                logo.style.display = "initial";
-            }
-            document.removeEventListener("click", clickToReturn, false);
-        },
-            false);
+				unhideUI();
+				document.removeEventListener("click", clickToReturn, false);
+			}, false);
         if (boilerplate) {
             boilerplate.style.display = "none";
         }
@@ -60,6 +54,16 @@ var SpecialEvents = new(function () {
             logo.style.display = "none";
         }
     }
+	function unhideUI(){
+        let logo = document.getElementById("logo");
+        let boilerplate = document.getElementById("boilerplate");
+		if (boilerplate) {
+			boilerplate.style.display = "initial";
+		}
+		if (logo) {
+			logo.style.display = "initial";
+		}
+	}
 
     //~~~~~~~~~~~~EVENT FUNCTIONS~~~~~~~~~~~~
 
@@ -75,6 +79,7 @@ var SpecialEvents = new(function () {
      * Clears out UI elements
      **/
     this.hide = hideUI;
+	this.unhide = unhideUI;
 
     /** indexError()
      * Fakes a "Too many indices" error by clearing out the normal display

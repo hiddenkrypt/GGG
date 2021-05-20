@@ -11,6 +11,7 @@ function ScreenEngineBuilder() {
     let testRig = TestRig();
 
     function loadScreenIndex(index) {
+		SpecialEvents.unhide();
         if (index == undefined) {
             index = Math.floor(Math.random() * loadingScreenDirectory.length);
             console.log(`load screen: RNG{${index}}`);
@@ -37,7 +38,7 @@ function ScreenEngineBuilder() {
         }
         loadScreenIndex(URLParams.screen);
 		setInterval( ()=>{
-			if(!testRig.active && URLParams.screen == undefined){
+			if(!testRig.active){
 				loadScreenIndex();
 			}
 		}, 30000);
