@@ -160,7 +160,15 @@ var loadingScreenDirectory = [{
         url: "https://i.imgur.com/bIaBc9V.png",
         title: "Dumpster Fire",
         credit: "Ada",
-    }
+    }, {
+		url: "https://i.imgur.com/T2Vnh3S.png",
+		title: "One fear, but it's a biggun",
+		credit: "Ada"
+	}, {
+		url: "https://i.imgur.com/aTzqLYk.png",
+		title: "Blow these nerds",
+		credit: "Ada"
+	}
 ];
 
 var taglineDirectory = [
@@ -386,8 +394,8 @@ var taglineDirectory = [
     "Warning, contents may be hot",
     "Gotta load fast",
     "Coming at your face",
-    "let me in I'm tryin to FUCK",
-    "Live in the Alpha Quadrant",
+    "let me in I'm tryin ta FUCK",
+    "Live from the Alpha Quadrant",
     "We'll ride the wind, babe!",
     "Together, maybe we can give this planet of ours a chance.",
     "...but you're still hungry",
@@ -396,6 +404,19 @@ var taglineDirectory = [
     "Win and live. Lose and die. Rule of life. No change rule.",
     "The black wind howls... One among you will shortly perish... ",
     "All life begins with Nu and ends with Nu... <br>This is the truth! This is my belief! ...At least for now.",
+    "The year is "+(new Date().getYear())+". The name of the place is the GGG.",
+    "Fun on a bun",
+	"Sending this message was important to us. We considered ourselves to be a powerful culture.",
+    "This place is not a place of honor.<br>No highly esteemed deed is commemorated here.<br>Nothing valued is here.",
+    "What is here was dangerous and repulsive to us.",
+	"This message is a warning about danger.",
+    "The danger is in a particular location...<br>it increases towards a center...<br>the center of danger is here...<br>of a particular size and shape...<br>and below us.",
+    "The danger is still present, in your time, as it was in ours.",
+	"This place is best shunned and left uninhabited.",
+    "Too weird to live, to rare to die",
+    "",
+    "",
+    "",
     "",
     "",
     "",
