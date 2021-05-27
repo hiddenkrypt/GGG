@@ -121,7 +121,7 @@ function STOLoader(faction) {
         loading = Math.min(loading, 99.99);
 		
 
-        if (frames % 15 == 0) { // strings on top
+        if (frames % 3 == 0) { // strings on top
 			if( delay == 0 ){
 				if(reset){
 					stoData.dataStrings = stoData.dataStrings.map(()=>{
@@ -143,13 +143,18 @@ function STOLoader(faction) {
 				activeDataString = (activeDataString + 1);
 			} else {
 				delay = delay - 1;
+				var firstUpdated = stoData.dataStrings.findIndex(e=>e.updated);
+				if (firstUpdated != -1){
+					stoData.dataStrings[firstUpdated].updated = false;
+				}
 			}
 			if (activeDataString == stoData.dataStrings.length ){
 				activeDataString = 0;
-				delay = 4;
+				delay = 5;
 				if(!secondPass){
 					secondPass = true;
 				} else {
+					delay = 10;
 					reset = true;
 				}
 			}
@@ -204,8 +209,6 @@ function STOLoader(faction) {
 		
         ctx.fillStyle = stoData.bgGradient;
         ctx.fillRect(0, 0, 2000, 1100);
-        ctx.drawImage(stoImage, 198, 198);
-
         ctx.fillStyle = stoData[faction].loadSledMain;
 		stoData.cornerBoxes.forEach( (row,rowIndex) => {
 			row.forEach((b,i)=>{
@@ -218,7 +221,6 @@ function STOLoader(faction) {
         fillPoly(stoData[faction].topJagCoords, gradient(30, stoData[faction].jagBar));
         fillPoly(stoData[faction].bottomJagCoords, gradient(30, stoData[faction].jagBar));
         strokePoly(stoData[faction].timerCoords, gradient(1758, stoData[faction].timer), 8);
-        strokePoly(stoData[faction].imageBorderCoords, imageBorderGradient, 8);
 
         fillBox(stoData[faction].box1, 30, 0, 138, 55);
         fillBox(stoData[faction].box2, 30, 310 + 8, 138, 64);
@@ -236,6 +238,14 @@ function STOLoader(faction) {
         fillBox(stoData[faction].loadSledBottomSliver, 286 + sledPosition + 54, 105 + 28 + 8, 92, 12);
         fillBox(stoData[faction].loadBarRailTop, 286 + loadBarWidth - 8, 105, Math.min(0, 0 - loadBarWidth + loadingSledWidth + sledPosition + 8), 28);
         fillBox(stoData[faction].loadBarRailBottom, 286 + loadBarWidth - 8, 105 + 8 + 28, Math.min(0, 0 - loadBarWidth + loadingSledWidth + sledPosition + 8), 28);
+
+
+		ctx.fillStyle = stoData.textureGradient2;
+		ctx.fillRect(0,0,1920,1080);
+
+        ctx.drawImage(stoImage, 198, 198);
+		strokePoly(stoData[faction].imageBorderCoords, imageBorderGradient, 8);
+
 
         let mostSignificantDigit = parseInt(loading / 10);
         let secondMostSignificantDigit = parseInt(loading % 10);
@@ -310,7 +320,6 @@ function STOLoader(faction) {
 		stoData.floorText.forEach((e, i) => {
             ctx.fillText(e, 190, 950 + (20 * i));
         });
-		
 
         anim(drawFrame);
     }

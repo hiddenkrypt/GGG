@@ -26,6 +26,9 @@ let STOData = function ( ctx ) {
 	this.textureGradient = ctx.createRadialGradient(1920 / 4, 1080 / 4, 300, 1920 / 2, 1080 / 2, 1920 / 1.5);
 	this.textureGradient.addColorStop(0, "rgba( 100, 100, 100, .05)");
 	this.textureGradient.addColorStop(1, "rgba( 40, 40, 40, .01)");
+	this.textureGradient2 = ctx.createLinearGradient(0,0,1920,1080);
+	this.textureGradient2.addColorStop(0, "rgba( 0, 0, 0, .5)");
+	this.textureGradient2.addColorStop(1, "rgba( 255, 255, 255, .1)");
 	this.stringGradient = ctx.createLinearGradient(0, 0, 0, 84);
 	this.stringGradient.addColorStop(0, "rgb(21,21,21)");
 	this.stringGradient.addColorStop(1, "rgb(47,47,49)");
@@ -184,6 +187,7 @@ let STOData = function ( ctx ) {
 			[1150 - 16, 238 + 16]
 		]
 	};
+
 	this.RRW = {
 		background: [
 			stop(0, "rgb( 15, 22, 17)"),
@@ -299,4 +303,9 @@ let STOData = function ( ctx ) {
 			[1134, 238 + 527]
 		]
 	};
+
+	
+
+
+
 };
