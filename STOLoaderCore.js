@@ -120,10 +120,8 @@ function STOLoader(faction) {
         loading += .37;
         loading = Math.min(loading, 99.99);
 		
-        if (frames % 10 == 0 &&Math.random() < .8) {
-            stoData.boxNumbers[parseInt(Math.random() * stoData.boxNumbers.length)] = rngBoxNumber();
-        }
-        if (frames % 15 == 0) {
+
+        if (frames % 15 == 0) { // strings on top
 			if( delay == 0 ){
 				if(reset){
 					stoData.dataStrings = stoData.dataStrings.map(()=>{
@@ -148,7 +146,7 @@ function STOLoader(faction) {
 			}
 			if (activeDataString == stoData.dataStrings.length ){
 				activeDataString = 0;
-				delay = 2;
+				delay = 4;
 				if(!secondPass){
 					secondPass = true;
 				} else {
@@ -156,17 +154,21 @@ function STOLoader(faction) {
 				}
 			}
         }
-		if( frames % 7 == 0 && Math.random() < .6){
-			let randomRow = Math.random()>.7?0:1
-			let randomBox = Math.floor(Math.random()*20);
-			stoData.cornerBoxes[randomRow][randomBox] = !stoData.cornerBoxes[randomRow][randomBox];
+		if( frames % 22 == 0 && Math.random() < .6){ // corner rectangles on image
+			stoData.cornerBoxes = [
+				new Array(20).fill(1).map(e=>Math.random()>.75?false:true),
+				new Array(20).fill(1).map(e=>Math.random()>.7?false:true)
+			];
 		}
-		if( frames % 20 == 0 ){
+		if( frames % 20 == 0 ){ //hidden bottom text
 			stoData.floorText = stoData.floorText.map((e,i)=>{
 				if(i==0){return e;}
 				return e.replace(/\d/g, ()=>{return rngNumberString(1)});
 			});
 		}
+        if (frames % 30 == 0) { //box numebrs
+			stoData.boxNumbers = stoData.boxNumbers.map(rngBoxNumber);
+        }
     }
 
     function fillBox(style, x, y, w, h) {
