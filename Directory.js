@@ -473,7 +473,7 @@ var taglineDirectory = [
     "Soon to be a hit standalone game",
     "Made From 100% Recycled Pixels",
     "If this server's a-rockin', don't come a-knockin'",
-    "[ Cancel ] [ OK ]",
+    "<button>Cancel</button><button>OK</button>",
     "Purveyors of Entertainment to Her Majesty the Space Queen",
     "This Episode Worth 250 Futurama Points",
     "Warning: Do Not Show To Horses",
