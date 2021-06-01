@@ -236,4 +236,16 @@ var SpecialEvents = new(function () {
         hideUI();
 		STOLoader();
 	}
+	this.stoFED = function(){
+        hideUI();
+		STOLoader("FED");
+	}
+	this.stoRRW = function(){
+        hideUI();
+		STOLoader("RRW");
+	}
+	this.stoKDF = function(){
+        hideUI();
+		STOLoader("KDF");
+	}
 })();

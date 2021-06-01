@@ -149,9 +149,24 @@ var loadingScreenDirectory = [{
         trigger: SpecialEvents.loadCards
     }, {
         url: "",
-        title: "Star Trek Online Loading Screen",
+        title: "Star Trek Online Loading Screen: random",
         credit: "Cryptic Games, recreated by Ada",
         trigger: SpecialEvents.sto
+    }, {
+        url: "",
+        title: "Star Trek Online Loading Screen: Federation",
+        credit: "Cryptic Games, recreated by Ada",
+        trigger: SpecialEvents.stoFED
+    }, {
+        url: "",
+        title: "Star Trek Online Loading Screen: Romulan Republic",
+        credit: "Cryptic Games, recreated by Ada",
+        trigger: SpecialEvents.stoRRW
+    }, {
+        url: "",
+        title: "Star Trek Online Loading Screen: Klingon Empire",
+        credit: "Cryptic Games, recreated by Ada",
+        trigger: SpecialEvents.stoKDF
     }, {
         url: "https://i.imgur.com/jCUSppc.png",
         title: "Bear Jesus",
