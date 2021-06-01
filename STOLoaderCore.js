@@ -21,7 +21,14 @@ function STOLoader(faction) {
 	
 	let stoData = new STOData(ctx);
     if (!faction) {
-        faction = stoData.faction;
+		var rng = Math.random();
+		if (rng < .333333 ){ 
+			faction = "KDF";
+		} else if (rng < .666666 ){ 
+			faction = "FED";
+		} else {
+			faction = "RRW";
+		}
     }
 	
     function gradient(x, color) {
