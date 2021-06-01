@@ -31,11 +31,11 @@ let STOData = function ( ctx ) {
 	this.textureGradient2.addColorStop(.5, "rgba( 64, 64, 64, 0)");
 	this.textureGradient2.addColorStop(1, "rgba( 255, 255, 255, 0)");
 	this.stringGradient = ctx.createLinearGradient(0, 0, 0, 84);
-	this.stringGradient.addColorStop(0, "rgb(21,21,21)");
-	this.stringGradient.addColorStop(1, "rgb(47,47,49)");
+	this.stringGradient.addColorStop(0, "rgb(42,42,42)");
+	this.stringGradient.addColorStop(1, "rgb(50,50,50)");
 	this.infoBoxGradient = ctx.createLinearGradient(1150 - 16, 238, 1150 + 16, 238 + 388 + 16);
 	this.infoBoxGradient.addColorStop(0, "rgba(0,0,0,1)");
-	this.infoBoxGradient.addColorStop(1, "rgba(0,0,0,.5)");
+	this.infoBoxGradient.addColorStop(1, "rgba(0,0,0,.6)");
 	this.infoBoxBorderGradient = ctx.createLinearGradient(1150 - 16, 238, 1150 + 64, 238 + 388 + 16);
 	this.infoBoxBorderGradient.addColorStop(0, "rgba(86,71,64,1)");
 	this.infoBoxBorderGradient.addColorStop(1, "rgba(86,71,64,.3)");
