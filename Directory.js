@@ -168,6 +168,10 @@ var loadingScreenDirectory = [{
 		url: "https://i.imgur.com/aTzqLYk.png",
 		title: "Blow these nerds",
 		credit: "Ada"
+	}, {
+		url: "https://i.imgur.com/vCyu0dm.png",
+		title: "Breaking News",
+		cretit: "Mike"
 	}
 ];
 
@@ -492,6 +496,15 @@ var taglineDirectory = [
     "#1 Rated Game in Universe 3",
     "Featuring gratuitous alien nudity",
     "Presented in double vision (where drunk)",
+    "Anyway, it's just a thought",
+    "Don't be scare to try it",
+    "Oooohhhh yes.",
+    "You're gonna have a bad time",
+    "Well that's a real kick in the dick.",
+    "Bitch, please. Remember who yer talkin' to.",
+    "Corruptors of the youth",
+    "Form a Union",
+    "Marginally more reliable than a cascading NHP",
     "",
     "",
     "",
@@ -500,25 +513,5 @@ var taglineDirectory = [
     "",
     "",
     "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
+    ""
 ]; //-160
