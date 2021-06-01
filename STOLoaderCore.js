@@ -130,6 +130,7 @@ function STOLoader(faction) {
 							updated: false
 						};
 					});
+					delay = 8;
 					reset = false;
 					secondPass = false;
 				}
@@ -139,8 +140,10 @@ function STOLoader(faction) {
 						stoData.dataStrings[activeDataString-2].updated = false;
 					}
 				}
-				stoData.dataStrings[activeDataString].str = rngDataString();
-				activeDataString = (activeDataString + 1);
+				if( delay == 0) {
+					stoData.dataStrings[activeDataString].str = rngDataString();
+					activeDataString = (activeDataString + 1);
+				}
 			} else {
 				delay = delay - 1;
 				var firstUpdated = stoData.dataStrings.findIndex(e=>e.updated);
@@ -150,11 +153,11 @@ function STOLoader(faction) {
 			}
 			if (activeDataString == stoData.dataStrings.length ){
 				activeDataString = 0;
-				delay = 5;
+				delay = 4;
 				if(!secondPass){
 					secondPass = true;
 				} else {
-					delay = 10;
+					delay = 8;
 					reset = true;
 				}
 			}
