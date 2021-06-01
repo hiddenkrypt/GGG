@@ -24,6 +24,14 @@ function STOLoader(faction) {
         faction = stoData.faction;
     }
 	
+    function gradient(x, color) {
+        let linearGradient = ctx.createLinearGradient(x, 0, x + color.width, 0);
+        color.stops.forEach(stop => {
+            linearGradient.addColorStop(stop.position, stop.color);
+        });
+        return linearGradient;
+    }
+	
 
     let destination = document.createElement("div");
     destination.style.position = "absolute";
@@ -31,7 +39,7 @@ function STOLoader(faction) {
     destination.style.right = "0";
     destination.style.top = "0";
     destination.style.backgroundColor = "#000";
-    destination.style.color = "rgb(152,135,66)";
+    destination.style.color = stoData[faction].destination;
     destination.style.fontFamily = "okuda";
     destination.style.fontSize = "5em";
     destination.style.letterSpacing = "2px";
@@ -40,14 +48,6 @@ function STOLoader(faction) {
     destination.innerHTML = "LOADING...";
     stoBox.appendChild(destination);
 
-	
-    function gradient(x, color) {
-        let linearGradient = ctx.createLinearGradient(x, 0, x + color.width, 0);
-        color.stops.forEach(stop => {
-            linearGradient.addColorStop(stop.position, stop.color);
-        });
-        return linearGradient;
-    }
 
 
     let imageBorderGradient = ctx.createLinearGradient(195, 195, 195 + 1280, 195 + 720);
@@ -254,7 +254,7 @@ function STOLoader(faction) {
         let leastSignificantDigit = parseInt(loadLow % 10);
         let spacing = 4;
         ctx.font = "bold 9em okuda";
-        ctx.fillStyle = "rgb(152,135,66)";
+        ctx.fillStyle = gradient(1800, stoData[faction].percentage );
         ctx.fillText(mostSignificantDigit, 1782, 256);
         ctx.fillText(secondMostSignificantDigit, 1800 + spacing, 256);
         ctx.font = "bold 5em okuda";

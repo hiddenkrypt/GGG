@@ -1,6 +1,6 @@
 //STOData.js
 let STOData = function ( ctx ) {
-	this.faction = "KDF";
+	this.faction = "FED";
 	this.dataStrings = new Array(6).fill(1).map(() => {
         return {
             str: "",
@@ -24,11 +24,12 @@ let STOData = function ( ctx ) {
 	
 	this.bgGradient = ctx.createRadialGradient(1920 / 2, 1080 / 2, 300, 1920 / 2, 1080 / 2, 1920 / 1.5);
 	this.textureGradient = ctx.createRadialGradient(1920 / 4, 1080 / 4, 300, 1920 / 2, 1080 / 2, 1920 / 1.5);
-	this.textureGradient.addColorStop(0, "rgba( 100, 100, 100, .05)");
+	this.textureGradient.addColorStop(0, "rgba( 100, 100, 100, .05)");//.05
 	this.textureGradient.addColorStop(1, "rgba( 40, 40, 40, .01)");
 	this.textureGradient2 = ctx.createLinearGradient(0,0,1920,1080);
-	this.textureGradient2.addColorStop(0, "rgba( 0, 0, 0, .5)");
-	this.textureGradient2.addColorStop(1, "rgba( 255, 255, 255, .1)");
+	this.textureGradient2.addColorStop(0, "rgba( 0, 0, 0, 0)");
+	this.textureGradient2.addColorStop(.5, "rgba( 64, 64, 64, 0)");
+	this.textureGradient2.addColorStop(1, "rgba( 255, 255, 255, 0)");
 	this.stringGradient = ctx.createLinearGradient(0, 0, 0, 84);
 	this.stringGradient.addColorStop(0, "rgb(21,21,21)");
 	this.stringGradient.addColorStop(1, "rgb(47,47,49)");
@@ -70,6 +71,14 @@ let STOData = function ( ctx ) {
     }
 	
 	this.KDF = {
+		destination: "rgb(100,102,53)",
+		percentage: {
+			width: 112,
+			stops:[
+				stop(0,"rgb(164,154,95)"),
+				stop(1,"rgb(132,126,76)")
+			]
+		},
 		background: [
 			stop(0, "rgb( 25, 17, 1)"),
 			stop(1, "rgb( 2, 1, 1)")
@@ -189,6 +198,15 @@ let STOData = function ( ctx ) {
 	};
 
 	this.RRW = {
+		destination:"rgb(69,137,140)",
+		percentage: {
+			width: 112,
+			stops:[
+				stop(0,"rgb(79,158,169)"),
+				stop(1,"rgb(70,141,143)")
+			]
+		},
+			
 		background: [
 			stop(0, "rgb( 15, 22, 17)"),
 			stop(1, "rgb( 0, 2, 1)")
@@ -305,7 +323,133 @@ let STOData = function ( ctx ) {
 	};
 
 	
-
+	this.FED = {
+		destination: "rgb(135,125,66)",
+		percentage: {
+			width: 112,
+			stops:[
+				stop(0,"rgb(159,151,70)"),
+				stop(1,"rgb(133,129,82)")
+			]
+		},
+		background: [
+			stop(0, "rgb( 16,16,16)"),
+			stop(1, "rgb( 1,2,8)")
+		],		
+			
+		box1: {
+			width: 138,
+			stops: [
+				stop(0, "rgb(7,29,52)"),
+				stop(1, "rgb(9,45,77)")
+			]
+		},
+		jagBar: {
+			width: 240,
+			stops: [
+				stop(0, "rgb(10,25,39)"),
+				stop(1, "rgb(14,33,48)")
+			]
+		},
+		loadBarRailBehind: {
+			width: 561,
+			stops: [
+				stop(0, "rgb(20,32,48)"),
+				stop(1, "rgb(22,35,54)")
+			]
+		},
+		box2: {
+			width: 138,
+			stops: [
+				stop(0, "rgb(48,43,13)"),
+				stop(1, "rgb(70,63,19)")
+			]
+		},
+		box3: {
+			width: 138,
+			stops: [
+				stop(0, "rgb(14,50,86)"),
+				stop(1, "rgb(26,68,126)")
+			]
+		},
+		box4: {
+			width: 138,
+			stops: [
+				stop(0, "rgb(19,29,38)"),
+				stop(1, "rgb(19,41,65)")
+			]
+		},
+		rightBars: {
+			width: 1072,
+			stops: [
+				stop(0, "rgb(19,36,52)"),
+				stop(1, "rgb(9,19,31)")
+			]
+		},
+		timer: {
+			width: 54,
+			stops: [
+				stop(0, "rgb(9,55,104)"),
+				stop(1, "rgb(5,44,77)")
+			]
+		},
+		loadSledMain: "rgb(19,62,104)",
+		loadSledTopSliver: "rgb(21,38,58)",
+		loadSledBottomSliver: "rgb(66,57,18)",
+		loadBarRailTop: "rgb(19,36,52)",
+		loadBarRailBottom: "rgb(20,39,56)",
+		imageBorderStart: "rgb(21,38,58)",
+		imageBorderStop: "rgb(17,23,35)",
+		topJagCoords: [
+			[30, 55 + 8],
+			[30 + 138, 63],
+			[168, 63 + 16],
+			[168, 79 + 26, 168 + 26, 79 + 26 ],
+			[204 + 66, 105],
+			[270, 105 + 28],
+			[270 - 173, 133],
+			[97-67,133,97-67, 133-64]
+		],
+		bottomJagCoords: [
+			[270, 133 + 8],
+			[270, 141 + 28],
+			[270 - 66, 169],
+			[204 - 36, 169,204 - 36, 169 + 36],
+			[168, 205 + 105],
+			[168 - 138, 310],
+			[30, 310 - 111],
+			[30, 205 - 64,30 + 64, 205 - 64]
+		],
+		timerCoords: [
+			[2000, 192],
+			[1782, 192],
+			[1782 - 24, 192,1782 - 24, 192 + 24],
+			[1758, 216 + 42],
+			[1758 + 42, 258 + 42],
+			[2000, 258 + 42],
+		],
+		imageBorderCoords: [
+			[198 - 4, 198 + 4],
+			[198 - 4, 198 - 4, 198 + 4, 198 - 4],
+			[198 - 4 + 1280, 198 - 4],
+			[198 + 4 + 1280, 198 - 4, 198 + 4 + 1280, 198 + 4],
+			[198 + 4 + 1280, 198 - 4 + 720],
+			[198 + 4 + 1280, 198 + 4 + 720, 198 - 4 + 1280, 198 + 4 + 720],
+			[198 + 4, 198 + 4 + 720],
+			[198 - 4, 198 + 4 + 720, 198 - 4, 198 - 4 + 720]
+		],
+		infoBoxcoords: [
+		
+			[1150 - 16, 238 + 16],
+			[1150 - 16, 238, 1150, 238],
+			[1150 + 288, 238],
+			[1150 + 288 + 16, 238, 1150 + 288 + 16, 238 + 16],
+			[1150 + 288 + 16, 238 + 16 + 492],
+			[1150 + 288 + 16, 238 + 32 + 492, 1150 + 288, 238 + 32 + 492],
+			[1150, 238 + 32 + 492],
+			[1150 - 16, 238 + 32 + 492, 1150 - 16, 238 + 16 + 492]
+		]
+	};
 
 
 };
