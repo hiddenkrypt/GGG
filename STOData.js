@@ -24,12 +24,12 @@ let STOData = function ( ctx ) {
 	
 	this.bgGradient = ctx.createRadialGradient(1920 / 2, 1080 / 2, 300, 1920 / 2, 1080 / 2, 1920 / 1.5);
 	this.textureGradient = ctx.createRadialGradient(1920 / 4, 1080 / 4, 300, 1920 / 2, 1080 / 2, 1920 / 1.5);
-	this.textureGradient.addColorStop(0, "rgba( 100, 100, 100, .05)");//.05
+	this.textureGradient.addColorStop(0, "rgba( 100, 100, 100, .05)");
 	this.textureGradient.addColorStop(1, "rgba( 40, 40, 40, .01)");
 	this.textureGradient2 = ctx.createLinearGradient(0,0,1920,1080);
-	this.textureGradient2.addColorStop(0, "rgba( 0, 0, 0, 0)");
-	this.textureGradient2.addColorStop(.5, "rgba( 64, 64, 64, 0)");
-	this.textureGradient2.addColorStop(1, "rgba( 255, 255, 255, 0)");
+	this.textureGradient2.addColorStop(0, "rgba( 0, 0, 0, .1)");
+	this.textureGradient2.addColorStop(.5, "rgba( 33, 33, 33, .4)");
+	this.textureGradient2.addColorStop(1, "rgba( 255, 255, 255, .01)");
 	this.stringGradient = ctx.createLinearGradient(0, 0, 0, 84);
 	this.stringGradient.addColorStop(0, "rgb(42,42,42)");
 	this.stringGradient.addColorStop(1, "rgb(50,50,50)");
