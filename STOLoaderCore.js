@@ -252,14 +252,14 @@ function STOLoader(faction) {
         let loadLow = parseInt(loading * 100 % 100);
         let secondLeastSignificanDigit = parseInt(loadLow / 10);
         let leastSignificantDigit = parseInt(loadLow % 10);
-        let spacing = 4;
+        let spacing = 6;
         ctx.font = "bold 9em okuda";
         ctx.fillStyle = gradient(1800, stoData[faction].percentage );
         ctx.fillText(mostSignificantDigit, 1782, 256);
-        ctx.fillText(secondMostSignificantDigit, 1800 + spacing, 256);
+        ctx.fillText(secondMostSignificantDigit, 1805 + spacing, 256);
         ctx.font = "bold 5em okuda";
-        ctx.fillText(secondLeastSignificanDigit, 1825 + spacing, 256);
-        ctx.fillText(leastSignificantDigit, 1840 + spacing, 256);
+        ctx.fillText(secondLeastSignificanDigit, 1825 + (spacing*3), 256);
+        ctx.fillText(leastSignificantDigit, 1840 + (spacing*3), 256);
 
         ctx.font = "3em okuda";
         ctx.fillStyle = stoData.bgGradient;
