@@ -2,6 +2,7 @@
 
 
 function STOLoader(faction) {
+	var running = true;
     var stoBox = document.createElement("div");
     var canvas = document.createElement("canvas");
     stoBox.id = "SpecialEvent";
@@ -118,6 +119,12 @@ function STOLoader(faction) {
     function frameLogic() {
         if (frames > 400) {
             frames = 0;
+			console.log("check for removed special events element");
+			if( !document.getElementById("SpecialEvent") ){
+				console.log("removed, shut down STO loader");
+				clearInterval( logicRunner );
+				running = false;
+			}
         }
         frames++;
 
@@ -331,10 +338,12 @@ function STOLoader(faction) {
             ctx.fillText(e, 190, 950 + (20 * i));
         });
 
-        anim(drawFrame);
+        if( running ){
+			anim(drawFrame);
+		}
     }
     ctx.scale(window.innerWidth / 1920, window.innerHeight / 1080);
-    setInterval(frameLogic, 60);
+    var logicRunner = setInterval(frameLogic, 60);
     drawFrame();
     window.onresize = () => {
         ctx.setTransform(1, 0, 0, 1, 0, 0);
