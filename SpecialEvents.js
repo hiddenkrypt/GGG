@@ -44,9 +44,9 @@ var SpecialEvents = new(function () {
         document.addEventListener(
             "click",
             function clickToReturn() {
-				unhideUI();
-				document.removeEventListener("click", clickToReturn, false);
-			}, false);
+            unhideUI();
+            document.removeEventListener("click", clickToReturn, false);
+        }, false);
         if (boilerplate) {
             boilerplate.style.display = "none";
         }
@@ -54,16 +54,16 @@ var SpecialEvents = new(function () {
             logo.style.display = "none";
         }
     }
-	function unhideUI(){
+    function unhideUI() {
         var logo = document.getElementById("logo");
         var boilerplate = document.getElementById("boilerplate");
-		if (boilerplate) {
-			boilerplate.style.display = "initial";
-		}
-		if (logo) {
-			logo.style.display = "initial";
-		}
-	}
+        if (boilerplate) {
+            boilerplate.style.display = "initial";
+        }
+        if (logo) {
+            logo.style.display = "initial";
+        }
+    }
 
     //~~~~~~~~~~~~EVENT FUNCTIONS~~~~~~~~~~~~
 
@@ -79,7 +79,7 @@ var SpecialEvents = new(function () {
      * Clears out UI elements
      **/
     this.hide = hideUI;
-	this.unhide = unhideUI;
+    this.unhide = unhideUI;
 
     /** indexError()
      * Fakes a "Too many indices" error by clearing out the normal display
@@ -232,20 +232,20 @@ var SpecialEvents = new(function () {
         }
         document.body.appendChild(cardBox);
     };
-	this.sto = function(){
+    this.sto = function () {
         hideUI();
-		STOLoader();
-	}
-	this.stoFED = function(){
+        STOLoader();
+    }
+    this.stoFED = function () {
         hideUI();
-		STOLoader("FED");
-	}
-	this.stoRRW = function(){
+        STOLoader("FED");
+    }
+    this.stoRRW = function () {
         hideUI();
-		STOLoader("RRW");
-	}
-	this.stoKDF = function(){
+        STOLoader("RRW");
+    }
+    this.stoKDF = function () {
         hideUI();
-		STOLoader("KDF");
-	}
+        STOLoader("KDF");
+    }
 })();

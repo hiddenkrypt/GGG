@@ -11,7 +11,7 @@ function ScreenEngineBuilder() {
     var testRig = TestRig();
 
     function loadScreenIndex(index) {
-		SpecialEvents.unhide();
+        SpecialEvents.unhide();
         if (index == undefined) {
             index = Math.floor(Math.random() * loadingScreenDirectory.length);
             console.log(`load screen: RNG{${index}}`);
@@ -25,7 +25,7 @@ function ScreenEngineBuilder() {
         if (typeof selectedScreen.trigger === 'function') {
             selectedScreen.trigger();
         }
-		document.getElementById("credits").innerHTML = selectedScreen.title + "<br> by " + selectedScreen.credit;
+        document.getElementById("credits").innerHTML = selectedScreen.title + "<br> by " + selectedScreen.credit;
     }
     function loadScreenEngine() {
         console.log("screen engine init");
@@ -37,11 +37,11 @@ function ScreenEngineBuilder() {
             testRig.init(URLParams.screen);
         }
         loadScreenIndex(URLParams.screen);
-		setInterval( ()=>{
-			if(!testRig.active){
-				loadScreenIndex();
-			}
-		}, 30000);
+        setInterval(() => {
+            if (!testRig.active) {
+                loadScreenIndex();
+            }
+        }, 30000);
         ScreenEngine.setFont();
         function testRigActivate() {
             if (!testRig.active) {
@@ -82,14 +82,13 @@ function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemo
     document.getElementById('map').innerHTML = mapname;
 }
 
-
 window.onerror = function (msg, url, lineNo, columnNo, error) {
-	var overlay = document.getElementById('overlay');
-	overlay.style.opacity = "1";
-	var err = document.createElement("div");
-	err.style.color = "#ff0000";
-	err.style.backgroundColor = "rgba(0,0,0,.9)";
-	err.innerHTML = url+" : "+lineNo+" | "+columnNo+"  ["+msg+"] "+ JSON.stringify(error);
-	overlay.appendChild( err );
-	return false;
+    var overlay = document.getElementById('overlay');
+    overlay.style.opacity = "1";
+    var err = document.createElement("div");
+    err.style.color = "#ff0000";
+    err.style.backgroundColor = "rgba(0,0,0,.9)";
+    err.innerHTML = url + " : " + lineNo + " | " + columnNo + "  [" + msg + "] " + JSON.stringify(error);
+    overlay.appendChild(err);
+    return false;
 }

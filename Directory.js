@@ -176,22 +176,22 @@ var loadingScreenDirectory = [{
         title: "Dumpster Fire",
         credit: "Ada",
     }, {
-		url: "https://i.imgur.com/T2Vnh3S.png",
-		title: "One fear, but it's a biggun",
-		credit: "Ada"
-	}, {
-		url: "https://i.imgur.com/aTzqLYk.png",
-		title: "Blow these nerds",
-		credit: "Ada"
-	}, {
-		url: "https://i.imgur.com/vCyu0dm.png",
-		title: "Breaking News",
-		credit: "Mike"
-	}, {
-		url: "https://i.imgur.com/xmx08xI.png",
-		title: "GGG the Movie",
-		credit: "Ada"
-	}
+        url: "https://i.imgur.com/T2Vnh3S.png",
+        title: "One fear, but it's a biggun",
+        credit: "Ada"
+    }, {
+        url: "https://i.imgur.com/aTzqLYk.png",
+        title: "Blow these nerds",
+        credit: "Ada"
+    }, {
+        url: "https://i.imgur.com/vCyu0dm.png",
+        title: "Breaking News",
+        credit: "Mike"
+    }, {
+        url: "https://i.imgur.com/xmx08xI.png",
+        title: "GGG the Movie",
+        credit: "Ada"
+    }
 ];
 
 var taglineDirectory = [
@@ -407,7 +407,7 @@ var taglineDirectory = [
     "Rule 1: Clean your room.<br>Rule 2: Sit up straight.<br>Rule 3: Something about Lobsters?<br>Rule 4: All women are agents of <i>The Chaos Dragon</i>",
     "Can this country hurry up and collapse already?",
     "Now you're playing with Power",
-    "Attack Decay Sustain Release", 
+    "Attack Decay Sustain Release",
     "Are you ready for the sudden but inevitable betrayal?",
     "Tier 6 Patrons get double HP and free barrelguns each round",
     "Bang.",
@@ -426,15 +426,15 @@ var taglineDirectory = [
     "Win and live. Lose and die. Rule of life. No change rule.",
     "The black wind howls... One among you will shortly perish... ",
     "All life begins with Nu and ends with Nu... <br>This is the truth! This is my belief! ...At least for now.",
-    "The year is "+(new Date().getYear())+". The name of the place is the GGG.",
+    "The year is " + (new Date().getYear()) + ". The name of the place is the GGG.",
     "Fun on a bun",
-	"Sending this message was important to us. We considered ourselves to be a powerful culture.",
+    "Sending this message was important to us. We considered ourselves to be a powerful culture.",
     "This place is not a place of honor.<br>No highly esteemed deed is commemorated here.<br>Nothing valued is here.",
     "What is here was dangerous and repulsive to us.",
-	"This message is a warning about danger.",
+    "This message is a warning about danger.",
     "The danger is in a particular location...<br>it increases towards a center...<br>the center of danger is here...<br>of a particular size and shape...<br>and below us.",
     "The danger is still present, in your time, as it was in ours.",
-	"This place is best shunned and left uninhabited.",
+    "This place is best shunned and left uninhabited.",
     "Too weird to live, to rare to die",
     "Coming up, so you better get his party started.",
     "Now in color",

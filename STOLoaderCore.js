@@ -2,7 +2,7 @@
 
 
 function STOLoader(faction) {
-	var running = true;
+    var running = true;
     var stoBox = document.createElement("div");
     var canvas = document.createElement("canvas");
     stoBox.id = "SpecialEvent";
@@ -18,20 +18,19 @@ function STOLoader(faction) {
     canvas.style.left = "0";
     var ctx = canvas.getContext("2d");
     stoBox.appendChild(canvas);
-	
-	
-	var stoData = new STOData(ctx);
+
+    var stoData = new STOData(ctx);
     if (!faction) {
-		var rng = Math.random();
-		if (rng < .333333 ){ 
-			faction = "KDF";
-		} else if (rng < .666666 ){ 
-			faction = "FED";
-		} else {
-			faction = "RRW";
-		}
+        var rng = Math.random();
+        if (rng < .333333) {
+            faction = "KDF";
+        } else if (rng < .666666) {
+            faction = "FED";
+        } else {
+            faction = "RRW";
+        }
     }
-	
+
     function gradient(x, color) {
         var linearGradient = ctx.createLinearGradient(x, 0, x + color.width, 0);
         color.stops.forEach(stop => {
@@ -39,7 +38,6 @@ function STOLoader(faction) {
         });
         return linearGradient;
     }
-	
 
     var destination = document.createElement("div");
     destination.style.position = "absolute";
@@ -55,8 +53,6 @@ function STOLoader(faction) {
     destination.style.paddingRight = "10px";
     destination.innerHTML = "LOADING...";
     stoBox.appendChild(destination);
-
-
 
     var imageBorderGradient = ctx.createLinearGradient(195, 195, 195 + 1280, 195 + 720);
     imageBorderGradient.addColorStop(0, stoData[faction].imageBorderStart);
@@ -113,18 +109,18 @@ function STOLoader(faction) {
 
     var frames = 0;
     var activeDataString = 0;
-	var delay = 0;
-	var secondPass = false;
-	var reset = false;
+    var delay = 0;
+    var secondPass = false;
+    var reset = false;
     function frameLogic() {
         if (frames > 400) {
             frames = 0;
-			console.log("check for removed special events element");
-			if( !document.getElementById("SpecialEvent") ){
-				console.log("removed, shut down STO loader");
-				clearInterval( logicRunner );
-				running = false;
-			}
+            console.log("check for removed special events element");
+            if (!document.getElementById("SpecialEvent")) {
+                console.log("removed, shut down STO loader");
+                clearInterval(logicRunner);
+                running = false;
+            }
         }
         frames++;
 
@@ -133,63 +129,66 @@ function STOLoader(faction) {
         destination.innerHTML = "LOADING " + map;
         loading += .37;
         loading = Math.min(loading, 99.99);
-		
 
         if (frames % 3 == 0) { // strings on top
-			if( delay == 0 ){
-				if(reset){
-					stoData.dataStrings = stoData.dataStrings.map(()=>{
-						return {
-							str: "",
-							updated: false
-						};
-					});
-					delay = 8;
-					reset = false;
-					secondPass = false;
-				}
-				if(secondPass){
-					stoData.dataStrings[activeDataString].updated = true;
-					if( activeDataString > 1) {
-						stoData.dataStrings[activeDataString-2].updated = false;
-					}
-				}
-				if( delay == 0) {
-					stoData.dataStrings[activeDataString].str = rngDataString();
-					activeDataString = (activeDataString + 1);
-				}
-			} else {
-				delay = delay - 1;
-				var firstUpdated = stoData.dataStrings.findIndex(e=>e.updated);
-				if (firstUpdated != -1){
-					stoData.dataStrings[firstUpdated].updated = false;
-				}
-			}
-			if (activeDataString == stoData.dataStrings.length ){
-				activeDataString = 0;
-				delay = 4;
-				if(!secondPass){
-					secondPass = true;
-				} else {
-					delay = 8;
-					reset = true;
-				}
-			}
+            if (delay == 0) {
+                if (reset) {
+                    stoData.dataStrings = stoData.dataStrings.map(() => {
+                        return {
+                            str: "",
+                            updated: false
+                        };
+                    });
+                    delay = 8;
+                    reset = false;
+                    secondPass = false;
+                }
+                if (secondPass) {
+                    stoData.dataStrings[activeDataString].updated = true;
+                    if (activeDataString > 1) {
+                        stoData.dataStrings[activeDataString - 2].updated = false;
+                    }
+                }
+                if (delay == 0) {
+                    stoData.dataStrings[activeDataString].str = rngDataString();
+                    activeDataString = (activeDataString + 1);
+                }
+            } else {
+                delay = delay - 1;
+                var firstUpdated = stoData.dataStrings.findIndex(e => e.updated);
+                if (firstUpdated != -1) {
+                    stoData.dataStrings[firstUpdated].updated = false;
+                }
+            }
+            if (activeDataString == stoData.dataStrings.length) {
+                activeDataString = 0;
+                delay = 4;
+                if (!secondPass) {
+                    secondPass = true;
+                } else {
+                    delay = 8;
+                    reset = true;
+                }
+            }
         }
-		if( frames % 22 == 0 && Math.random() < .6){ // corner rectangles on image
-			stoData.cornerBoxes = [
-				new Array(20).fill(1).map(e=>Math.random()>.75?false:true),
-				new Array(20).fill(1).map(e=>Math.random()>.7?false:true)
-			];
-		}
-		if( frames % 20 == 0 ){ //hidden bottom text
-			stoData.floorText = stoData.floorText.map((e,i)=>{
-				if(i==0){return e;}
-				return e.replace(/\d/g, ()=>{return rngNumberString(1)});
-			});
-		}
+        if (frames % 22 == 0 && Math.random() < .6) { // corner rectangles on image
+            stoData.cornerBoxes = [
+                new Array(20).fill(1).map(e => Math.random() > .75 ? false : true),
+                new Array(20).fill(1).map(e => Math.random() > .7 ? false : true)
+            ];
+        }
+        if (frames % 20 == 0) { //hidden bottom text
+            stoData.floorText = stoData.floorText.map((e, i) => {
+                if (i == 0) {
+                    return e;
+                }
+                return e.replace(/\d/g, () => {
+                    return rngNumberString(1)
+                });
+            });
+        }
         if (frames % 30 == 0) { //box numebrs
-			stoData.boxNumbers = stoData.boxNumbers.map(rngBoxNumber);
+            stoData.boxNumbers = stoData.boxNumbers.map(rngBoxNumber);
         }
     }
 
@@ -219,21 +218,21 @@ function STOLoader(faction) {
         ctx.stroke();
     }
 
-	stoData[faction].background.forEach( e=>{
-		stoData.bgGradient.addColorStop(e.position, e.color);			
-	});
+    stoData[faction].background.forEach(e => {
+        stoData.bgGradient.addColorStop(e.position, e.color);
+    });
     function drawFrame() {
-		
+
         ctx.fillStyle = stoData.bgGradient;
         ctx.fillRect(0, 0, 2000, 1100);
         ctx.fillStyle = stoData[faction].loadSledMain;
-		stoData.cornerBoxes.forEach( (row,rowIndex) => {
-			row.forEach((b,i)=>{
-				if(b){
-					ctx.fillRect(198+8+(i*11), 855+(33*rowIndex), 6, 25);
-				}
-			});
-		});
+        stoData.cornerBoxes.forEach((row, rowIndex) => {
+            row.forEach((b, i) => {
+                if (b) {
+                    ctx.fillRect(198 + 8 + (i * 11), 855 + (33 * rowIndex), 6, 25);
+                }
+            });
+        });
 
         fillPoly(stoData[faction].topJagCoords, gradient(30, stoData[faction].jagBar));
         fillPoly(stoData[faction].bottomJagCoords, gradient(30, stoData[faction].jagBar));
@@ -256,13 +255,11 @@ function STOLoader(faction) {
         fillBox(stoData[faction].loadBarRailTop, 286 + loadBarWidth - 8, 105, Math.min(0, 0 - loadBarWidth + loadingSledWidth + sledPosition + 8), 28);
         fillBox(stoData[faction].loadBarRailBottom, 286 + loadBarWidth - 8, 105 + 8 + 28, Math.min(0, 0 - loadBarWidth + loadingSledWidth + sledPosition + 8), 28);
 
-
-		ctx.fillStyle = stoData.textureGradient2;
-		ctx.fillRect(0,0,1920,1080);
+        ctx.fillStyle = stoData.textureGradient2;
+        ctx.fillRect(0, 0, 1920, 1080);
 
         ctx.drawImage(stoImage, 198, 198);
-		strokePoly(stoData[faction].imageBorderCoords, imageBorderGradient, 8);
-
+        strokePoly(stoData[faction].imageBorderCoords, imageBorderGradient, 8);
 
         var mostSignificantDigit = parseInt(loading / 10);
         var secondMostSignificantDigit = parseInt(loading % 10);
@@ -271,12 +268,12 @@ function STOLoader(faction) {
         var leastSignificantDigit = parseInt(loadLow % 10);
         var spacing = 6;
         ctx.font = "bold 9em okuda";
-        ctx.fillStyle = gradient(1800, stoData[faction].percentage );
+        ctx.fillStyle = gradient(1800, stoData[faction].percentage);
         ctx.fillText(mostSignificantDigit, 1782, 256);
         ctx.fillText(secondMostSignificantDigit, 1805 + spacing, 256);
         ctx.font = "bold 5em okuda";
-        ctx.fillText(secondLeastSignificanDigit, 1825 + (spacing*3), 256);
-        ctx.fillText(leastSignificantDigit, 1840 + (spacing*3), 256);
+        ctx.fillText(secondLeastSignificanDigit, 1825 + (spacing * 3), 256);
+        ctx.fillText(leastSignificantDigit, 1840 + (spacing * 3), 256);
 
         ctx.font = "3em okuda";
         ctx.fillStyle = stoData.bgGradient;
@@ -331,16 +328,16 @@ function STOLoader(faction) {
                 ctx.fillText("*", 1150, 338 + 33 + (20 * i));
             }
         });
-		
+
         ctx.fillStyle = "rgb(42,41,49)";
         ctx.font = "bold 1.6em Lucida Console";
-		stoData.floorText.forEach((e, i) => {
+        stoData.floorText.forEach((e, i) => {
             ctx.fillText(e, 190, 950 + (20 * i));
         });
 
-        if( running ){
-			anim(drawFrame);
-		}
+        if (running) {
+            anim(drawFrame);
+        }
     }
     ctx.scale(window.innerWidth / 1920, window.innerHeight / 1080);
     var logicRunner = setInterval(frameLogic, 60);
