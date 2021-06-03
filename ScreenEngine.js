@@ -81,3 +81,15 @@ function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemo
     document.getElementById('mode').innerHTML = gamemode;
     document.getElementById('map').innerHTML = mapname;
 }
+
+
+window.onerror = function (msg, url, lineNo, columnNo, error) {
+	var overlay = document.getElementById('overlay');
+	overlay.style.opacity = "1";
+	var err = document.createElement("div");
+	err.style.color = "#ff0000";
+	err.style.backgroundColor = "rgba(0,0,0,.9)";
+	err.innerHTML = url+" : "+lineNo+" | "+columnNo+"  ["+msg+"] "+ JSON.stringify(error);
+	overlay.appendChild( err );
+	return false;
+}
