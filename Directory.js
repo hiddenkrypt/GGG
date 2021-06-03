@@ -186,7 +186,11 @@ var loadingScreenDirectory = [{
 	}, {
 		url: "https://i.imgur.com/vCyu0dm.png",
 		title: "Breaking News",
-		cretit: "Mike"
+		credit: "Mike"
+	}, {
+		url: "https://i.imgur.com/xmx08xI.png",
+		title: "GGG the Movie",
+		credit: "Ada"
 	}
 ];
 
@@ -520,7 +524,7 @@ var taglineDirectory = [
     "Corruptors of the youth",
     "Form a Union",
     "Marginally more reliable than a cascading NHP",
-    "",
+    "awww yiss",
     "",
     "",
     "",
