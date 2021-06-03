@@ -38,8 +38,8 @@ var SpecialEvents = new(function () {
      * that will bring the elements back
      **/
     function hideUI() {
-        let logo = document.getElementById("logo");
-        let boilerplate = document.getElementById("boilerplate");
+        var logo = document.getElementById("logo");
+        var boilerplate = document.getElementById("boilerplate");
 
         document.addEventListener(
             "click",
@@ -55,8 +55,8 @@ var SpecialEvents = new(function () {
         }
     }
 	function unhideUI(){
-        let logo = document.getElementById("logo");
-        let boilerplate = document.getElementById("boilerplate");
+        var logo = document.getElementById("logo");
+        var boilerplate = document.getElementById("boilerplate");
 		if (boilerplate) {
 			boilerplate.style.display = "initial";
 		}

@@ -3,8 +3,8 @@ function TestRig() {
     var self = {};
     self.active = false;
 
-    let screenSelect,
-    urlTextBox;
+    var screenSelect;
+    var urlTextBox;
     self.init = function testRigInit(screenSetting) {
         console.log("test rig init");
         self.active = true;
@@ -12,7 +12,7 @@ function TestRig() {
         setTimeout(function () {
             GameDetails('', '', "de_deathcookin", '', '', "terrortown");
         }, 1000);
-        let controlPanel = document.createElement("div");
+        var controlPanel = document.createElement("div");
         controlPanel.style.position = "absolute";
         controlPanel.style.zIndex = "999";
         controlPanel.style.top = "1em";
@@ -32,24 +32,24 @@ function TestRig() {
         screenSelect.addEventListener("input", selectBackground);
         controlPanel.appendChild(screenSelect);
 
-        let screenLinkGenerator = document.createElement("div");
+        var screenLinkGenerator = document.createElement("div");
         screenLinkGenerator.innerHTML = "URL to Screen:";
         screenLinkGenerator.style.display = "block";
         urlTextBox = document.createElement("input");
         screenLinkGenerator.appendChild(urlTextBox);
         controlPanel.appendChild(screenLinkGenerator);
 
-        let imageQuickTest = document.createElement("div");
+        var imageQuickTest = document.createElement("div");
         imageQuickTest.innerHTML = "Quick Image test:";
         imageQuickTest.style.display = "block";
-        let imgSrc = document.createElement("input");
+        var imgSrc = document.createElement("input");
         imageQuickTest.appendChild(imgSrc);
-        let imgLoadbutton = document.createElement("button");
+        var imgLoadbutton = document.createElement("button");
         imgLoadbutton.innerHTML = "Load";
         imageQuickTest.appendChild(imgLoadbutton);
         controlPanel.appendChild(imageQuickTest);
 
-        let hideTest = document.createElement("button");
+        var hideTest = document.createElement("button");
         hideTest.innerHTML = "Hide Test UI";
         hideTest.addEventListener("click", (e) => {
             controlPanel.style.display = "none";

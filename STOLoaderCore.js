@@ -16,11 +16,11 @@ function STOLoader(faction) {
     canvas.style.zIndex = 0;
     canvas.style.top = "0";
     canvas.style.left = "0";
-    let ctx = canvas.getContext("2d");
+    var ctx = canvas.getContext("2d");
     stoBox.appendChild(canvas);
 	
 	
-	let stoData = new STOData(ctx);
+	var stoData = new STOData(ctx);
     if (!faction) {
 		var rng = Math.random();
 		if (rng < .333333 ){ 
@@ -33,7 +33,7 @@ function STOLoader(faction) {
     }
 	
     function gradient(x, color) {
-        let linearGradient = ctx.createLinearGradient(x, 0, x + color.width, 0);
+        var linearGradient = ctx.createLinearGradient(x, 0, x + color.width, 0);
         color.stops.forEach(stop => {
             linearGradient.addColorStop(stop.position, stop.color);
         });
@@ -41,7 +41,7 @@ function STOLoader(faction) {
     }
 	
 
-    let destination = document.createElement("div");
+    var destination = document.createElement("div");
     destination.style.position = "absolute";
     destination.style.zIndex = 7;
     destination.style.right = "0";
@@ -58,26 +58,26 @@ function STOLoader(faction) {
 
 
 
-    let imageBorderGradient = ctx.createLinearGradient(195, 195, 195 + 1280, 195 + 720);
+    var imageBorderGradient = ctx.createLinearGradient(195, 195, 195 + 1280, 195 + 720);
     imageBorderGradient.addColorStop(0, stoData[faction].imageBorderStart);
     imageBorderGradient.addColorStop(1, stoData[faction].imageBorderStop);
 
-    let stoImage = document.createElement("img");
+    var stoImage = document.createElement("img");
     stoImage.src = "res/img/sto.jpg";
 
-    let tag = document.getElementById("tagline").innerHTML;
+    var tag = document.getElementById("tagline").innerHTML;
     tag = tag.replace(/<br>/, " ");
     tag = tag.replace(/<i>/, "");
     tag = tag.replace(/<\/i>/, "");
     tag = tag.replace(/<span.+/, "");
-    let tag2 = "";
-    let loading = 0;
-    let loadBarWidth = 560;
-    let loadingSledWidth = 155;
+    var tag2 = "";
+    var loading = 0;
+    var loadBarWidth = 560;
+    var loadingSledWidth = 155;
 
     function pathFromCoords(coords) { //FEDS need quadraticCurveTo
         ctx.beginPath();
-        let move = false;
+        var move = false;
         coords.forEach(e => {
             if (!move) {
                 ctx.moveTo(e[0], e[1]);
@@ -93,7 +93,7 @@ function STOLoader(faction) {
         ctx.closePath();
     }
     function rngNumberString(digits) {
-        let num = parseInt(Math.random() * Math.pow(10, digits)) + "";
+        var num = parseInt(Math.random() * Math.pow(10, digits)) + "";
         while (num.length < digits) {
             num = "0" + num;
         }
@@ -104,18 +104,18 @@ function STOLoader(faction) {
     }
     stoData.boxNumbers = stoData.boxNumbers.map(rngBoxNumber);
     function rngDataString() {
-        let numLengths = [
+        var numLengths = [
             5, 6, 4, 6, 3, 2, 5, 7, 2, 2, 2, 3, 2, 9, 1, 8, 4, 5, 5, 4, 4, 8, 4, 1, 8,
             8, 9, 7, 3, 1, 5, 4, 8, 5, 6, 4, 2, 6, 4, 8, 6, 4, 6, 2, 8, 2, 6, 2
         ];
         return numLengths.map(rngNumberString).join(" ");
     }
 
-    let frames = 0;
-    let activeDataString = 0;
-	let delay = 0;
-	let secondPass = false;
-	let reset = false;
+    var frames = 0;
+    var activeDataString = 0;
+	var delay = 0;
+	var secondPass = false;
+	var reset = false;
     function frameLogic() {
         if (frames > 400) {
             frames = 0;
@@ -128,7 +128,7 @@ function STOLoader(faction) {
         }
         frames++;
 
-        let map = document.getElementById("map").innerHTML.toUpperCase();
+        var map = document.getElementById("map").innerHTML.toUpperCase();
         map = map ? map : "...";
         destination.innerHTML = "LOADING " + map;
         loading += .37;
@@ -246,7 +246,7 @@ function STOLoader(faction) {
         fillBox(stoData[faction].rightBars, 278 + loadBarWidth + 8, 105, 1100, 28);
         fillBox(stoData[faction].rightBars, 278 + loadBarWidth + 8, 105 + 28 + 8, 1100, 28);
 
-        let sledPosition = (loadBarWidth - loadingSledWidth - 8) * (loading / 100) + 8;
+        var sledPosition = (loadBarWidth - loadingSledWidth - 8) * (loading / 100) + 8;
         fillBox(stoData[faction].loadBarRailBehind, 270 + 8, 105, sledPosition - 8, 28);
         fillBox(stoData[faction].loadBarRailBehind, 270 + 8, 105 + 28 + 8, sledPosition - 8, 28);
         fillBox(stoData[faction].loadSledMain, 278 + sledPosition, 105, 54, 28);
@@ -264,12 +264,12 @@ function STOLoader(faction) {
 		strokePoly(stoData[faction].imageBorderCoords, imageBorderGradient, 8);
 
 
-        let mostSignificantDigit = parseInt(loading / 10);
-        let secondMostSignificantDigit = parseInt(loading % 10);
-        let loadLow = parseInt(loading * 100 % 100);
-        let secondLeastSignificanDigit = parseInt(loadLow / 10);
-        let leastSignificantDigit = parseInt(loadLow % 10);
-        let spacing = 6;
+        var mostSignificantDigit = parseInt(loading / 10);
+        var secondMostSignificantDigit = parseInt(loading % 10);
+        var loadLow = parseInt(loading * 100 % 100);
+        var secondLeastSignificanDigit = parseInt(loadLow / 10);
+        var leastSignificantDigit = parseInt(loadLow % 10);
+        var spacing = 6;
         ctx.font = "bold 9em okuda";
         ctx.fillStyle = gradient(1800, stoData[faction].percentage );
         ctx.fillText(mostSignificantDigit, 1782, 256);
@@ -280,7 +280,7 @@ function STOLoader(faction) {
 
         ctx.font = "3em okuda";
         ctx.fillStyle = stoData.bgGradient;
-        let x = 165 - ctx.measureText("00-0000" + "..").width;
+        var x = 165 - ctx.measureText("00-0000" + "..").width;
         ctx.fillText(stoData.boxNumbers[0], x, 47);
         ctx.fillText(stoData.boxNumbers[1], x, 87);
         ctx.fillText(stoData.boxNumbers[2], x, 302);
@@ -305,11 +305,11 @@ function STOLoader(faction) {
 
         ctx.fillStyle = "rgb(3,117,3)";
         ctx.font = "bold 2em Verdana";
-        let tag2Width = ctx.measureText(tag2).width;
-        let tagWidth = ctx.measureText(tag).width;
+        var tag2Width = ctx.measureText(tag2).width;
+        var tagWidth = ctx.measureText(tag).width;
 
         if (tag2.length == 0 && tagWidth > 288 && tagWidth < 550) {
-            let firstChunk = tag.substr(0, tag.length / 2);
+            var firstChunk = tag.substr(0, tag.length / 2);
             firstChunk = firstChunk.substr(0, firstChunk.lastIndexOf(" "));
             tag2 = tag.substr(firstChunk.length);
             tag = firstChunk;

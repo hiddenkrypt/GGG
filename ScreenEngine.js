@@ -8,7 +8,7 @@
 
 function ScreenEngineBuilder() {
     console.log("build screen engine");
-    let testRig = TestRig();
+    var testRig = TestRig();
 
     function loadScreenIndex(index) {
 		SpecialEvents.unhide();
@@ -18,9 +18,9 @@ function ScreenEngineBuilder() {
         } else {
             console.log(`load screen: ${index}`);
         }
-        let selectedScreen = loadingScreenDirectory[index];
+        var selectedScreen = loadingScreenDirectory[index];
         ScreenEngine.setBackground('url("' + selectedScreen.url + '")');
-        let tag = taglineDirectory[Math.floor(Math.random() * taglineDirectory.length)];
+        var tag = taglineDirectory[Math.floor(Math.random() * taglineDirectory.length)];
         document.getElementById("tagline").innerHTML = tag;
         if (typeof selectedScreen.trigger === 'function') {
             selectedScreen.trigger();
@@ -53,8 +53,8 @@ function ScreenEngineBuilder() {
     }
     function setBackground(url) {
         document.body.style.backgroundImage = url;
-        let sfx = document.getElementById("sfx");
-        let se = document.getElementById("SpecialEvent");
+        var sfx = document.getElementById("sfx");
+        var se = document.getElementById("SpecialEvent");
         if (se) {
             se.remove();
         }

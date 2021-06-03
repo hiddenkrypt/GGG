@@ -1,5 +1,5 @@
 //STOData.js
-let STOData = function ( ctx ) {
+var STOData = function ( ctx ) {
 	this.faction = "FED";
 	this.dataStrings = new Array(6).fill(1).map(() => {
         return {
@@ -12,8 +12,8 @@ let STOData = function ( ctx ) {
 		new Array(20).fill(1).map(e=>Math.random()>.9?false:true),
 		new Array(20).fill(1).map(e=>Math.random()>.7?false:true)
 	];
-	let date = new Date();
-	let dateString = date.getFullYear()+"."+date.getMonth()+"."+date.getDay()+":"+date.getHours()+"."+date.getMinutes()+"."+date.getSeconds();
+	var date = new Date();
+	var dateString = date.getFullYear()+"."+date.getMonth()+"."+date.getDay()+":"+date.getHours()+"."+date.getMinutes()+"."+date.getSeconds();
 	this.floorText = [
 		"98980.91/"+dateString,
 		"262/7237 726.85 9845",
