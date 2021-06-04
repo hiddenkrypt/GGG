@@ -51,10 +51,10 @@ function TestRig() {
 
         var hideTest = document.createElement("button");
         hideTest.innerHTML = "Hide Test UI";
-        hideTest.addEventListener("click", (e) => {
+        hideTest.addEventListener("click", function(e){
             controlPanel.style.display = "none";
             e.preventDefault();
-            setTimeout(() => { //anti-bounce hackery
+            setTimeout(function(){ //anti-bounce hackery
                 function testUIReturn() {
                     controlPanel.style.display = "block";
                     document.body.removeEventListener("click", testUIReturn);

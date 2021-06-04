@@ -1,7 +1,7 @@
 //STOData.js
 var STOData = function (ctx) {
     this.faction = "FED";
-    this.dataStrings = new Array(6).fill(1).map(() => {
+    this.dataStrings = new Array(6).fill(1).map( function(){
         return {
             str: "",
             updated: false
@@ -9,8 +9,8 @@ var STOData = function (ctx) {
     });
     this.boxNumbers = ["00-0000", "01-0000", "02-0000", "03-0000", "04-0000", "05-0000"];
     this.cornerBoxes = [
-        new Array(20).fill(1).map(e => Math.random() > .9 ? false : true),
-        new Array(20).fill(1).map(e => Math.random() > .7 ? false : true)
+        new Array(20).fill(1).map(function(){ return Math.random() > .9 ? false : true;}),
+        new Array(20).fill(1).map(function(){ return Math.random() > .7 ? false : true;})
     ];
     var date = new Date();
     var dateString = date.getFullYear() + "." + date.getMonth() + "." + date.getDay() + ":" + date.getHours() + "." + date.getMinutes() + "." + date.getSeconds();

@@ -14,9 +14,9 @@ function ScreenEngineBuilder() {
         SpecialEvents.unhide();
         if (index == undefined) {
             index = Math.floor(Math.random() * loadingScreenDirectory.length);
-            console.log(`load screen: RNG{${index}}`);
+            console.log("load screen: RNG{"+index+"}");
         } else {
-            console.log(`load screen: ${index}`);
+            console.log("load screen: "+index);
         }
         var selectedScreen = loadingScreenDirectory[index];
         ScreenEngine.setBackground('url("' + selectedScreen.url + '")');
@@ -37,7 +37,7 @@ function ScreenEngineBuilder() {
             testRig.init(URLParams.screen);
         }
         loadScreenIndex(URLParams.screen);
-        setInterval(() => {
+        setInterval( function(){
             if (!testRig.active) {
                 loadScreenIndex();
             }
