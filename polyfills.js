@@ -1,4 +1,23 @@
-
+if(!Array.prototype.findIndex){
+	Object.defineProperty(Array.prototype, 'findIndex', {
+		value: function( callBack, thisArg ) {
+			// Steps 1-2.
+			if (this == null) {
+				throw new TypeError('this is null or not defined');
+			}
+			if( thisArg ){
+				throw new TypeError("Ada's janky polyfill doesn't support thisArg");
+			}
+			var O = Object(this);
+			for( var i = 0; i < O.length; i++){
+				if ( callBack(O[i], i, O) ){
+					return i;
+				}
+			}
+			return -1;
+		}
+	});
+}
 
 if (!Array.prototype.fill) {
   Object.defineProperty(Array.prototype, 'fill', {
