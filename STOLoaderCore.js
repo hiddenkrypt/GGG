@@ -267,15 +267,15 @@ function STOLoader(faction) {
         var secondLeastSignificanDigit = parseInt(loadLow / 10);
         var leastSignificantDigit = parseInt(loadLow % 10);
         var spacing = 6;
-        ctx.font = "bold 9em okuda";
+        ctx.font = "bold 70px okuda";
         ctx.fillStyle = gradient(1800, stoData[faction].percentage);
         ctx.fillText(mostSignificantDigit, 1782, 256);
         ctx.fillText(secondMostSignificantDigit, 1805 + spacing, 256);
-        ctx.font = "bold 5em okuda";
+        ctx.font = "bold 40px okuda";
         ctx.fillText(secondLeastSignificanDigit, 1825 + (spacing * 3), 256);
         ctx.fillText(leastSignificantDigit, 1840 + (spacing * 3), 256);
 
-        ctx.font = "3em okuda";
+        ctx.font = "28px okuda";
         ctx.fillStyle = stoData.bgGradient;
         var x = 165 - ctx.measureText("00-0000" + "..").width;
         ctx.fillText(stoData.boxNumbers[0], x, 47);
@@ -285,7 +285,7 @@ function STOLoader(faction) {
         ctx.fillText(stoData.boxNumbers[4], x, 444);
         ctx.fillText(stoData.boxNumbers[5], x, 492);
 
-        ctx.font = "bold 1.6em Lucida Console";
+        ctx.font = "bold 11px Lucida Console";
         stoData.dataStrings.forEach(function(data, i){
             ctx.fillStyle = data.updated ? "rgb(65,82,92)" : stoData.stringGradient;
             ctx.fillText(data.str, 168 + 24, 14 + 14 * i);
@@ -294,14 +294,14 @@ function STOLoader(faction) {
         strokePoly(stoData[faction].infoBoxcoords, stoData.infoBoxBorderGradient, 1);
 
         ctx.fillStyle = "rgb(201,51,63)";
-        ctx.font = "bold 3em Pixel-Emulator";
+        ctx.font = "bold 28px Pixel-Emulator";
         ctx.fillText("GGG", 1150 + 144 - (ctx.measureText("GGG").width / 2), 238 + 30);
         ctx.fillStyle = "rgb(246,0,0)";
-        ctx.font = "bold 4em Pixel-Emulator";
+        ctx.font = "bold 36px Pixel-Emulator";
         ctx.fillText("RED ALERT", 1150 + 144 - (ctx.measureText("RED ALERT").width / 2), 238 + 60);
 
         ctx.fillStyle = "rgb(3,117,3)";
-        ctx.font = "bold 2em Verdana";
+        ctx.font = "bold 18px Verdana";
         var tag2Width = ctx.measureText(tag2).width;
         var tagWidth = ctx.measureText(tag).width;
 
@@ -321,7 +321,7 @@ function STOLoader(faction) {
         }
 
         ctx.fillStyle = "rgb(232,231,229)";
-        ctx.font = "1.9em Verdana";
+        ctx.font = "16px Verdana";
         stoData.textBlob.forEach(function(e, i){
             ctx.fillText(e, 1166, 338 + 30 + (20 * i));
             if (i == 0 || i == 6 || i == 12) {
@@ -330,7 +330,7 @@ function STOLoader(faction) {
         });
 
         ctx.fillStyle = "rgb(42,41,49)";
-        ctx.font = "bold 1.6em Lucida Console";
+        ctx.font = "bold 12px Lucida Console";
         stoData.floorText.forEach( function(e, i){
             ctx.fillText(e, 190, 950 + (20 * i));
         });
