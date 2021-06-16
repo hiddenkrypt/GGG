@@ -33,7 +33,7 @@ function STOLoader(faction) {
 
     function gradient(x, color) {
         var linearGradient = ctx.createLinearGradient(x, 0, x + color.width, 0);
-        color.stops.forEach( function(stop){
+        color.stops.forEach(function (stop) {
             linearGradient.addColorStop(stop.position, stop.color);
         });
         return linearGradient;
@@ -74,7 +74,7 @@ function STOLoader(faction) {
     function pathFromCoords(coords) { //FEDS need quadraticCurveTo
         ctx.beginPath();
         var move = false;
-        coords.forEach(function(e){
+        coords.forEach(function (e) {
             if (!move) {
                 ctx.moveTo(e[0], e[1]);
                 move = true;
@@ -133,7 +133,7 @@ function STOLoader(faction) {
         if (frames % 3 == 0) { // strings on top
             if (delay == 0) {
                 if (reset) {
-                    stoData.dataStrings = stoData.dataStrings.map(function(){
+                    stoData.dataStrings = stoData.dataStrings.map(function () {
                         return {
                             str: "",
                             updated: false
@@ -155,7 +155,9 @@ function STOLoader(faction) {
                 }
             } else {
                 delay = delay - 1;
-                var firstUpdated = stoData.dataStrings.findIndex(function(e){ return e.updated });
+                var firstUpdated = stoData.dataStrings.findIndex(function (e) {
+                    return e.updated
+                });
                 if (firstUpdated != -1) {
                     stoData.dataStrings[firstUpdated].updated = false;
                 }
@@ -173,16 +175,20 @@ function STOLoader(faction) {
         }
         if (frames % 22 == 0 && Math.random() < .6) { // corner rectangles on image
             stoData.cornerBoxes = [
-                new Array(20).fill(1).map(function(){ return Math.random() > .75 ? false : true}),
-                new Array(20).fill(1).map(function(){ return Math.random() > .7 ? false : true})
+                new Array(20).fill(1).map(function () {
+                    return Math.random() > .75 ? false : true
+                }),
+                new Array(20).fill(1).map(function () {
+                    return Math.random() > .7 ? false : true
+                })
             ];
         }
         if (frames % 20 == 0) { //hidden bottom text
-            stoData.floorText = stoData.floorText.map(function(e, i){
+            stoData.floorText = stoData.floorText.map(function (e, i) {
                 if (i == 0) {
                     return e;
                 }
-                return e.replace(/\d/g, function(){
+                return e.replace(/\d/g, function () {
                     return rngNumberString(1)
                 });
             });
@@ -218,7 +224,7 @@ function STOLoader(faction) {
         ctx.stroke();
     }
 
-    stoData[faction].background.forEach(function(e){
+    stoData[faction].background.forEach(function (e) {
         stoData.bgGradient.addColorStop(e.position, e.color);
     });
     function drawFrame() {
@@ -226,8 +232,8 @@ function STOLoader(faction) {
         ctx.fillStyle = stoData.bgGradient;
         ctx.fillRect(0, 0, 2000, 1100);
         ctx.fillStyle = stoData[faction].loadSledMain;
-        stoData.cornerBoxes.forEach(function(row, rowIndex){
-            row.forEach( function(b, i){
+        stoData.cornerBoxes.forEach(function (row, rowIndex) {
+            row.forEach(function (b, i) {
                 if (b) {
                     ctx.fillRect(198 + 8 + (i * 11), 855 + (33 * rowIndex), 6, 25);
                 }
@@ -286,7 +292,7 @@ function STOLoader(faction) {
         ctx.fillText(stoData.boxNumbers[5], x, 492);
 
         ctx.font = "bold 11px Lucida Console";
-        stoData.dataStrings.forEach(function(data, i){
+        stoData.dataStrings.forEach(function (data, i) {
             ctx.fillStyle = data.updated ? "rgb(65,82,92)" : stoData.stringGradient;
             ctx.fillText(data.str, 168 + 24, 14 + 14 * i);
         });
@@ -322,7 +328,7 @@ function STOLoader(faction) {
 
         ctx.fillStyle = "rgb(232,231,229)";
         ctx.font = "16px Verdana";
-        stoData.textBlob.forEach(function(e, i){
+        stoData.textBlob.forEach(function (e, i) {
             ctx.fillText(e, 1166, 338 + 30 + (20 * i));
             if (i == 0 || i == 6 || i == 12) {
                 ctx.fillText("*", 1150, 338 + 33 + (20 * i));
@@ -331,7 +337,7 @@ function STOLoader(faction) {
 
         ctx.fillStyle = "rgb(42,41,49)";
         ctx.font = "bold 12px Lucida Console";
-        stoData.floorText.forEach( function(e, i){
+        stoData.floorText.forEach(function (e, i) {
             ctx.fillText(e, 190, 950 + (20 * i));
         });
 
@@ -342,7 +348,7 @@ function STOLoader(faction) {
     ctx.scale(window.innerWidth / 1920, window.innerHeight / 1080);
     var logicRunner = setInterval(frameLogic, 60);
     drawFrame();
-    window.onresize = function(){
+    window.onresize = function () {
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.scale(window.innerWidth / 1920, window.innerHeight / 1080);
     };
