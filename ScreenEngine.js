@@ -6,6 +6,17 @@
  * screen.
  **/
 
+<<<<<<< Updated upstream
+=======
+let gamedetails = {
+    servername: "", 
+    serverurl: "", 
+    mapname: "", 
+    maxplayers: 0, 
+    steamid: "testuser", 
+    gamemode: ""
+}
+>>>>>>> Stashed changes
 function ScreenEngineBuilder() {
     console.log("build screen engine");
     var testRig = TestRig();

@@ -10,6 +10,11 @@
  * }
  **/
 var loadingScreenDirectory = [{
+        // url: "",
+        // title: "Terror Towers",
+        // credit: "Ada",
+        // trigger: SpecialEvents.towers
+    // }, {
         url: "TheOriginal.png",
         title: "The Original",
         credit: "Brett"
@@ -142,11 +147,6 @@ var loadingScreenDirectory = [{
         url: "LaterVirgins.png",
         title: "Later Virgins",
         credit: "Ada"
-    }, {
-        url: "",
-        title: "GGG CAH",
-        credit: "Ada",
-        trigger: SpecialEvents.loadCards
     }, {
         url: "",
         title: "GGG CAH",
