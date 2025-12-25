@@ -19,7 +19,7 @@ function ScreenEngineBuilder() {
             console.log("load screen: "+index);
         }
         var selectedScreen = loadingScreenDirectory[index];
-        ScreenEngine.setBackground('url("' + selectedScreen.url + '")');
+        ScreenEngine.setBackground(`url("res/img/screens/${selectedScreen.url}")` );
         var tag = taglineDirectory[Math.floor(Math.random() * taglineDirectory.length)];
         document.getElementById("tagline").innerHTML = tag;
         if (typeof selectedScreen.trigger === 'function') {

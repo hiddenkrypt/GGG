@@ -10,138 +10,148 @@
  * }
  **/
 var loadingScreenDirectory = [{
-        url: "http://i.imgur.com/J0zYUX2.png",
+        url: "TheOriginal.png",
         title: "The Original",
         credit: "Brett"
     }, {
-        url: "http://i.imgur.com/sDYG7yd.png",
+        url: "SweetSkinsandHellaMods.png",
         title: "Sweet Skins and Hella Mods",
         credit: "Ada"
     }, {
-        url: "http://i.imgur.com/lmMNbwD.png",
+        url: "MLG.png",
         title: "MLG",
         credit: "Mike"
     }, {
-        url: "http://i.imgur.com/7q6bIB0.png",
+        url: "u.png",
         title: "/u/",
         credit: "Ada"
     }, {
-        url: "http://i.imgur.com/Zex9uqR.png",
+        url: "TerroristTownGazette0101.png",
         title: "Terrorist Town Gazette 01-01",
         credit: "Ada"
     }, {
-        url: "http://i.imgur.com/AmDjSaW.jpg",
+        url: "SafetyRecord.jpg",
         title: "Safety Record",
         credit: "Brett"
     }, {
-        url: "http://i.imgur.com/qkV5qT9.jpg",
+        url: "AtlasPark.jpg",
         title: "Atlas Park",
         credit: "Matt"
     }, {
-        url: "http://i.imgur.com/rP04dbU.jpg",
+        url: "Winners.jpg",
         title: "Winners",
         credit: "Mike, Ada"
     }, {
-        url: "http://i.imgur.com/FgbK3qI.jpg",
+        url: "DamageControl.jpg",
         title: "Damage Control",
         credit: "Ada"
     }, {
-        url: "http://i.imgur.com/vvmlkuv.png",
+        url: "Postcards.png",
         title: "Postcards",
         credit: "Ada"
     }, {
-        url: "http://i.imgur.com/yFbdPTn.png",
+        url: "DontForget.png",
         title: "Don't Forget:",
         credit: "Ada"
     }, {
-        url: "http://i.imgur.com/lrmn5ek.png",
+        url: "Badmins.png",
         title: "Badmins",
         credit: "Jason"
     }, {
-        url: "http://i.imgur.com/pMCeOiw.png",
+        url: "Minimal.png",
         title: "Minimal",
         credit: "Mike, Ada"
     }, {
-        url: "http://i.imgur.com/3bBK6Fc.jpg",
+        url: "NoFun.jpg",
         title: "No Fun",
         credit: "Brett"
     }, {
-        url: "http://i.imgur.com/0RDXGqs.jpg",
+        url: "AlwaysSunnyinTerrortown.jpg",
         title: "Always Sunny in Terrortown",
         credit: "Brett",
         trigger: SpecialEvents.sunny
     }, {
-        url: "http://i.imgur.com/XUVcFQx.jpg",
+        url: "ERROR.jpg",
         title: "ERROR",
         credit: "Ada",
         trigger: SpecialEvents.indexError
     }, {
-        url: "http://i.imgur.com/s65Yr86.png",
+        url: "Components.png",
         title: "Components",
         credit: "Ada, Ken"
     }, {
-        url: "http://i.imgur.com/IEosSyF.png",
+        url: "SuperNERD.png",
         title: "SuperNERD",
         credit: "Ada, Ken"
     }, {
-        url: "http://i.imgur.com/CtRAxUR.png",
+        url: "StrangerSalts.png",
         title: "Stranger Salts",
         credit: "Ada"
     }, {
-        url: "http://i.imgur.com/5qeoapz.png",
+        url: "VACB.png",
         title: "VACB&",
         credit: "Ada",
         trigger: SpecialEvents.hide
     }, {
-        url: "http://i.imgur.com/BAfpoOo.gif",
+        url: "Thefurrycometh.gif",
         title: "The furry cometh",
         credit: "Ada",
         trigger: SpecialEvents.loading
     }, {
-        url: "http://i.imgur.com/KwlQODl.jpg",
-        title: "WHYFIRE",
-        credit: "Brett"
-    }, {
-        url: "http://i.imgur.com/DvWDePs.png",
-        title: "Virtual Betrayal",
-        credit: "Matt"
-    }, {
-        url: "http://i.imgur.com/IYKrQm8.png",
-        title: "Owlturd",
-        credit: "Ada"
-    }, {
-        url: "http://i.imgur.com/XZmYKvQ.png",
-        title: "'Hot'",
-        credit: "Ada"
-    }, {
+        // url: "http://i.imgur.com/KwlQODl.jpg",
+        // title: "WHYFIRE",
+        // credit: "Brett"
+    // }, {
+        // url: "http://i.imgur.com/DvWDePs.png",
+        // title: "Virtual Betrayal",
+        // credit: "Matt"
+    // }, {
+        // url: "http://i.imgur.com/IYKrQm8.png",
+        // title: "Owlturd",
+        // credit: "Ada"
+    // }, {
+        // url: "http://i.imgur.com/XZmYKvQ.png",
+        // title: "'Hot'",
+        // credit: "Ada"
+    // }, {
         url: "",
         title: "Sspooky",
         credit: "Ada",
         trigger: SpecialEvents.spooky
     }, {
-        url: "https://i.imgur.com/VfkZWw6.png",
+        url: "Buttsy.png",
         title: "Buttsy",
         credit: "Ada, Brett"
     }, {
-        url: "https://imgur.com/5gQwuh8.png",
+        url: "Snekwithat.jpg",
         title: "Snek wit hat",
         credit: "cards against humanity"
     }, {
-        url: "https://i.imgur.com/GtvYSKc.jpg",
+        url: "JustMonika.jpg",
         title: "Just Monika",
         credit: "Mike"
     }, {
-        url: "https://i.imgur.com/FP1VMYO.png",
+        url: "DankeMemes.png",
         title: "Danke Memes",
         credit: "Ada"
     }, {
-        url: "https://i.imgur.com/g0jiA9E.png",
+        url: "Nogrils.png",
         title: "No grils",
         credit: "Ada"
     }, {
-        url: "https://i.imgur.com/aHFnCvV.png",
+        url: "LaterVirgins.png",
         title: "Later Virgins",
         credit: "Ada"
+    }, {
+        url: "",
+        title: "GGG CAH",
+        credit: "Ada",
+        trigger: SpecialEvents.loadCards
+    }, {
+        url: "",
+        title: "GGG CAH",
+        credit: "Ada",
+        trigger: SpecialEvents.loadCards
     }, {
         url: "",
         title: "GGG CAH",
@@ -154,41 +164,31 @@ var loadingScreenDirectory = [{
         trigger: SpecialEvents.sto
     }, {
         url: "",
-        title: "Star Trek Online Loading Screen: Federation",
+        title: "Star Trek Online Loading Screen: random",
         credit: "Cryptic Games, recreated by Ada",
-        trigger: SpecialEvents.stoFED
+        trigger: SpecialEvents.sto
     }, {
-        url: "",
-        title: "Star Trek Online Loading Screen: Romulan Republic",
-        credit: "Cryptic Games, recreated by Ada",
-        trigger: SpecialEvents.stoRRW
-    }, {
-        url: "",
-        title: "Star Trek Online Loading Screen: Klingon Empire",
-        credit: "Cryptic Games, recreated by Ada",
-        trigger: SpecialEvents.stoKDF
-    }, {
-        url: "https://i.imgur.com/jCUSppc.png",
+        url: "BearJesus.png",
         title: "Bear Jesus",
         credit: "Ada",
     }, {
-        url: "https://i.imgur.com/bIaBc9V.png",
+        url: "DumpsterFire.png",
         title: "Dumpster Fire",
         credit: "Ada",
     }, {
-        url: "https://i.imgur.com/T2Vnh3S.png",
+        url: "Onefearbutitsabiggun.png",
         title: "One fear, but it's a biggun",
         credit: "Ada"
     }, {
-        url: "https://i.imgur.com/aTzqLYk.png",
+        url: "Blowthesenerds.png",
         title: "Blow these nerds",
         credit: "Ada"
     }, {
-        url: "https://i.imgur.com/vCyu0dm.png",
+        url: "BreakingNews.png",
         title: "Breaking News",
         credit: "Mike"
     }, {
-        url: "https://i.imgur.com/xmx08xI.png",
+        url: "GGGtheMovie.png",
         title: "GGG the Movie",
         credit: "Ada"
     }
@@ -426,7 +426,7 @@ var taglineDirectory = [
     "Win and live. Lose and die. Rule of life. No change rule.",
     "The black wind howls... One among you will shortly perish... ",
     "All life begins with Nu and ends with Nu... <br>This is the truth! This is my belief! ...At least for now.",
-    "The year is " + (new Date().getYear()) + ". The name of the place is the GGG.",
+    "The year is " + (new Date().getFullYear()) + ". The name of the place is the GGG.",
     "Fun on a bun",
     "Sending this message was important to us. We considered ourselves to be a powerful culture.",
     "This place is not a place of honor.<br>No highly esteemed deed is commemorated here.<br>Nothing valued is here.",
