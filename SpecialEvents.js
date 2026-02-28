@@ -72,7 +72,7 @@ var SpecialEvents = new(function () {
      * Trigger Screen: 'Always Sunny in Terrortown' by Brett
      **/
     this.sunny = function () {
-        playsound("res/audio/sunny.wav", 1);
+        playsound("res/audio/sunny.wav", .6);
     };
 
     /** hide()
