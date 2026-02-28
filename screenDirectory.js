@@ -196,5 +196,9 @@ var loadingScreenDirectory = [{
         url: "GGGtheMovie.png",
         title: "GGG the Movie",
         credit: "Ada"
+    }, {
+        url: "twinpeaks.png",
+        title: "Welcome to Twin Peaks",
+        credit: "Ada"
     }
 ];
