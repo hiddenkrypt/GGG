@@ -19,7 +19,7 @@ function ScreenEngineBuilder() {
             console.log("load screen: "+index);
         }
         var selectedScreen = loadingScreenDirectory[index];
-        ScreenEngine.setBackground('url("' + selectedScreen.url + '")');
+        ScreenEngine.setBackground(`url("res/img/screens/${selectedScreen.url}")` );
         var tag = taglineDirectory[Math.floor(Math.random() * taglineDirectory.length)];
         document.getElementById("tagline").innerHTML = tag;
         if (typeof selectedScreen.trigger === 'function') {
@@ -89,6 +89,11 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
     err.style.color = "#ff0000";
     err.style.backgroundColor = "rgba(0,0,0,.9)";
     err.innerHTML = url + " : " + lineNo + " | " + columnNo + "  [" + msg + "] " + JSON.stringify(error);
+    var tell = document.createElement("div");
+    tell.style.color = "#008141";
+    tell.style.backgroundColor = "rgba(0,0,0,.9)";
+    tell.innerHTML = "Tell a programmer. Tell THE programmer. I mean, tell Ada. Preferably with a screenshot";
     overlay.appendChild(err);
+    overlay.appendChild(tell);
     return false;
 }
